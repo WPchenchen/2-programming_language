@@ -1,0 +1,2299 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book Python学科面试宝典 -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Ngixn做负载均衡的原理 | Python学科面试宝典</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="Sasuke">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-splitter/splitter.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-ouweiya-pagefooter/style/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../web/section17.html" />
+    
+    
+    <link rel="prev" href="../web/section7.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book"
+        data-level="4.8"
+        data-chapter-title="Ngixn做负载均衡的原理"
+        data-filepath="web/section8.md"
+        data-basepath=".."
+        data-revision="Wed Aug 29 2018 16:09:51 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        面试宝典目录
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="pythongrammar/index.html">
+            
+                
+                    <a href="../pythongrammar/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Python语法
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="pythongrammar/section1.html">
+            
+                
+                    <a href="../pythongrammar/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Python单例模式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="pythongrammar/section2.html">
+            
+                
+                    <a href="../pythongrammar/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        斐波那契数列
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="pythongrammar/section3.html">
+            
+                
+                    <a href="../pythongrammar/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Python2和Python3的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="pythongrammar/section4.html">
+            
+                
+                    <a href="../pythongrammar/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        新式类和经典类以及继承顺序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="pythongrammar/section5.html">
+            
+                
+                    <a href="../pythongrammar/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        __new__和__init__的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="pythongrammar/section6.html">
+            
+                
+                    <a href="../pythongrammar/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        深拷贝和浅拷贝
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="pythongrammar/section7.html">
+            
+                
+                    <a href="../pythongrammar/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        Python的存储机理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="pythongrammar/section8.html">
+            
+                
+                    <a href="../pythongrammar/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        常用python自省函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="pythongrammar/section9.html">
+            
+                
+                    <a href="../pythongrammar/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.9.</b>
+                        
+                        函数中参数默认值是列表
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="pythongrammar/section10.html">
+            
+                
+                    <a href="../pythongrammar/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.10.</b>
+                        
+                        常用的设计模式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="pythongrammar/section11.html">
+            
+                
+                    <a href="../pythongrammar/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.11.</b>
+                        
+                        字典取值的时间复杂度
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="pythongrammar/section12.html">
+            
+                
+                    <a href="../pythongrammar/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.12.</b>
+                        
+                        if底层原理的实现
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="pythongrammar/section16.html">
+            
+                
+                    <a href="../pythongrammar/section16.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.13.</b>
+                        
+                        hasattr() getattr() setattr() 函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="pythongrammar/section13.html">
+            
+                
+                    <a href="../pythongrammar/section13.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.14.</b>
+                        
+                        Python语法面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="pythongrammar/section14.html">
+            
+                
+                    <a href="../pythongrammar/section14.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.15.</b>
+                        
+                        Python语法面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="pythongrammar/section15.html">
+            
+                
+                    <a href="../pythongrammar/section15.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.16.</b>
+                        
+                        Python语法面试题-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="pythongrammar/section17.html">
+            
+                
+                    <a href="../pythongrammar/section17.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.17.</b>
+                        
+                        Python语法面试题-04
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="pythongrammar/section18.html">
+            
+                
+                    <a href="../pythongrammar/section18.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.18.</b>
+                        
+                        Python语法面试题-05
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="async/index.html">
+            
+                
+                    <a href="../async/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        异步编程和网络编程
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="async/asyncq/index.html">
+            
+                
+                    <a href="../async/asyncq/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        异步编程
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="async/asyncq/section1.html">
+            
+                
+                    <a href="../async/asyncq/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        多线程和进程的关系
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="async/asyncq/section2.html">
+            
+                
+                    <a href="../async/asyncq/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        一个线程1让线程2去调用一个函数怎么实现
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="async/asyncq/section3.html">
+            
+                
+                    <a href="../async/asyncq/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        进程、线程、协程对比
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="async/asyncq/section4.html">
+            
+                
+                    <a href="../async/asyncq/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.</b>
+                        
+                        同步、异步、阻塞、非阻塞
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="async/asyncq/section5.html">
+            
+                
+                    <a href="../async/asyncq/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.</b>
+                        
+                        死锁
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="async/asyncq/section6.html">
+            
+                
+                    <a href="../async/asyncq/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.6.</b>
+                        
+                        进程间通信
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="async/asyncq/section7.html">
+            
+                
+                    <a href="../async/asyncq/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.7.</b>
+                        
+                        一个接口的访问量非常大，如何去优化？
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="async/socket/index.html">
+            
+                
+                    <a href="../async/socket/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        网络编程
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="async/socket/section1.html">
+            
+                
+                    <a href="../async/socket/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.1.</b>
+                        
+                        Http和Https的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="async/socket/section2.html">
+            
+                
+                    <a href="../async/socket/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.2.</b>
+                        
+                        三次握手和四次挥手
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="async/socket/section3.html">
+            
+                
+                    <a href="../async/socket/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.3.</b>
+                        
+                        四次挥手的2,3次为什么不能合并
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.4" data-path="async/socket/section4.html">
+            
+                
+                    <a href="../async/socket/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.4.</b>
+                        
+                        UWSGI协议
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.5" data-path="async/socket/section5.html">
+            
+                
+                    <a href="../async/socket/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.5.</b>
+                        
+                        TCP/IP协议的理解
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.6" data-path="async/socket/section6.html">
+            
+                
+                    <a href="../async/socket/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.6.</b>
+                        
+                        HTTP缓存机制
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="async/section1.html">
+            
+                
+                    <a href="../async/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        网络编程面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="async/section2.html">
+            
+                
+                    <a href="../async/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        网络编程面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="async/section3.html">
+            
+                
+                    <a href="../async/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        网络编程面试题-03
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="database/index.html">
+            
+                
+                    <a href="../database/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        数据库
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="database/section1.html">
+            
+                
+                    <a href="../database/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Mysql和MongoDB的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="database/section2.html">
+            
+                
+                    <a href="../database/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        数据库索引和事务的隔离
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="database/section3.html">
+            
+                
+                    <a href="../database/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Mysql数据库引擎
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="database/section4.html">
+            
+                
+                    <a href="../database/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        InnoDB事务原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="database/section5.html">
+            
+                
+                    <a href="../database/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        数据库优化方案
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="database/section6.html">
+            
+                
+                    <a href="../database/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        一对多表结构设计的缺点
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="database/section7.html">
+            
+                
+                    <a href="../database/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        SQL-一次性添加几十万条数据怎么写
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="database/section8.html">
+            
+                
+                    <a href="../database/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Mysql水平分表技术实现怎么实现多表联合查询
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="database/section9.html">
+            
+                
+                    <a href="../database/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                        Mysql数据库中的锁
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="database/section10.html">
+            
+                
+                    <a href="../database/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.10.</b>
+                        
+                        数据库三范式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="database/section11.html">
+            
+                
+                    <a href="../database/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.11.</b>
+                        
+                        乐观锁和悲观锁
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="database/section12.html">
+            
+                
+                    <a href="../database/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.</b>
+                        
+                        Mysql怎么支持emoji表情
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13" data-path="database/section13.html">
+            
+                
+                    <a href="../database/section13.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                        redis相比memcached
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.14" data-path="database/section14.html">
+            
+                
+                    <a href="../database/section14.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                        Redis和mongodb的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.15" data-path="database/section15.html">
+            
+                
+                    <a href="../database/section15.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.15.</b>
+                        
+                        mongodb的分片
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.16" data-path="database/section16.html">
+            
+                
+                    <a href="../database/section16.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.16.</b>
+                        
+                        数据库面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.17" data-path="database/section17.html">
+            
+                
+                    <a href="../database/section17.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.17.</b>
+                        
+                        数据库面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.18" data-path="database/section18.html">
+            
+                
+                    <a href="../database/section18.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.18.</b>
+                        
+                        数据库面试题-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.19" data-path="database/section19.html">
+            
+                
+                    <a href="../database/section19.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.19.</b>
+                        
+                        数据库面试题-04
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.20" data-path="database/section20.html">
+            
+                
+                    <a href="../database/section20.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.20.</b>
+                        
+                        数据库面试题-05
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="web/index.html">
+            
+                
+                    <a href="../web/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Web框架
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="web/section1.html">
+            
+                
+                    <a href="../web/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Django下的（内建）缓存机制
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="web/section2.html">
+            
+                
+                    <a href="../web/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Django中使用memcached作为缓存的具体方法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="web/section3.html">
+            
+                
+                    <a href="../web/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        如果是多台服务器你怎么迁移model文件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="web/section4.html">
+            
+                
+                    <a href="../web/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        动态加载又对及时性要求很高怎么处理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="web/section5.html">
+            
+                
+                    <a href="../web/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        CSRF攻击
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="web/section6.html">
+            
+                
+                    <a href="../web/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        LRU缓存算法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="web/section7.html">
+            
+                
+                    <a href="../web/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        flask的监听路由原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.8" data-path="web/section8.html">
+            
+                
+                    <a href="../web/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        Ngixn做负载均衡的原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="web/section17.html">
+            
+                
+                    <a href="../web/section17.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        MVC流程详解
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="web/section18.html">
+            
+                
+                    <a href="../web/section18.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.10.</b>
+                        
+                        MVT流程详解
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.11" data-path="web/section19.html">
+            
+                
+                    <a href="../web/section19.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.11.</b>
+                        
+                        项目怎么优化
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.12" data-path="web/section9.html">
+            
+                
+                    <a href="../web/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.12.</b>
+                        
+                        Django面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.13" data-path="web/section10.html">
+            
+                
+                    <a href="../web/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.13.</b>
+                        
+                        Django面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.14" data-path="web/section11.html">
+            
+                
+                    <a href="../web/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.14.</b>
+                        
+                        Django面试题-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.15" data-path="web/section12.html">
+            
+                
+                    <a href="../web/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.15.</b>
+                        
+                        Django面试题-04
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.16" data-path="web/section13.html">
+            
+                
+                    <a href="../web/section13.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.16.</b>
+                        
+                        Django面试题-05
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.17" data-path="web/section14.html">
+            
+                
+                    <a href="../web/section14.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.17.</b>
+                        
+                        Django面试题-06
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.18" data-path="web/section15.html">
+            
+                
+                    <a href="../web/section15.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.18.</b>
+                        
+                        Django面试题-07
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.19" data-path="web/section16.html">
+            
+                
+                    <a href="../web/section16.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.19.</b>
+                        
+                        Django面试题-08
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="spider/index.html">
+            
+                
+                    <a href="../spider/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        爬虫
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="spider/section1.html">
+            
+                
+                    <a href="../spider/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        一万url待爬取，如何设计爬虫结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="spider/section2.html">
+            
+                
+                    <a href="../spider/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        手机APP抓包
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="spider/section3.html">
+            
+                
+                    <a href="../spider/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        如何提升IP代理池的可用度
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="spider/section4.html">
+            
+                
+                    <a href="../spider/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        爬取时碰到有加密控件的网站怎么解决
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="spider/section5.html">
+            
+                
+                    <a href="../spider/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        海量数据存储设计
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="spider/section6.html">
+            
+                
+                    <a href="../spider/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        爬虫面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="spider/section7.html">
+            
+                
+                    <a href="../spider/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        爬虫面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="spider/section8.html">
+            
+                
+                    <a href="../spider/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        爬虫面试题-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="spider/section9.html">
+            
+                
+                    <a href="../spider/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        爬虫面试题-04
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="analysis/index.html">
+            
+                
+                    <a href="../analysis/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        数据分析
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="analysis/section1.html">
+            
+                
+                    <a href="../analysis/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        ETL技术
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="analysis/section2.html">
+            
+                
+                    <a href="../analysis/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        变量IV
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="analysis/section3.html">
+            
+                
+                    <a href="../analysis/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        模型ROC
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="analysis/section4.html">
+            
+                
+                    <a href="../analysis/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        模型KS
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="algorithm/index.html">
+            
+                
+                    <a href="../algorithm/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        数据结构与算法
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="algorithm/section1.html">
+            
+                
+                    <a href="../algorithm/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        PageRank原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="algorithm/section2.html">
+            
+                
+                    <a href="../algorithm/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Hash的原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="algorithm/section3.html">
+            
+                
+                    <a href="../algorithm/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        使用栈一种结构实现队列
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="algorithm/section4.html">
+            
+                
+                    <a href="../algorithm/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        实现一个栈的数据结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="algorithm/section9.html">
+            
+                
+                    <a href="../algorithm/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        十大经典排序算法
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.5.1" data-path="algorithm/section10.html">
+            
+                
+                    <a href="../algorithm/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.1.</b>
+                        
+                        冒泡排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.2" data-path="algorithm/section11.html">
+            
+                
+                    <a href="../algorithm/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.2.</b>
+                        
+                        选择排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.3" data-path="algorithm/section12.html">
+            
+                
+                    <a href="../algorithm/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.3.</b>
+                        
+                        插入排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.4" data-path="algorithm/section13.html">
+            
+                
+                    <a href="../algorithm/section13.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.4.</b>
+                        
+                        希尔排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.5" data-path="algorithm/section14.html">
+            
+                
+                    <a href="../algorithm/section14.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.5.</b>
+                        
+                        归并排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.6" data-path="algorithm/section15.html">
+            
+                
+                    <a href="../algorithm/section15.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.6.</b>
+                        
+                        快速排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.7" data-path="algorithm/section16.html">
+            
+                
+                    <a href="../algorithm/section16.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.7.</b>
+                        
+                        堆排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.8" data-path="algorithm/section17.html">
+            
+                
+                    <a href="../algorithm/section17.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.8.</b>
+                        
+                        计数排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.9" data-path="algorithm/section18.html">
+            
+                
+                    <a href="../algorithm/section18.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.9.</b>
+                        
+                        桶排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.10" data-path="algorithm/section19.html">
+            
+                
+                    <a href="../algorithm/section19.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.10.</b>
+                        
+                        基数排序
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="algorithm/section5.html">
+            
+                
+                    <a href="../algorithm/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        数据结构与算法-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7" data-path="algorithm/section6.html">
+            
+                
+                    <a href="../algorithm/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.7.</b>
+                        
+                        数据结构与算法-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8" data-path="algorithm/section7.html">
+            
+                
+                    <a href="../algorithm/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.8.</b>
+                        
+                        数据结构与算法-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.9" data-path="algorithm/section8.html">
+            
+                
+                    <a href="../algorithm/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.9.</b>
+                        
+                        数据结构与算法-04
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="ai/index.html">
+            
+                
+                    <a href="../ai/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        人工智能
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="ai/section1.html">
+            
+                
+                    <a href="../ai/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        kd-tree
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="enterprise/index.html">
+            
+                
+                    <a href="../enterprise/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        企业笔试题
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="enterprise/section1.html">
+            
+                
+                    <a href="../enterprise/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        360面试题
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="enterprise/section2.html">
+            
+                
+                    <a href="../enterprise/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        妙计旅行面试题
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="enterprise/section3.html">
+            
+                
+                    <a href="../enterprise/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        文因互联
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="enterprise/section4.html">
+            
+                
+                    <a href="../enterprise/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        北京红枣科技
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="enterprise/section5.html">
+            
+                
+                    <a href="../enterprise/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        金桔小店
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6" data-path="enterprise/section6.html">
+            
+                
+                    <a href="../enterprise/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.</b>
+                        
+                        芸品绿
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7" data-path="enterprise/section7.html">
+            
+                
+                    <a href="../enterprise/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.</b>
+                        
+                        博派通达
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8" data-path="enterprise/section8.html">
+            
+                
+                    <a href="../enterprise/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.</b>
+                        
+                        上海金台灯
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.9" data-path="enterprise/section9.html">
+            
+                
+                    <a href="../enterprise/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.9.</b>
+                        
+                        智慧星光
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.10" data-path="enterprise/section10.html">
+            
+                
+                    <a href="../enterprise/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.10.</b>
+                        
+                        普奥云
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.11" data-path="enterprise/section11.html">
+            
+                
+                    <a href="../enterprise/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.11.</b>
+                        
+                        北京诺信创联
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.12" data-path="enterprise/section12.html">
+            
+                
+                    <a href="../enterprise/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.12.</b>
+                        
+                        北京号外科技
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Python学科面试宝典</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="ngixn&#x505A;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7684;&#x539F;&#x7406;">Ngixn&#x505A;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7684;&#x539F;&#x7406;</h2>
+<p>&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x5728;&#x670D;&#x52A1;&#x7AEF;&#x5F00;&#x53D1;&#x4E2D;&#x7B97;&#x662F;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x91CD;&#x8981;&#x7684;&#x7279;&#x6027;&#x3002;&#x56E0;&#x4E3A;Nginx&#x9664;&#x4E86;&#x4F5C;&#x4E3A;&#x5E38;&#x89C4;&#x7684;Web&#x670D;&#x52A1;&#x5668;&#x5916;&#xFF0C;&#x8FD8;&#x4F1A;&#x88AB;&#x5927;&#x89C4;&#x6A21;&#x7684;&#x7528;&#x4E8E;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x524D;&#x7AEF;&#xFF0C;&#x56E0;&#x4E3A;Nginx&#x7684;&#x5F02;&#x6B65;&#x6846;&#x67B6;&#x53EF;&#x4EE5;&#x5904;&#x7406;&#x5F88;&#x5927;&#x7684;&#x5E76;&#x53D1;&#x8BF7;&#x6C42;&#xFF0C;&#x628A;&#x8FD9;&#x4E9B;&#x5E76;&#x53D1;&#x8BF7;&#x6C42;hold&#x4F4F;&#x4E4B;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x5206;&#x53D1;&#x7ED9;&#x540E;&#x53F0;&#x670D;&#x52A1;&#x7AEF;(backend servers, &#x540E;&#x9762;&#x7B80;&#x79F0;backend)&#x6765;&#x505A;&#x590D;&#x6742;&#x7684;&#x8BA1;&#x7B97;&#x3001;&#x5904;&#x7406;&#x548C;&#x54CD;&#x5E94;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x4E1A;&#x52A1;&#x91CF;&#x589E;&#x52A0;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x5730;&#x6269;&#x5BB9;&#x540E;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x3002;</p>
+<p>&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x786C;&#x4EF6;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x548C;&#x8F6F;&#x4EF6;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x524D;&#x8005;&#x4E00;&#x822C;&#x662F;&#x4E13;&#x7528;&#x7684;&#x8F6F;&#x4EF6;&#x548C;&#x786C;&#x4EF6;&#x76F8;&#x7ED3;&#x5408;&#x7684;&#x8BBE;&#x5907;&#xFF0C;&#x8BBE;&#x5907;&#x5546;&#x4F1A;&#x63D0;&#x4F9B;&#x5B8C;&#x6574;&#x6210;&#x719F;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF0C;&#x901A;&#x5E38;&#x4E5F;&#x4F1A;&#x66F4;&#x52A0;&#x6602;&#x8D35;&#x3002;&#x8F6F;&#x4EF6;&#x7684;&#x590D;&#x6742;&#x5747;&#x8861;&#x4EE5;Nginx&#x5360;&#x636E;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x3002;</p>
+<h3 id="1-&#x57FA;&#x672C;&#x7B80;&#x4ECB;">1. &#x57FA;&#x672C;&#x7B80;&#x4ECB;</h3>
+<h4 id="11-&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7B97;&#x6CD5;">1.1 &#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7B97;&#x6CD5;</h4>
+<ul>
+<li><p>Round Robin: &#x5BF9;&#x6240;&#x6709;&#x7684;backend&#x8F6E;&#x8BAD;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x7B97;&#x662F;&#x6700;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x5F0F;&#x4E86;&#xFF0C;&#x4E5F;&#x662F;&#x9ED8;&#x8BA4;&#x7684;&#x5206;&#x914D;&#x65B9;&#x5F0F;&#xFF1B;</p>
+</li>
+<li><p>Least Connections(least_conn): &#x8DDF;&#x8E2A;&#x548C;backend&#x5F53;&#x524D;&#x7684;&#x6D3B;&#x8DC3;&#x8FDE;&#x63A5;&#x6570;&#x76EE;&#xFF0C;&#x6700;&#x5C11;&#x7684;&#x8FDE;&#x63A5;&#x6570;&#x76EE;&#x8BF4;&#x660E;&#x8FD9;&#x4E2A;backend&#x8D1F;&#x8F7D;&#x6700;&#x8F7B;&#xFF0C;&#x5C06;&#x8BF7;&#x6C42;&#x5206;&#x914D;&#x7ED9;&#x4ED6;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4F1A;&#x8003;&#x8651;&#x5230;&#x914D;&#x7F6E;&#x4E2D;&#x7ED9;&#x6BCF;&#x4E2A;upstream&#x5206;&#x914D;&#x7684;weight&#x6743;&#x91CD;&#x4FE1;&#x606F;&#xFF1B;</p>
+</li>
+<li><p>Least Time(least_time): &#x8BF7;&#x6C42;&#x4F1A;&#x5206;&#x914D;&#x7ED9;&#x54CD;&#x5E94;&#x6700;&#x5FEB;&#x548C;&#x6D3B;&#x8DC3;&#x8FDE;&#x63A5;&#x6570;&#x6700;&#x5C11;&#x7684;backend&#xFF1B;</p>
+</li>
+<li><p>IP Hash(ip_hash): &#x5BF9;&#x8BF7;&#x6C42;&#x6765;&#x6E90;IP&#x5730;&#x5740;&#x8BA1;&#x7B97;hash&#x503C;&#xFF0C;IPv4&#x4F1A;&#x8003;&#x8651;&#x524D;3&#x4E2A;octet&#xFF0C;IPv6&#x4F1A;&#x8003;&#x8651;&#x6240;&#x6709;&#x7684;&#x5730;&#x5740;&#x4F4D;&#xFF0C;&#x7136;&#x540E;&#x6839;&#x636E;&#x5F97;&#x5230;&#x7684;hash&#x503C;&#x901A;&#x8FC7;&#x67D0;&#x79CD;&#x6620;&#x5C04;&#x5206;&#x914D;&#x5230;backend&#xFF1B;</p>
+</li>
+<li><p>Generic Hash(hash): &#x4EE5;&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x8D44;&#x6E90;(&#x6BD4;&#x5982;URL)&#x7684;&#x65B9;&#x5F0F;&#x8BA1;&#x7B97;hash&#x503C;&#x5B8C;&#x6210;&#x5206;&#x914D;&#xFF0C;&#x5176;&#x53EF;&#x9009;consistent&#x5173;&#x952E;&#x5B57;&#x652F;&#x6301;&#x4E00;&#x81F4;&#x6027;hash&#x7279;&#x6027;&#xFF1B;</p>
+</li>
+</ul>
+<h4 id="12-&#x4F1A;&#x8BDD;&#x4E00;&#x81F4;&#x6027;">1.2 &#x4F1A;&#x8BDD;&#x4E00;&#x81F4;&#x6027;</h4>
+<p>&#x7528;&#x6237;(&#x6D4F;&#x89C8;&#x5668;)&#x5728;&#x548C;&#x670D;&#x52A1;&#x7AEF;&#x4EA4;&#x4E92;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x901A;&#x5E38;&#x4F1A;&#x5728;&#x672C;&#x5730;&#x4FDD;&#x5B58;&#x4E00;&#x4E9B;&#x4FE1;&#x606F;&#xFF0C;&#x800C;&#x6574;&#x4E2A;&#x8FC7;&#x7A0B;&#x53EB;&#x505A;&#x4E00;&#x4E2A;&#x4F1A;&#x8BDD;(Session)&#x5E76;&#x7528;&#x552F;&#x4E00;&#x7684;Session ID&#x8FDB;&#x884C;&#x6807;&#x8BC6;&#x3002;&#x4F1A;&#x8BDD;&#x7684;&#x6982;&#x5FF5;&#x4E0D;&#x4EC5;&#x7528;&#x4E8E;&#x8D2D;&#x7269;&#x8F66;&#x8FD9;&#x79CD;&#x5E38;&#x89C1;&#x60C5;&#x51B5;&#xFF0C;&#x56E0;&#x4E3A;HTTP&#x534F;&#x8BAE;&#x662F;&#x65E0;&#x72B6;&#x6001;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x4EFB;&#x4F55;&#x9700;&#x8981;&#x903B;&#x8F91;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x60C5;&#x5F62;&#x90FD;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x4F1A;&#x8BDD;&#x673A;&#x5236;&#xFF0C;&#x6B64;&#x5916;HTTP&#x5BA2;&#x6237;&#x7AEF;&#x4E5F;&#x4F1A;&#x989D;&#x5916;&#x7F13;&#x5B58;&#x4E00;&#x4E9B;&#x6570;&#x636E;&#x5728;&#x672C;&#x5730;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x8BF7;&#x6C42;&#x63D0;&#x9AD8;&#x6027;&#x80FD;&#x4E86;&#x3002;&#x5982;&#x679C;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x53EF;&#x80FD;&#x5C06;&#x8FD9;&#x4E2A;&#x4F1A;&#x8BDD;&#x7684;&#x8BF7;&#x6C42;&#x5206;&#x914D;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x540E;&#x53F0;&#x670D;&#x52A1;&#x7AEF;&#x4E0A;&#xFF0C;&#x8FD9;&#x80AF;&#x5B9A;&#x662F;&#x4E0D;&#x5408;&#x9002;&#x7684;&#xFF0C;&#x5FC5;&#x987B;&#x901A;&#x8FC7;&#x591A;&#x4E2A;backend&#x5171;&#x4EAB;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#xFF0C;&#x6548;&#x7387;&#x80AF;&#x5B9A;&#x4F1A;&#x5F88;&#x4F4E;&#x4E0B;&#xFF0C;&#x6700;&#x7B80;&#x5355;&#x7684;&#x60C5;&#x51B5;&#x662F;&#x4FDD;&#x8BC1;&#x4F1A;&#x8BDD;&#x4E00;&#x81F4;&#x6027;&#x2014;&#x2014;&#x76F8;&#x540C;&#x7684;&#x4F1A;&#x8BDD;&#x6BCF;&#x6B21;&#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x88AB;&#x5206;&#x914D;&#x5230;&#x540C;&#x4E00;&#x4E2A;backend&#x4E0A;&#x53BB;&#x3002;</p>
+<h4 id="13-&#x540E;&#x53F0;&#x670D;&#x52A1;&#x7AEF;&#x7684;&#x52A8;&#x6001;&#x914D;&#x7F6E;">1.3 &#x540E;&#x53F0;&#x670D;&#x52A1;&#x7AEF;&#x7684;&#x52A8;&#x6001;&#x914D;&#x7F6E;</h4>
+<p>&#x51FA;&#x95EE;&#x9898;&#x7684;backend&#x8981;&#x80FD;&#x88AB;&#x53CA;&#x65F6;&#x63A2;&#x6D4B;&#x5E76;&#x5254;&#x9664;&#x51FA;&#x5206;&#x914D;&#x7FA4;&#xFF0C;&#x800C;&#x5F53;&#x4E1A;&#x52A1;&#x589E;&#x957F;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x7075;&#x6D3B;&#x7684;&#x6DFB;&#x52A0;backend&#x6570;&#x76EE;&#x3002;&#x6B64;&#x5916;&#x5F53;&#x524D;&#x98CE;&#x9761;&#x7684;Elastic Compute&#x4E91;&#x8BA1;&#x7B97;&#x670D;&#x52A1;&#xFF0C;&#x670D;&#x52A1;&#x5546;&#x4E5F;&#x5E94;&#x5F53;&#x6839;&#x636E;&#x5F53;&#x524D;&#x8D1F;&#x8F7D;&#x81EA;&#x52A8;&#x6DFB;&#x52A0;&#x548C;&#x51CF;&#x5C11;backend&#x4E3B;&#x673A;&#x3002;</p>
+<h4 id="14-&#x57FA;&#x4E8E;dns&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;">1.4 &#x57FA;&#x4E8E;DNS&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;</h4>
+<p>&#x901A;&#x5E38;&#x73B0;&#x4EE3;&#x7684;&#x7F51;&#x7EDC;&#x670D;&#x52A1;&#x8005;&#x4E00;&#x4E2A;&#x57DF;&#x540D;&#x4F1A;&#x5173;&#x8FDE;&#x5230;&#x591A;&#x4E2A;&#x4E3B;&#x673A;&#xFF0C;&#x5728;&#x8FDB;&#x884C;DNS&#x67E5;&#x8BE2;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;DNS&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x4EE5;round-robin&#x5F62;&#x5F0F;&#x4EE5;&#x4E0D;&#x540C;&#x7684;&#x987A;&#x5E8F;&#x8FD4;&#x56DE;IP&#x5730;&#x5740;&#x5217;&#x8868;&#xFF0C;&#x56E0;&#x6B64;&#x5929;&#x7136;&#x5C06;&#x5BA2;&#x6237;&#x8BF7;&#x6C42;&#x5206;&#x914D;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x4E3B;&#x673A;&#x4E0A;&#x53BB;&#x3002;&#x4E0D;&#x8FC7;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x542B;&#x6709;&#x56FA;&#x6709;&#x7684;&#x7F3A;&#x9677;&#xFF1A;DNS&#x4E0D;&#x4F1A;&#x68C0;&#x67E5;&#x4E3B;&#x673A;&#x548C;IP&#x5730;&#x5740;&#x7684;&#x53EF;&#x8BBF;&#x95EE;&#x6027;&#xFF0C;&#x6240;&#x4EE5;&#x5206;&#x914D;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x7684;IP&#x4E0D;&#x786E;&#x4FDD;&#x662F;&#x53EF;&#x7528;&#x7684;(Google 404)&#xFF1B;DNS&#x7684;&#x89E3;&#x6790;&#x7ED3;&#x679C;&#x4F1A;&#x5728;&#x5BA2;&#x6237;&#x7AEF;&#x3001;&#x591A;&#x4E2A;&#x4E2D;&#x95F4;DNS&#x670D;&#x52A1;&#x5668;&#x4E0D;&#x65AD;&#x7684;&#x7F13;&#x5B58;&#xFF0C;&#x6240;&#x4EE5;backend&#x7684;&#x5206;&#x914D;&#x4E0D;&#x4F1A;&#x90A3;&#x4E48;&#x7684;&#x7406;&#x60F3;&#x3002;</p>
+<h3 id="2-nginx&#x4E2D;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;">2. Nginx&#x4E2D;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;</h3>
+<p>Nginx&#x4E2D;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x914D;&#x7F6E;&#x5728; &#x624B;&#x518C; &#x4E2D;&#x63CF;&#x8FF0;&#x7684;&#x6781;&#x4E3A;&#x7EC6;&#x81F4;&#xFF0C;&#x6B64;&#x5904;&#x5C31;&#x4E0D;&#x6D41;&#x6C34;&#x5E10;&#x4E86;&#x3002;&#x5BF9;&#x4E8E;&#x5E38;&#x7528;&#x7684;HTTP&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x4E3B;&#x8981;&#x5148;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;upstream&#x4F5C;&#x4E3A;backend group&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7;proxy_pass/fastcgi_pass&#x7B49;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x8F6C;&#x53D1;&#x64CD;&#x4F5C;&#xFF0C;&#x5176;&#x4E2D;fastcgi_pass&#x51E0;&#x4E4E;&#x7B97;&#x662F;Nginx+PHP&#x7AD9;&#x70B9;&#x7684;&#x6807;&#x914D;&#x4E86;&#x3002;</p>
+<h4 id="21-&#x4F1A;&#x8BDD;&#x4E00;&#x81F4;&#x6027;">2.1 &#x4F1A;&#x8BDD;&#x4E00;&#x81F4;&#x6027;</h4>
+<p>Nginx&#x4E2D;&#x7684;&#x4F1A;&#x8BDD;&#x4E00;&#x81F4;&#x6027;&#x662F;&#x901A;&#x8FC7;sticky&#x5F00;&#x542F;&#x7684;&#xFF0C;&#x4F1A;&#x8BDD;&#x4E00;&#x81F4;&#x6027;&#x548C;&#x4E4B;&#x524D;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7B97;&#x6CD5;&#x4E4B;&#x95F4;&#x5E76;&#x4E0D;&#x51B2;&#x7A81;&#xFF0C;&#x53EA;&#x662F;&#x9700;&#x8981;&#x5728;&#x7B2C;&#x4E00;&#x6B21;&#x5206;&#x914D;&#x4E4B;&#x540E;&#xFF0C;&#x8BE5;&#x4F1A;&#x8BDD;&#x7684;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x90FD;&#x5206;&#x914D;&#x5230;&#x90A3;&#x4E2A;&#x76F8;&#x540C;&#x7684;backend&#x4E0A;&#x9762;&#x3002;&#x76EE;&#x524D;&#x652F;&#x6301;&#x4E09;&#x79CD;&#x6A21;&#x5F0F;&#x7684;&#x4F1A;&#x8BDD;&#x4E00;&#x81F4;&#x6027;&#xFF1A;</p>
+<ul>
+<li><p>Cookie Insertion</p>
+<p>&#x5728;backend&#x7B2C;&#x4E00;&#x6B21;response&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x5728;&#x5176;&#x5934;&#x90E8;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;session cookie&#xFF0C;&#x4E4B;&#x540E;&#x5BA2;&#x6237;&#x7AEF;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x5E26;&#x6709;&#x8FD9;&#x4E2A;cookie&#x503C;&#xFF0C;Nginx&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x8FD9;&#x4E2A;cookie&#x5224;&#x65AD;&#x9700;&#x8981;&#x8F6C;&#x53D1;&#x7ED9;&#x54EA;&#x4E2A;backend&#x4E86;&#x3002;</p>
+<pre><code>sticky cookie srv_id expires=1h domain=.example.com path=/;
+</code></pre><p>&#x4E0A;&#x9762;&#x7684;srv_id&#x4EE3;&#x8868;&#x4E86;cookie&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x800C;&#x540E;&#x9762;&#x7684;&#x53C2;&#x6570;expires&#x3001;domain&#x3001;path&#x90FD;&#x662F;&#x53EF;&#x9009;&#x7684;&#x3002;</p>
+</li>
+<li><p>Sticky Routes</p>
+<p>&#x4E5F;&#x662F;&#x5728;backend&#x7B2C;&#x4E00;&#x6B21;response&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;route&#x4FE1;&#x606F;&#xFF0C;route&#x4FE1;&#x606F;&#x901A;&#x5E38;&#x4F1A;&#x4ECE;cookie/URI&#x4FE1;&#x606F;&#x4E2D;&#x63D0;&#x53D6;&#x3002;</p>
+<pre><code>sticky route $route_cookie $route_uri;
+</code></pre><p>&#x8FD9;&#x6837;Nginx&#x4F1A;&#x6309;&#x7167;&#x987A;&#x5E8F;&#x641C;&#x7D22;$route_cookie&#x3001;$route_uri&#x53C2;&#x6570;&#x5E76;&#x9009;&#x62E9;&#x7B2C;&#x4E00;&#x4E2A;&#x975E;&#x7A7A;&#x7684;&#x53C2;&#x6570;&#x7528;&#x4F5C;route&#xFF0C;&#x800C;&#x5982;&#x679C;&#x6240;&#x6709;&#x7684;&#x53C2;&#x6570;&#x90FD;&#x662F;&#x7A7A;&#x7684;&#xFF0C;&#x5C31;&#x4F7F;&#x7528;&#x4E0A;&#x9762;&#x9ED8;&#x8BA4;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7B97;&#x6CD5;&#x51B3;&#x5B9A;&#x8BF7;&#x6C42;&#x5206;&#x53D1;&#x7ED9;&#x54EA;&#x4E2A;backend&#x3002;</p>
+</li>
+<li><p>Learn</p>
+<p>&#x8F83;&#x4E3A;&#x7684;&#x590D;&#x6742;&#x4E5F;&#x8F83;&#x4E3A;&#x7684;&#x667A;&#x80FD;&#xFF0C;Nginx&#x4F1A;&#x81EA;&#x52A8;&#x76D1;&#x6D4B;request&#x548C;response&#x4E2D;&#x7684;session&#x4FE1;&#x606F;&#xFF0C;&#x800C;&#x4E14;&#x901A;&#x5E38;&#x9700;&#x8981;&#x56DE;&#x8BDD;&#x4E00;&#x81F4;&#x6027;&#x7684;&#x8BF7;&#x6C42;&#x3001;&#x5E94;&#x7B54;&#x4E2D;&#x90FD;&#x4F1A;&#x5E26;&#x6709;session&#x4FE1;&#x606F;&#xFF0C;&#x8FD9;&#x548C;&#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x76F8;&#x6BD4;&#x662F;&#x4E0D;&#x7528;&#x589E;&#x52A0;cookie&#xFF0C;&#x800C;&#x662F;&#x52A8;&#x6001;&#x5B66;&#x4E60;&#x5DF2;&#x6709;&#x7684;session&#x3002;</p>
+<p>&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x5230;zone&#x7ED3;&#x6784;&#xFF0C;&#x5728;Nginx&#x4E2D;zone&#x90FD;&#x662F;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x591A;&#x4E2A;worker process&#x4E2D;&#x5171;&#x4EAB;&#x6570;&#x636E;&#x7528;&#x7684;&#x3002;(&#x4E0D;&#x8FC7;&#x5176;&#x4ED6;&#x7684;&#x4F1A;&#x8BDD;&#x4E00;&#x81F4;&#x6027;&#x600E;&#x4E48;&#x6CA1;&#x7528;&#x5230;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x533A;&#x57DF;&#x5462;&#xFF1F;)</p>
+<pre><code>sticky learn
+   create=$upstream_cookie_examplecookie
+   lookup=$cookie_examplecookie
+   zone=client_sessions:1m
+   timeout=1h;
+</code></pre></li>
+</ul>
+<h4 id="22-session-draining">2.2 Session Draining</h4>
+<p>&#x4E3B;&#x8981;&#x662F;&#x6709;&#x9700;&#x8981;&#x5173;&#x95ED;&#x67D0;&#x4E9B;backend&#x4EE5;&#x4FBF;&#x7EF4;&#x62A4;&#x6216;&#x8005;&#x5347;&#x7EA7;&#xFF0C;&#x8FD9;&#x4E9B;&#x5173;&#x952E;&#x6027;&#x7684;&#x670D;&#x52A1;&#x90FD;&#x8BB2;&#x6C42;gracefully&#x5904;&#x7406;&#x7684;&#xFF1A;&#x5C31;&#x662F;&#x65B0;&#x7684;&#x8BF7;&#x6C42;&#x4E0D;&#x4F1A;&#x53D1;&#x9001;&#x5230;&#x8FD9;&#x4E2A;backend&#x4E0A;&#x9762;&#xFF0C;&#x800C;&#x4E4B;&#x524D;&#x5206;&#x914D;&#x5230;&#x8FD9;&#x4E2A;backend&#x7684;&#x4F1A;&#x8BDD;&#x7684;&#x540E;&#x7EED;&#x8BF7;&#x6C42;&#x8FD8;&#x4F1A;&#x7EE7;&#x7EED;&#x53D1;&#x9001;&#x7ED9;&#x4ED6;&#xFF0C;&#x76F4;&#x5230;&#x8FD9;&#x4E2A;&#x4F1A;&#x8BDD;&#x6700;&#x7EC8;&#x5B8C;&#x6210;&#x3002;</p>
+<p>&#x8BA9;&#x67D0;&#x4E2A;backend&#x8FDB;&#x5165;draining&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x65E2;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x6309;&#x7167;&#x4E4B;&#x524D;&#x7684;&#x65B9;&#x5F0F;&#x901A;&#x8FC7;&#x5411;master process&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#x91CD;&#x65B0;&#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x91C7;&#x7528;Nginx&#x7684;on-the-fly&#x914D;&#x7F6E;&#x65B9;&#x5F0F;&#x3002;</p>
+<pre><code>$ curl http://localhost/upstream_conf?upstream=backend
+$ curl http://localhost/upstream_conf?upstream=backend\&amp;id=1\&amp;drain=1
+</code></pre><p>&#x901A;&#x8FC7;&#x4E0A;&#x9762;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5148;&#x5217;&#x51FA;&#x5404;&#x4E2A;bacnkend&#x7684;ID&#x53F7;&#xFF0C;&#x7136;&#x540E;drain&#x6307;&#x5B9A;ID&#x7684;backend&#x3002;&#x901A;&#x8FC7;&#x5728;&#x7EBF;&#x89C2;&#x6D4B;backend&#x7684;&#x6240;&#x6709;session&#x90FD;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x8BE5;backend&#x5C31;&#x53EF;&#x4EE5;&#x4E0B;&#x7EBF;&#x4E86;&#x3002;</p>
+<h4 id="23-backend&#x5065;&#x5EB7;&#x76D1;&#x6D4B;">2.3 backend&#x5065;&#x5EB7;&#x76D1;&#x6D4B;</h4>
+<p>backend&#x51FA;&#x9519;&#x4F1A;&#x6D89;&#x53CA;&#x5230;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;max_fails=1 fail_timeout=10s;&#x610F;&#x5473;&#x7740;&#x53EA;&#x8981;Nginx&#x5411;backend&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x5931;&#x8D25;&#x6216;&#x8005;&#x6CA1;&#x6709;&#x6536;&#x5230;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#xFF0C;&#x5C31;&#x8BA4;&#x4E3A;&#x8BE5;backend&#x5728;&#x63A5;&#x4E0B;&#x6765;&#x7684;10s&#x662F;&#x4E0D;&#x53EF;&#x7528;&#x7684;&#x72B6;&#x6001;&#x3002;</p>
+<p>&#x901A;&#x8FC7;&#x5468;&#x671F;&#x6027;&#x5730;&#x5411;backend&#x53D1;&#x9001;&#x7279;&#x6B8A;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x5E76;&#x671F;&#x76FC;&#x6536;&#x5230;&#x7279;&#x6B8A;&#x7684;&#x54CD;&#x5E94;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4EE5;&#x786E;&#x8BA4;backend&#x662F;&#x5065;&#x5EB7;&#x53EF;&#x7528;&#x7684;&#x72B6;&#x6001;&#x3002;&#x901A;&#x8FC7;health_check&#x53EF;&#x4EE5;&#x505A;&#x51FA;&#x8FD9;&#x4E2A;&#x914D;&#x7F6E;&#x3002;</p>
+<pre><code>match server_ok {
+    status 200-399;
+    header Content-Type = text/html;
+    body !~ &quot;maintenance mode&quot;;
+}
+server {
+    location / {
+        proxy_pass http://backend;
+        health_check interval=10 fails=3 passes=2 match=server_ok;
+    }
+}
+</code></pre><p>&#x4E0A;&#x9762;&#x7684;health_check&#x662F;&#x5FC5;&#x987B;&#x7684;&#xFF0C;&#x540E;&#x9762;&#x7684;&#x53C2;&#x6570;&#x90FD;&#x662F;&#x53EF;&#x9009;&#x7684;&#x3002;&#x5C24;&#x5176;&#x662F;&#x540E;&#x9762;&#x7684;match&#x53C2;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x670D;&#x52A1;&#x5668;&#x5065;&#x5EB7;&#x7684;&#x6761;&#x4EF6;&#xFF0C;&#x5305;&#x62EC;&#x8FD4;&#x56DE;&#x72B6;&#x6001;&#x7801;&#x3001;&#x5934;&#x90E8;&#x4FE1;&#x606F;&#x3001;&#x8FD4;&#x56DE;body&#x7B49;&#xFF0C;&#x8FD9;&#x4E9B;&#x6761;&#x4EF6;&#x662F;&amp;&amp;&#x4E0E;&#x5173;&#x7CFB;&#x3002;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;Nginx&#x4F1A;&#x76F8;&#x9694;interval&#x7684;&#x95F4;&#x9694;&#x5411;backend group&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x201D;/&#x201C;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x5982;&#x679C;&#x8D85;&#x65F6;&#x6216;&#x8005;&#x8FD4;&#x56DE;&#x975E;2xx/3xx&#x7684;&#x54CD;&#x5E94;&#x7801;&#xFF0C;&#x5219;&#x8BA4;&#x4E3A;&#x5BF9;&#x5E94;&#x7684;backend&#x662F;unhealthy&#x7684;&#xFF0C;&#x90A3;&#x4E48;Nginx&#x4F1A;&#x505C;&#x6B62;&#x5411;&#x5176;&#x53D1;&#x9001;request&#x76F4;&#x5230;&#x4E0B;&#x6B21;&#x6539;backend&#x518D;&#x6B21;&#x901A;&#x8FC7;&#x68C0;&#x67E5;&#x3002;</p>
+<p>&#x5728;&#x4F7F;&#x7528;&#x4E86;health)check&#x529F;&#x80FD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E00;&#x822C;&#x90FD;&#x9700;&#x8981;&#x5728;backend group&#x5F00;&#x8F9F;&#x4E00;&#x4E2A;zone&#xFF0C;&#x5728;&#x5171;&#x4EAB;backend group&#x914D;&#x7F6E;&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x6240;&#x6709;backend&#x7684;&#x72B6;&#x6001;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x6240;&#x6709;&#x7684;worker process&#x6240;&#x5171;&#x4EAB;&#x4E86;&#xFF0C;&#x5426;&#x5219;&#x6BCF;&#x4E2A;worker process&#x72EC;&#x7ACB;&#x4FDD;&#x5B58;&#x81EA;&#x5DF1;&#x7684;&#x72B6;&#x6001;&#x68C0;&#x67E5;&#x8BA1;&#x6570;&#x548C;&#x7ED3;&#x679C;&#xFF0C;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#x4F1A;&#x6709;&#x5F88;&#x5927;&#x7684;&#x5DEE;&#x5F02;&#x54E6;&#x3002;</p>
+<h4 id="24-&#x901A;&#x8FC7;dns&#x8BBE;&#x7F6E;http&#x8D1F;&#x8F7D;&#x5747;&#x8861;">2.4 &#x901A;&#x8FC7;DNS&#x8BBE;&#x7F6E;HTTP&#x8D1F;&#x8F7D;&#x5747;&#x8861;</h4>
+<p>Nginx&#x7684;backend group&#x4E2D;&#x7684;&#x4E3B;&#x673A;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x6210;&#x57DF;&#x540D;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x57DF;&#x540D;&#x7684;&#x540E;&#x9762;&#x6DFB;&#x52A0;resolve&#x53C2;&#x6570;&#xFF0C;&#x90A3;&#x4E48;Nginx&#x4F1A;&#x5468;&#x671F;&#x6027;&#x7684;&#x89E3;&#x6790;&#x8FD9;&#x4E2A;&#x57DF;&#x540D;&#xFF0C;&#x5F53;&#x57DF;&#x540D;&#x89E3;&#x6790;&#x7684;&#x7ED3;&#x679C;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x81EA;&#x52A8;&#x751F;&#x6548;&#x800C;&#x4E0D;&#x7528;&#x91CD;&#x542F;&#x3002;</p>
+<pre><code>http {
+    resolver 10.0.0.1 valid=300s ipv6=off;
+    resolver_timeout 10s;
+
+    server {
+        location / {
+            proxy_pass http://backend;
+        }
+    }
+
+    upstream backend {
+        zone backend 32k;
+        least_conn;
+        ...
+        server backend1.example.com resolve;
+        server backend2.example.com resolve;
+    }
+}
+</code></pre><p>&#x5982;&#x679C;&#x57DF;&#x540D;&#x89E3;&#x6790;&#x7684;&#x7ED3;&#x679C;&#x542B;&#x6709;&#x591A;&#x4E2A;IP&#x5730;&#x5740;&#xFF0C;&#x8FD9;&#x4E9B;IP&#x5730;&#x5740;&#x90FD;&#x4F1A;&#x4FDD;&#x5B58;&#x5230;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x53BB;&#xFF0C;&#x5E76;&#x4E14;&#x8FD9;&#x4E9B;IP&#x90FD;&#x53C2;&#x4E0E;&#x5230;&#x81EA;&#x52A8;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x3002;</p>
+<h4 id="25-tcpudp&#x6D41;&#x91CF;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;">2.5 TCP/UDP&#x6D41;&#x91CF;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;</h4>
+<p>&#x9664;&#x4E86;&#x4E13;&#x957F;&#x7684;HTTP&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;Nginx&#x8FD8;&#x652F;&#x6301;TCP&#x548C;UDP&#x6D41;&#x91CF;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x9002;&#x7528;&#x4E8E;LDAP/MySQL/RTMP&#x548C;DNS/syslog/RADIUS&#x5404;&#x79CD;&#x5E94;&#x7528;&#x573A;&#x666F;&#x3002;&#x8FD9;&#x7C7B;&#x60C5;&#x51B5;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x4F7F;&#x7528;stream&#x6765;&#x914D;&#x7F6E;&#xFF0C;Nginx&#x7F16;&#x8BD1;&#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x652F;&#x6301;&#x2013;with-stream&#x9009;&#x9879;&#x3002;&#x67E5;&#x770B; &#x624B;&#x518C; &#xFF0C;&#x5176;&#x914D;&#x7F6E;&#x539F;&#x7406;&#x548C;&#x53C2;&#x6570;&#x548C;HTTP&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x5DEE;&#x4E0D;&#x591A;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;TCP&#x3001;UDP&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x90FD;&#x662F;&#x9488;&#x5BF9;&#x901A;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x4E4B;&#x524D;HTTP&#x534F;&#x8BAE;&#x652F;&#x6301;&#x7684;match&#x6761;&#x4EF6;(status&#x3001;header&#x3001;body)&#x662F;&#x6CA1;&#x6CD5;&#x4F7F;&#x7528;&#x7684;&#x3002;TCP&#x548C;UDP&#x7684;&#x7A0B;&#x5E8F;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x7279;&#x5B9A;&#x7684;&#x7A0B;&#x5E8F;&#xFF0C;&#x91C7;&#x7528;send&#x3001;expect&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x8FDB;&#x884C;&#x52A8;&#x6001;&#x5065;&#x5EB7;&#x68C0;&#x6D4B;&#x3002;</p>
+<pre><code>match http {
+    send      &quot;GET / HTTP/1.0\r\nHost: localhost\r\n\r\n&quot;;
+    expect ~* &quot;200 OK&quot;;
+}
+</code></pre><h4 id="26-&#x5176;&#x4ED6;&#x7279;&#x6027;">2.6 &#x5176;&#x4ED6;&#x7279;&#x6027;</h4>
+<p>slow_start=30s&#xFF1A;&#x9632;&#x6B62;&#x65B0;&#x6DFB;&#x52A0;/&#x6062;&#x590D;&#x7684;&#x4E3B;&#x673A;&#x88AB;&#x7A81;&#x7136;&#x589E;&#x52A0;&#x7684;&#x8BF7;&#x6C42;&#x6240;&#x538B;&#x57AE;&#xFF0C;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x8BA9;&#x8BE5;&#x4E3B;&#x673A;&#x7684;weight&#x4ECE;0&#x5F00;&#x59CB;&#x6162;&#x6162;&#x589E;&#x52A0;&#x5230;&#x8BBE;&#x5B9A;&#x503C;&#xFF0C;&#x8BA9;&#x5176;&#x8D1F;&#x8F7D;&#x6709;&#x4E00;&#x4E2A;&#x7F13;&#x6162;&#x589E;&#x52A0;&#x7684;&#x8FC7;&#x7A0B;&#x3002;</p>
+<p>max_conns=30&#xFF1A;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;backend&#x7684;&#x6700;&#x5927;&#x8FDE;&#x63A5;&#x6570;&#x76EE;&#xFF0C;&#x5F53;&#x8D85;&#x8FC7;&#x8FD9;&#x4E2A;&#x6570;&#x76EE;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x88AB;&#x653E;&#x5230;queue&#x961F;&#x5217;&#x4E2D;&#xFF0C;&#x540C;&#x65F6;&#x961F;&#x5217;&#x7684;&#x5927;&#x5C0F;&#x548C;&#x8D85;&#x65F6;&#x53C2;&#x6570;&#x4E5F;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#xFF0C;&#x5F53;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x8BF7;&#x6C42;&#x6570;&#x5927;&#x4E8E;&#x8BBE;&#x5B9A;&#x503C;&#xFF0C;&#x6216;&#x8005;&#x8D85;&#x8FC7;&#x4E86;timeout&#x4F46;&#x662F;backend&#x8FD8;&#x4E0D;&#x80FD;&#x5904;&#x7406;&#x8BF7;&#x6C42;&#xFF0C;&#x5219;&#x5BA2;&#x6237;&#x7AEF;&#x5C06;&#x4F1A;&#x6536;&#x5230;&#x4E00;&#x4E2A;&#x9519;&#x8BEF;&#x8FD4;&#x56DE;&#x3002;&#x901A;&#x5E38;&#x6765;&#x8BF4;&#x8FD9;&#x8FD8;&#x662F;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x91CD;&#x8981;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x56E0;&#x4E3A;Nginx&#x4F5C;&#x4E3A;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x901A;&#x5E38;&#x5C31;&#x662F;&#x7528;&#x4E8E;&#x6297;&#x4F4F;&#x5E76;&#x53D1;&#x91CF;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x7ED9;backend&#x8FC7;&#x591A;&#x7684;&#x5E76;&#x53D1;&#x8BF7;&#x6C42;&#xFF0C;&#x5F88;&#x53EF;&#x80FD;&#x4F1A;&#x5360;&#x7528;&#x540E;&#x7AEF;&#x8FC7;&#x591A;&#x7684;&#x8D44;&#x6E90;(&#x6BD4;&#x5982;&#x7EBF;&#x7A0B;&#x3001;&#x8FDB;&#x7A0B;&#x975E;&#x4E8B;&#x4EF6;&#x9A71;&#x52A8;)&#xFF0C;&#x6700;&#x7EC8;&#x53CD;&#x800C;&#x4F1A;&#x5F71;&#x54CD;backend&#x7684;&#x5904;&#x7406;&#x80FD;&#x529B;&#x3002;</p>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"></span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="page-footer-ex-footer-update">
+2018-07-28 16:30:41
+</span></footer>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../web/section7.html" class="navigation navigation-prev " aria-label="Previous page: flask的监听路由原理"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../web/section17.html" class="navigation navigation-next " aria-label="Next page: MVC流程详解"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-splitter/splitter.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"toggle-chapters":{},"splitter":{},"ouweiya-pagefooter":{"copyright":"","update_format":"YYYY-MM-DD HH:mm:ss","update_label":""},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book Python学科面试宝典 -->
+</html>

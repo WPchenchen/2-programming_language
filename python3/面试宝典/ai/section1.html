@@ -1,0 +1,2450 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book Python学科面试宝典 -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>kd-tree | Python学科面试宝典</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="Sasuke">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-splitter/splitter.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-ouweiya-pagefooter/style/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../enterprise/index.html" />
+    
+    
+    <link rel="prev" href="../ai/index.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book"
+        data-level="8.1"
+        data-chapter-title="kd-tree"
+        data-filepath="ai/section1.md"
+        data-basepath=".."
+        data-revision="Wed Aug 29 2018 16:09:51 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        面试宝典目录
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="pythongrammar/index.html">
+            
+                
+                    <a href="../pythongrammar/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Python语法
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="pythongrammar/section1.html">
+            
+                
+                    <a href="../pythongrammar/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Python单例模式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="pythongrammar/section2.html">
+            
+                
+                    <a href="../pythongrammar/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        斐波那契数列
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="pythongrammar/section3.html">
+            
+                
+                    <a href="../pythongrammar/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Python2和Python3的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="pythongrammar/section4.html">
+            
+                
+                    <a href="../pythongrammar/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        新式类和经典类以及继承顺序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="pythongrammar/section5.html">
+            
+                
+                    <a href="../pythongrammar/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        __new__和__init__的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="pythongrammar/section6.html">
+            
+                
+                    <a href="../pythongrammar/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        深拷贝和浅拷贝
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="pythongrammar/section7.html">
+            
+                
+                    <a href="../pythongrammar/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        Python的存储机理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="pythongrammar/section8.html">
+            
+                
+                    <a href="../pythongrammar/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        常用python自省函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="pythongrammar/section9.html">
+            
+                
+                    <a href="../pythongrammar/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.9.</b>
+                        
+                        函数中参数默认值是列表
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="pythongrammar/section10.html">
+            
+                
+                    <a href="../pythongrammar/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.10.</b>
+                        
+                        常用的设计模式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="pythongrammar/section11.html">
+            
+                
+                    <a href="../pythongrammar/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.11.</b>
+                        
+                        字典取值的时间复杂度
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="pythongrammar/section12.html">
+            
+                
+                    <a href="../pythongrammar/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.12.</b>
+                        
+                        if底层原理的实现
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="pythongrammar/section16.html">
+            
+                
+                    <a href="../pythongrammar/section16.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.13.</b>
+                        
+                        hasattr() getattr() setattr() 函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="pythongrammar/section13.html">
+            
+                
+                    <a href="../pythongrammar/section13.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.14.</b>
+                        
+                        Python语法面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="pythongrammar/section14.html">
+            
+                
+                    <a href="../pythongrammar/section14.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.15.</b>
+                        
+                        Python语法面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="pythongrammar/section15.html">
+            
+                
+                    <a href="../pythongrammar/section15.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.16.</b>
+                        
+                        Python语法面试题-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="pythongrammar/section17.html">
+            
+                
+                    <a href="../pythongrammar/section17.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.17.</b>
+                        
+                        Python语法面试题-04
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="pythongrammar/section18.html">
+            
+                
+                    <a href="../pythongrammar/section18.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.18.</b>
+                        
+                        Python语法面试题-05
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="async/index.html">
+            
+                
+                    <a href="../async/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        异步编程和网络编程
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="async/asyncq/index.html">
+            
+                
+                    <a href="../async/asyncq/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        异步编程
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="async/asyncq/section1.html">
+            
+                
+                    <a href="../async/asyncq/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        多线程和进程的关系
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="async/asyncq/section2.html">
+            
+                
+                    <a href="../async/asyncq/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        一个线程1让线程2去调用一个函数怎么实现
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="async/asyncq/section3.html">
+            
+                
+                    <a href="../async/asyncq/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        进程、线程、协程对比
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="async/asyncq/section4.html">
+            
+                
+                    <a href="../async/asyncq/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.</b>
+                        
+                        同步、异步、阻塞、非阻塞
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="async/asyncq/section5.html">
+            
+                
+                    <a href="../async/asyncq/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.</b>
+                        
+                        死锁
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="async/asyncq/section6.html">
+            
+                
+                    <a href="../async/asyncq/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.6.</b>
+                        
+                        进程间通信
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="async/asyncq/section7.html">
+            
+                
+                    <a href="../async/asyncq/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.7.</b>
+                        
+                        一个接口的访问量非常大，如何去优化？
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="async/socket/index.html">
+            
+                
+                    <a href="../async/socket/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        网络编程
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="async/socket/section1.html">
+            
+                
+                    <a href="../async/socket/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.1.</b>
+                        
+                        Http和Https的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="async/socket/section2.html">
+            
+                
+                    <a href="../async/socket/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.2.</b>
+                        
+                        三次握手和四次挥手
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="async/socket/section3.html">
+            
+                
+                    <a href="../async/socket/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.3.</b>
+                        
+                        四次挥手的2,3次为什么不能合并
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.4" data-path="async/socket/section4.html">
+            
+                
+                    <a href="../async/socket/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.4.</b>
+                        
+                        UWSGI协议
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.5" data-path="async/socket/section5.html">
+            
+                
+                    <a href="../async/socket/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.5.</b>
+                        
+                        TCP/IP协议的理解
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.6" data-path="async/socket/section6.html">
+            
+                
+                    <a href="../async/socket/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.6.</b>
+                        
+                        HTTP缓存机制
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="async/section1.html">
+            
+                
+                    <a href="../async/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        网络编程面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="async/section2.html">
+            
+                
+                    <a href="../async/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        网络编程面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="async/section3.html">
+            
+                
+                    <a href="../async/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        网络编程面试题-03
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="database/index.html">
+            
+                
+                    <a href="../database/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        数据库
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="database/section1.html">
+            
+                
+                    <a href="../database/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Mysql和MongoDB的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="database/section2.html">
+            
+                
+                    <a href="../database/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        数据库索引和事务的隔离
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="database/section3.html">
+            
+                
+                    <a href="../database/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Mysql数据库引擎
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="database/section4.html">
+            
+                
+                    <a href="../database/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        InnoDB事务原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="database/section5.html">
+            
+                
+                    <a href="../database/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        数据库优化方案
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="database/section6.html">
+            
+                
+                    <a href="../database/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        一对多表结构设计的缺点
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="database/section7.html">
+            
+                
+                    <a href="../database/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        SQL-一次性添加几十万条数据怎么写
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="database/section8.html">
+            
+                
+                    <a href="../database/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Mysql水平分表技术实现怎么实现多表联合查询
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="database/section9.html">
+            
+                
+                    <a href="../database/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                        Mysql数据库中的锁
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="database/section10.html">
+            
+                
+                    <a href="../database/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.10.</b>
+                        
+                        数据库三范式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="database/section11.html">
+            
+                
+                    <a href="../database/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.11.</b>
+                        
+                        乐观锁和悲观锁
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="database/section12.html">
+            
+                
+                    <a href="../database/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.</b>
+                        
+                        Mysql怎么支持emoji表情
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13" data-path="database/section13.html">
+            
+                
+                    <a href="../database/section13.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                        redis相比memcached
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.14" data-path="database/section14.html">
+            
+                
+                    <a href="../database/section14.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                        Redis和mongodb的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.15" data-path="database/section15.html">
+            
+                
+                    <a href="../database/section15.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.15.</b>
+                        
+                        mongodb的分片
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.16" data-path="database/section16.html">
+            
+                
+                    <a href="../database/section16.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.16.</b>
+                        
+                        数据库面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.17" data-path="database/section17.html">
+            
+                
+                    <a href="../database/section17.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.17.</b>
+                        
+                        数据库面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.18" data-path="database/section18.html">
+            
+                
+                    <a href="../database/section18.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.18.</b>
+                        
+                        数据库面试题-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.19" data-path="database/section19.html">
+            
+                
+                    <a href="../database/section19.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.19.</b>
+                        
+                        数据库面试题-04
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.20" data-path="database/section20.html">
+            
+                
+                    <a href="../database/section20.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.20.</b>
+                        
+                        数据库面试题-05
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="web/index.html">
+            
+                
+                    <a href="../web/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Web框架
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="web/section1.html">
+            
+                
+                    <a href="../web/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Django下的（内建）缓存机制
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="web/section2.html">
+            
+                
+                    <a href="../web/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Django中使用memcached作为缓存的具体方法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="web/section3.html">
+            
+                
+                    <a href="../web/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        如果是多台服务器你怎么迁移model文件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="web/section4.html">
+            
+                
+                    <a href="../web/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        动态加载又对及时性要求很高怎么处理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="web/section5.html">
+            
+                
+                    <a href="../web/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        CSRF攻击
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="web/section6.html">
+            
+                
+                    <a href="../web/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        LRU缓存算法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="web/section7.html">
+            
+                
+                    <a href="../web/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        flask的监听路由原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="web/section8.html">
+            
+                
+                    <a href="../web/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        Ngixn做负载均衡的原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="web/section17.html">
+            
+                
+                    <a href="../web/section17.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        MVC流程详解
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="web/section18.html">
+            
+                
+                    <a href="../web/section18.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.10.</b>
+                        
+                        MVT流程详解
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.11" data-path="web/section19.html">
+            
+                
+                    <a href="../web/section19.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.11.</b>
+                        
+                        项目怎么优化
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.12" data-path="web/section9.html">
+            
+                
+                    <a href="../web/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.12.</b>
+                        
+                        Django面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.13" data-path="web/section10.html">
+            
+                
+                    <a href="../web/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.13.</b>
+                        
+                        Django面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.14" data-path="web/section11.html">
+            
+                
+                    <a href="../web/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.14.</b>
+                        
+                        Django面试题-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.15" data-path="web/section12.html">
+            
+                
+                    <a href="../web/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.15.</b>
+                        
+                        Django面试题-04
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.16" data-path="web/section13.html">
+            
+                
+                    <a href="../web/section13.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.16.</b>
+                        
+                        Django面试题-05
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.17" data-path="web/section14.html">
+            
+                
+                    <a href="../web/section14.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.17.</b>
+                        
+                        Django面试题-06
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.18" data-path="web/section15.html">
+            
+                
+                    <a href="../web/section15.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.18.</b>
+                        
+                        Django面试题-07
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.19" data-path="web/section16.html">
+            
+                
+                    <a href="../web/section16.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.19.</b>
+                        
+                        Django面试题-08
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="spider/index.html">
+            
+                
+                    <a href="../spider/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        爬虫
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="spider/section1.html">
+            
+                
+                    <a href="../spider/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        一万url待爬取，如何设计爬虫结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="spider/section2.html">
+            
+                
+                    <a href="../spider/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        手机APP抓包
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="spider/section3.html">
+            
+                
+                    <a href="../spider/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        如何提升IP代理池的可用度
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="spider/section4.html">
+            
+                
+                    <a href="../spider/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        爬取时碰到有加密控件的网站怎么解决
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="spider/section5.html">
+            
+                
+                    <a href="../spider/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        海量数据存储设计
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="spider/section6.html">
+            
+                
+                    <a href="../spider/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        爬虫面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="spider/section7.html">
+            
+                
+                    <a href="../spider/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        爬虫面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="spider/section8.html">
+            
+                
+                    <a href="../spider/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        爬虫面试题-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="spider/section9.html">
+            
+                
+                    <a href="../spider/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        爬虫面试题-04
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="analysis/index.html">
+            
+                
+                    <a href="../analysis/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        数据分析
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="analysis/section1.html">
+            
+                
+                    <a href="../analysis/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        ETL技术
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="analysis/section2.html">
+            
+                
+                    <a href="../analysis/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        变量IV
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="analysis/section3.html">
+            
+                
+                    <a href="../analysis/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        模型ROC
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="analysis/section4.html">
+            
+                
+                    <a href="../analysis/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        模型KS
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="algorithm/index.html">
+            
+                
+                    <a href="../algorithm/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        数据结构与算法
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="algorithm/section1.html">
+            
+                
+                    <a href="../algorithm/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        PageRank原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="algorithm/section2.html">
+            
+                
+                    <a href="../algorithm/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Hash的原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="algorithm/section3.html">
+            
+                
+                    <a href="../algorithm/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        使用栈一种结构实现队列
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="algorithm/section4.html">
+            
+                
+                    <a href="../algorithm/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        实现一个栈的数据结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="algorithm/section9.html">
+            
+                
+                    <a href="../algorithm/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        十大经典排序算法
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.5.1" data-path="algorithm/section10.html">
+            
+                
+                    <a href="../algorithm/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.1.</b>
+                        
+                        冒泡排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.2" data-path="algorithm/section11.html">
+            
+                
+                    <a href="../algorithm/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.2.</b>
+                        
+                        选择排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.3" data-path="algorithm/section12.html">
+            
+                
+                    <a href="../algorithm/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.3.</b>
+                        
+                        插入排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.4" data-path="algorithm/section13.html">
+            
+                
+                    <a href="../algorithm/section13.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.4.</b>
+                        
+                        希尔排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.5" data-path="algorithm/section14.html">
+            
+                
+                    <a href="../algorithm/section14.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.5.</b>
+                        
+                        归并排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.6" data-path="algorithm/section15.html">
+            
+                
+                    <a href="../algorithm/section15.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.6.</b>
+                        
+                        快速排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.7" data-path="algorithm/section16.html">
+            
+                
+                    <a href="../algorithm/section16.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.7.</b>
+                        
+                        堆排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.8" data-path="algorithm/section17.html">
+            
+                
+                    <a href="../algorithm/section17.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.8.</b>
+                        
+                        计数排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.9" data-path="algorithm/section18.html">
+            
+                
+                    <a href="../algorithm/section18.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.9.</b>
+                        
+                        桶排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.10" data-path="algorithm/section19.html">
+            
+                
+                    <a href="../algorithm/section19.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.10.</b>
+                        
+                        基数排序
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="algorithm/section5.html">
+            
+                
+                    <a href="../algorithm/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        数据结构与算法-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7" data-path="algorithm/section6.html">
+            
+                
+                    <a href="../algorithm/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.7.</b>
+                        
+                        数据结构与算法-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8" data-path="algorithm/section7.html">
+            
+                
+                    <a href="../algorithm/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.8.</b>
+                        
+                        数据结构与算法-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.9" data-path="algorithm/section8.html">
+            
+                
+                    <a href="../algorithm/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.9.</b>
+                        
+                        数据结构与算法-04
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="ai/index.html">
+            
+                
+                    <a href="../ai/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        人工智能
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="8.1" data-path="ai/section1.html">
+            
+                
+                    <a href="../ai/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        kd-tree
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="enterprise/index.html">
+            
+                
+                    <a href="../enterprise/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        企业笔试题
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="enterprise/section1.html">
+            
+                
+                    <a href="../enterprise/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        360面试题
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="enterprise/section2.html">
+            
+                
+                    <a href="../enterprise/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        妙计旅行面试题
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="enterprise/section3.html">
+            
+                
+                    <a href="../enterprise/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        文因互联
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="enterprise/section4.html">
+            
+                
+                    <a href="../enterprise/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        北京红枣科技
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="enterprise/section5.html">
+            
+                
+                    <a href="../enterprise/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        金桔小店
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6" data-path="enterprise/section6.html">
+            
+                
+                    <a href="../enterprise/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.</b>
+                        
+                        芸品绿
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7" data-path="enterprise/section7.html">
+            
+                
+                    <a href="../enterprise/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.</b>
+                        
+                        博派通达
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8" data-path="enterprise/section8.html">
+            
+                
+                    <a href="../enterprise/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.</b>
+                        
+                        上海金台灯
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.9" data-path="enterprise/section9.html">
+            
+                
+                    <a href="../enterprise/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.9.</b>
+                        
+                        智慧星光
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.10" data-path="enterprise/section10.html">
+            
+                
+                    <a href="../enterprise/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.10.</b>
+                        
+                        普奥云
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.11" data-path="enterprise/section11.html">
+            
+                
+                    <a href="../enterprise/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.11.</b>
+                        
+                        北京诺信创联
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.12" data-path="enterprise/section12.html">
+            
+                
+                    <a href="../enterprise/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.12.</b>
+                        
+                        北京号外科技
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Python学科面试宝典</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h3 id="kdtree&#x539F;&#x7406;&#x4E0E;&#x5B9E;&#x73B0;">Kd-tree&#x539F;&#x7406;&#x4E0E;&#x5B9E;&#x73B0;</h3>
+<p>&#x6570;&#x636E;&#x5E94;&#x7528;&#x5F53;&#x4E2D;&#xFF0C;&#x6700;&#x8FD1;&#x90BB;&#x67E5;&#x8BE2;&#x662F;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#x529F;&#x80FD;&#x3002;&#x4E0D;&#x8BBA;&#x662F;&#x4FE1;&#x606F;&#x68C0;&#x7D22;&#xFF0C;&#x63A8;&#x8350;&#x7CFB;&#x7EDF;&#xFF0C;&#x8FD8;&#x662F;&#x6570;&#x636E;&#x5E93;&#x67E5;&#x8BE2;&#xFF0C;&#x6700;&#x8FD1;&#x90BB;&#x67E5;&#x8BE2;(Nearst Neighbor Search)&#x53EF;&#x8C13;&#x65E0;&#x5904;&#x4E0D;&#x5728;&#x3002;&#x5B83;&#x8981;&#x5B9E;&#x73B0;&#x7684;&#x662F;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x627E;&#x5230;&#x6570;&#x636E;&#x4E2D;&#x548C;&#x67E5;&#x8BE2;&#x6700;&#x63A5;&#x8FD1;&#x7684;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x6570;&#x636E;&#x6761;&#x76EE;&#xFF08;&#x524D;&#x8005;&#x53EB;NN search, &#x540E;&#x8005;&#x4E5F;&#x53EB;kNN&#xFF09;&#xFF0C;&#x5176;&#x5B9E;&#x672C;&#x8D28;&#x4E0A;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x6B64;&#x6587;&#x4E2D;Kd-tree&#x4E3B;&#x8981;&#x5C31;&#x662F;&#x9488;&#x5BF9;&#x8FD9;&#x79CD;&#x6700;&#x8FD1;&#x90BB;&#x641C;&#x7D22;&#x95EE;&#x9898;&#x3002;</p>
+<h4 id="1-&#x57FA;&#x672C;&#x539F;&#x7406;">1. &#x57FA;&#x672C;&#x539F;&#x7406;</h4>
+<p>&#x5176;&#x5B9E;&#xFF0C;&#x8FD9;&#x79CD;&#x95EE;&#x9898;&#x672C;&#x6765;&#x662F;&#x5F88;&#x5BB9;&#x6613;&#x89E3;&#x51B3;&#x7684;&#xFF0C;&#x53EA;&#x8981;&#x8BBE;&#x8BA1;&#x597D;&#x4E86;&#x6570;&#x636E;&#x76F8;&#x4F3C;&#x5EA6;&#x7684;&#x5EA6;&#x91CF;&#x65B9;&#x6CD5;&#xFF08;&#x6709;&#x5173;&#x76F8;&#x4F3C;&#x5EA6;&#x91CF;&#x7684;&#x65B9;&#x6CD5;&#x8BE6;&#x7EC6;&#x53EF;&#x53C2;&#x8003;&#x6211;&#x4E4B;&#x524D;&#x7684;&#x535A;&#x5BA2;&#xFF1A;&#x6570;&#x636E;&#x76F8;&#x4F3C;&#x6027;&#x7684;&#x5EA6;&#x91CF;&#x65B9;&#x6CD5;&#x603B;&#x7ED3;&#xFF09;&#x8BA1;&#x7B97;&#x6240;&#x6709;&#x6570;&#x636E;&#x4E0E;&#x67E5;&#x8BE2;&#x7684;&#x8DDD;&#x79BB;&#xFF0C;&#x6BD4;&#x8F83;&#x5927;&#x5C0F;&#x5373;&#x53EF;&#x3002;&#x4F46;&#x662F;&#x968F;&#x7740;&#x6570;&#x636E;&#x91CF;&#x7684;&#x589E;&#x5927;&#x4EE5;&#x53CA;&#x6570;&#x636E;&#x7EF4;&#x5EA6;&#x7684;&#x63D0;&#x9AD8;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x5C31;&#x5F88;&#x96BE;&#x5728;&#x73B0;&#x5B9E;&#x4E2D;&#x5E94;&#x7528;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x6548;&#x7387;&#x4F1A;&#x975E;&#x5E38;&#x4F4E;&#x3002;&#x89E3;&#x51B3;&#x6B64;&#x7C7B;&#x95EE;&#x9898;&#x7684;&#x601D;&#x8DEF;&#x57FA;&#x672C;&#x5206;&#x4E3A;&#x4E24;&#x7C7B;&#xFF1A;</p>
+<ul>
+<li><p>&#xFF08;1&#xFF09;&#x901A;&#x8FC7;&#x6784;&#x5EFA;&#x7D22;&#x5F15;&#xFF0C;&#x5FEB;&#x901F;&#x6392;&#x9664;&#x4E0E;&#x67E5;&#x8BE2;&#x76F8;&#x5173;&#x5EA6;&#x4E0D;&#x5927;&#x7684;&#x6570;&#x636E;&#xFF1B;</p>
+</li>
+<li><p>&#xFF08;2&#xFF09;&#x901A;&#x8FC7;&#x964D;&#x7EF4;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5BF9;&#x6570;&#x636E;&#x6761;&#x76EE;&#x5148;&#x964D;&#x7EF4;&#xFF0C;&#x518D;&#x67E5;&#x8BE2;&#xFF1B;</p>
+</li>
+</ul>
+<p>&#x524D;&#x8005;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x6570;&#x636E;&#x91CF;&#x8FC7;&#x5927;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x6BD4;&#x8F83;&#x5E38;&#x89C1;&#x7684;&#x6709;&#x6211;&#x4EEC;&#x719F;&#x77E5;&#x7684;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#xFF0C;Merkel tree&#xFF0C;B-tree&#xFF0C;quad-tree&#x7B49;&#xFF1B;&#x540E;&#x8005;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x7EF4;&#x5EA6;&#x8FC7;&#x5927;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x800C;&#x6211;&#x4EEC;&#x4ECA;&#x5929;&#x8981;&#x8BF4;&#x7684;Kd-tree&#x5C31;&#x662F;&#x4E00;&#x79CD;&#x5BF9;&#x591A;&#x7EF4;&#x6B27;&#x5F0F;&#x7A7A;&#x95F4;&#x5206;&#x5272;&#xFF0C;&#x4ECE;&#x800C;&#x6784;&#x5EFA;&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x5C5E;&#x4E8E;&#x4E0A;&#x9762;&#x7684;&#x7B2C;&#x4E00;&#x7C7B;&#x3002;</p>
+<p><code>Kd-tree</code>&#x5168;&#x79F0;&#x53EB;&#x505A;&#xFF1A;<code>k dimension tree</code>&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x79CD;&#x5BF9;&#x4E8E;&#x591A;&#x7EF4;&#x6B27;&#x5F0F;&#x7A7A;&#x95F4;&#x5206;&#x5272;&#x6784;&#x9020;&#x7684;&#x7684;&#x4E8C;&#x53C9;&#x6811;&#xFF0C;&#x5176;&#x6027;&#x8D28;&#x975E;&#x5E38;&#x7C7B;&#x4F3C;&#x4E8E;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x3002;&#x6211;&#x4EEC;&#x5148;&#x56DE;&#x987E;&#x4E00;&#x4E0B;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#xFF0C;&#x5B83;&#x662F;&#x4E00;&#x79CD;&#x5177;&#x6709;&#x5982;&#x4E0B;&#x7279;&#x5F81;&#x7684;&#x4E8C;&#x53C9;&#x6811;&#xFF1A;</p>
+<ul>
+<li><p>&#xFF08;1&#xFF09;&#x82E5;&#x5B83;&#x7684;&#x5DE6;&#x5B50;&#x6811;&#x4E0D;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x5DE6;&#x5B50;&#x6811;&#x4E0A;&#x6240;&#x6709;&#x7ED3;&#x70B9;&#x7684;&#x503C;&#x5747;&#x5C0F;&#x4E8E;&#x5B83;&#x7684;&#x6839;&#x7ED3;&#x70B9;&#x7684;&#x503C;&#xFF1B;</p>
+</li>
+<li><p>&#xFF08;2&#xFF09;&#x82E5;&#x5B83;&#x7684;&#x53F3;&#x5B50;&#x6811;&#x4E0D;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x53F3;&#x5B50;&#x6811;&#x4E0A;&#x6240;&#x6709;&#x7ED3;&#x70B9;&#x7684;&#x503C;&#x5747;&#x5927;&#x4E8E;&#x5B83;&#x7684;&#x6839;&#x7ED3;&#x70B9;&#x7684;&#x503C;&#xFF1B;</p>
+</li>
+<li><p>&#xFF08;3&#xFF09;&#x5B83;&#x7684;&#x5DE6;&#x3001;&#x53F3;&#x5B50;&#x6811;&#x4E5F;&#x5206;&#x522B;&#x4E3A;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#xFF1B;</p>
+</li>
+</ul>
+<p>&#x8FD9;&#x4E2A;&#x6982;&#x5FF5;&#x662F;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x57FA;&#x7840;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x5E94;&#x8BE5;&#x975E;&#x5E38;&#x719F;&#x6089;&#x4E86;&#xFF0C;&#x4E0D;&#x518D;&#x8D58;&#x8FF0;&#xFF0C;&#x4E0B;&#x9762;&#x7ED9;&#x51FA;&#x4E00;&#x68F5;&#x666E;&#x901A;&#x7684;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x7684;&#x56FE;&#xFF1A;</p>
+<p><img src="images/1.png" alt=""></p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x628A;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x636E;&#x96C6;&#x770B;&#x505A;&#x4E00;&#x4E2A;&#x4E00;&#x7EF4;&#x7A7A;&#x95F4;&#xFF08;&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x6761;&#x76EE;&#x90FD;&#x662F;&#x7531;&#x4E00;&#x4E2A;&#x5355;&#x4E00;&#x7684;&#x6570;&#x503C;&#x6784;&#x6210;&#x7684;&#xFF09;&#xFF0C;&#x90A3;&#x4E48;&#x5B9E;&#x9645;&#x4E0A;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x7684;&#x5206;&#x5272;&#x4F9D;&#x636E;&#x5C31;&#x662F;&#x6570;&#x503C;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x5212;&#x5206;&#xFF0C;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x4EE5;&#x5E73;&#x5747;O(lg(n))&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x641C;&#x7D22;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x81EA;&#x7136;&#x800C;&#x7136;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x7965;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x80FD;&#x4E0D;&#x80FD;&#x5728;&#x591A;&#x7EF4;&#x6B27;&#x5F0F;&#x7A7A;&#x95F4;&#x4E2D;&#xFF0C;&#x6784;&#x5EFA;&#x4E00;&#x68F5;&#x7C7B;&#x4F3C;&#x539F;&#x7406;&#x7684;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#xFF1F;&#x8FD9;&#x4E5F;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x4ECA;&#x5929;&#x8BF4;&#x7684;Kd-tree.</p>
+<h4 id="2-kdtree&#x7684;&#x6784;&#x5EFA;">2. kd-tree&#x7684;&#x6784;&#x5EFA;</h4>
+<p>&#x5148;&#x629B;&#x5F00;&#x641C;&#x7D22;&#x7B97;&#x6CD5;&#x600E;&#x6837;&#x8BBE;&#x8BA1;&#x8FD9;&#x4EF6;&#x4E8B;&#x4E0D;&#x7BA1;&#xFF0C;&#x6211;&#x4EEC;&#x5355;&#x7EAF;&#x5730;&#x5173;&#x5FC3;&#x600E;&#x6837;&#x5BF9;&#x591A;&#x7EF4;&#x6B27;&#x5F0F;&#x7A7A;&#x95F4;&#x5212;&#x5206;&#x3002;&#x4E00;&#x7EF4;&#x7A7A;&#x95F4;&#x7B80;&#x5355;&#xFF0C;&#x56E0;&#x4E3A;&#x6BCF;&#x4E2A;&#x6570;&#x636E;&#x6761;&#x76EE;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x6570;&#x503C;&#xFF0C;&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x6BD4;&#x8F83;&#x6570;&#x503C;&#x5927;&#x5C0F;&#xFF0C;&#x5C31;&#x80FD;&#x5BF9;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x6761;&#x76EE;&#x5212;&#x5206;&#xFF0C;&#x53EF;&#x662F;&#x5728;&#x591A;&#x7EF4;&#x7A7A;&#x95F4;&#x5C31;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x5173;&#x952E;&#x95EE;&#x9898;&#xFF1A;&#x6BCF;&#x4E2A;&#x6570;&#x636E;&#x6761;&#x76EE;&#x7531;&#x591A;&#x4E2A;&#x6570;&#x503C;&#x7EC4;&#x6210;&#xFF0C;&#x6211;&#x4EEC;&#x600E;&#x4E48;&#x6BD4;&#x8F83;&#xFF1F;</p>
+<p>Kd-tree&#x7684;&#x539F;&#x7406;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;&#x6211;&#x4EEC;&#x4E0D;&#x6BD4;&#x8F83;&#x5168;&#x90E8;&#x7684;k&#x7EF4;&#x6570;&#x636E;&#xFF0C;&#x800C;&#x662F;&#x9009;&#x62E9;&#x5176;&#x4E2D;&#x67D0;&#x4E00;&#x4E2A;&#x7EF4;&#x5EA6;&#x6BD4;&#x8F83;&#xFF0C;&#x6839;&#x636E;&#x8FD9;&#x4E2A;&#x7EF4;&#x5EA6;&#x8FDB;&#x884C;&#x7A7A;&#x95F4;&#x5212;&#x5206;&#x3002;&#x90A3;&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x505A;&#x7684;&#x662F;&#x4E24;&#x4EF6;&#x4E8B;&#xFF1A;</p>
+<ul>
+<li><p>&#x5224;&#x65AD;&#x51FA;&#x5728;&#x54EA;&#x4E00;&#x4E2A;&#x7EF4;&#x5EA6;&#x6BD4;&#x8F83;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x6211;&#x4EEC;&#x6240;&#x8981;&#x5207;&#x5272;&#x7684;&#x9762;&#x5728;&#x54EA;&#x4E00;&#x4E2A;&#x7EF4;&#x5EA6;&#x4E0A;&#x3002;&#x5F53;&#x7136;&#x8FD9;&#x79CD;&#x5207;&#x5272;&#x9700;&#x8981;&#x9075;&#x5FAA;&#x4E00;&#x4E2A;&#x57FA;&#x672C;&#x8981;&#x6C42;&#xFF0C;&#x90A3;&#x5C31;&#x662F;&#x5C3D;&#x91CF;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x7EF4;&#x5EA6;&#x7684;&#x5207;&#x5272;&#xFF0C;&#x4F7F;&#x5F97;&#x6570;&#x636E;&#x96C6;&#x5747;&#x5206;&#xFF08;&#x4E3A;&#x4E8C;&#xFF09;&#xFF1B;</p>
+</li>
+<li><p>&#x5224;&#x65AD;&#x4EE5;&#x54EA;&#x4E2A;&#x6570;&#x636E;&#x6761;&#x76EE;&#x5206;&#x4F9D;&#x636E;&#x5212;&#x5206;&#x3002;&#x4E0A;&#x9762;&#x6211;&#x4EEC;&#x8BF4;&#xFF0C;&#x8981;&#x4F7F;&#x5F97;&#x6570;&#x636E;&#x96C6;&#x5747;&#x5206;&#x4E3A;&#x4E8C;&#xFF0C;&#x90A3;&#x5F53;&#x7136;&#x8981;&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x5408;&#x9002;&#x7684;&#x6570;&#x636E;&#x9879;&#xFF0C;&#x5145;&#x5F53;&#x8FD9;&#x4E2A;&#x5212;&#x5206;&#x7684;&#x201C;&#x70B9;&#x201D;&#x3002;</p>
+</li>
+</ul>
+<p>&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#xFF0C;&#x5C31;&#x662F;&#x8981;&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x9879;&#xFF0C;&#x4EE5;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x9879;&#x7684;&#x67D0;&#x4E2A;&#x7EF4;&#x5EA6;&#x7684;&#x503C;&#x4E3A;&#x6807;&#x51C6;&#xFF0C;&#x540C;&#x4E00;&#x7EF4;&#x5EA6;&#x7684;&#x503C;&#x5927;&#x4E8E;&#x8FD9;&#x4E2A;&#x503C;&#x7684;&#x6570;&#x636E;&#x9879;&#xFF0C;&#x5212;&#x5206;&#x4E3A;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x5C0F;&#x4E8E;&#x7684;&#x5212;&#x5206;&#x4E3A;&#x53E6;&#x4E00;&#x90E8;&#x5206;&#x3002;&#x6839;&#x636E;&#x8FD9;&#x79CD;&#x5212;&#x5206;&#x6765;&#x6784;&#x5EFA;&#x4E8C;&#x53C9;&#x6811;&#xFF0C;&#x5C31;&#x5982;&#x540C;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x90A3;&#x6837;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#xFF0C;&#x9488;&#x5BF9;&#x4E0A;&#x9762;&#x7684;&#x4E24;&#x4EF6;&#x4E8B;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x505A;&#x5982;&#x4E0B;&#x4E24;&#x4E2A;&#x5DE5;&#x4F5C;&#xFF1A;</p>
+<ul>
+<li><p><font color="red">&#x786E;&#x5B9A;&#x5212;&#x5206;&#x7EF4;&#x5EA6;</font>&#xFF1A;&#x8FD9;&#x91CC;&#x7EF4;&#x5EA6;&#x7684;&#x786E;&#x5B9A;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x5C3D;&#x91CF;&#x8981;&#x4F7F;&#x5F97;&#x8FD9;&#x4E2A;&#x7EF4;&#x5EA6;&#x4E0A;&#x6240;&#x6709;&#x6570;&#x636E;&#x9879;&#x6570;&#x503C;&#x7684;&#x5206;&#x5E03;&#x5C3D;&#x53EF;&#x80FD;&#x5730;&#x6709;&#x5927;&#x65B9;&#x5DEE;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x6570;&#x636E;&#x5728;&#x8FD9;&#x4E2A;&#x7EF4;&#x5EA6;&#x4E0A;&#x5C3D;&#x53EF;&#x80FD;&#x5206;&#x6563;&#x3002;&#x8FD9;&#x5C31;&#x597D;&#x6BD4;&#x662F;&#x6211;&#x4EEC;&#x5207;&#x4E1C;&#x897F;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x5207;&#x7684;&#x662F;&#x4E00;&#x6839;&#x9EC4;&#x74DC;&#xFF0C;&#x5F53;&#x8BA9;&#x6A2A;&#x7740;&#x5207;&#x8981;&#x6BD4;&#x7AD6;&#x7740;&#x5207;&#x66F4;&#x5BB9;&#x6613;&#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x5148;&#x5BF9;&#x6240;&#x6709;&#x7EF4;&#x5EA6;&#x7684;&#x6570;&#x503C;&#x8BA1;&#x7B97;&#x65B9;&#x5DEE;&#xFF0C;&#x9009;&#x62E9;&#x65B9;&#x5DEE;&#x6700;&#x5927;&#x7684;&#x90A3;&#x4E2A;&#x7EF4;&#x5EA6;&#xFF1B;</p>
+</li>
+<li><p><font color="red">&#x9009;&#x62E9;&#x5145;&#x5F53;&#x5207;&#x5272;&#x6807;&#x51C6;&#x7684;&#x6570;&#x636E;&#x9879;</font>&#xFF1A;&#x90A3;&#x4E48;&#x53EA;&#x9700;&#x8981;&#x6C42;&#x5F97;&#x8FD9;&#x4E2A;&#x7EF4;&#x5EA6;&#x4E0A;&#x6240;&#x6709;&#x6570;&#x503C;&#x7684;&#x4E2D;&#x4F4D;&#x6570;&#x5373;&#x53EF;&#xFF1B;</p>
+</li>
+</ul>
+<p>&#x81F3;&#x6B64;&#xFF0C;&#x53EF;&#x4EE5;&#x8BBE;&#x8BA1;&#x51FA;kd-tree&#x7684;&#x6784;&#x5EFA;&#x7B97;&#x6CD5;&#x4E86;&#xFF1A;</p>
+<ul>
+<li><p>&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x7531;n&#x7EF4;&#x6570;&#x636E;&#x6784;&#x6210;&#x7684;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x6211;&#x4EEC;&#x9996;&#x5148;&#x5BFB;&#x627E;&#x65B9;&#x5DEE;&#x6700;&#x5927;&#x7684;&#x90A3;&#x4E2A;&#x7EF4;&#x5EA6;&#xFF0C;&#x8BBE;&#x8FD9;&#x4E2A;&#x7EF4;&#x5EA6;&#x662F;d&#xFF0C;&#x7136;&#x540E;&#x627E;&#x51FA;&#x5728;&#x7EF4;&#x5EA6;d&#x4E0A;&#x6240;&#x6709;&#x6570;&#x636E;&#x9879;&#x7684;&#x4E2D;&#x4F4D;&#x6570;m&#xFF0C;&#x6309;m&#x5212;&#x5206;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x4E00;&#x5206;&#x4E3A;&#x4E8C;&#xFF0C;&#x8BB0;&#x8FD9;&#x4E24;&#x4E2A;&#x6570;&#x636E;&#x5B50;&#x96C6;&#x4E3A;D_1,D_r&#x3002;&#x5EFA;&#x7ACB;&#x6811;&#x8282;&#x70B9;&#xFF0C;&#x5B58;&#x50A8;&#x8FD9;&#x6B21;&#x5212;&#x5206;&#x7684;&#x60C5;&#x51B5;&#xFF08;&#x8BB0;&#x5F55;&#x5212;&#x5206;&#x7684;&#x7EF4;&#x5EA6;d&#x4EE5;&#x53CA;&#x4E2D;&#x4F4D;&#x6570;m&#xFF09;&#xFF1B;</p>
+</li>
+<li><p>&#x5BF9;D_l,D_r&#x91CD;&#x590D;&#x8FDB;&#x884C;&#x4EE5;&#x4E0A;&#x7684;&#x5212;&#x5206;&#xFF0C;&#x5E76;&#x4E14;&#x5C06;&#x65B0;&#x751F;&#x6210;&#x7684;&#x6811;&#x8282;&#x70B9;&#x8BBE;&#x7F6E;&#x4E3A;&#x4E0A;&#x4E00;&#x6B21;&#x5212;&#x5206;&#x7684;&#x5DE6;&#x53F3;&#x5B69;&#x5B50;&#xFF1B;</p>
+</li>
+<li><p>&#x9012;&#x5F52;&#x5730;&#x8FDB;&#x884C;&#x4EE5;&#x4E0A;&#x4E24;&#x6B65;&#xFF0C;&#x76F4;&#x5230;&#x4E0D;&#x80FD;&#x518D;&#x5212;&#x5206;&#x4E3A;&#x6B62;&#xFF08;<font color="red">&#x6240;&#x8C13;&#x4E0D;&#x80FD;&#x5212;&#x5206;&#x662F;&#x8BF4;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x4E2D;&#x5305;&#x542B;&#x7684;&#x6570;&#x636E;&#x9879;&#x7684;&#x6570;&#x91CF;&#x5C0F;&#x4E8E;&#x4E86;&#x6211;&#x4EEC;&#x4E8B;&#x5148;&#x89C4;&#x5B9A;&#x7684;&#x9608;&#x503C;&#xFF0C;&#x4E0D;&#x5931;&#x4E00;&#x822C;&#x6027;&#xFF0C;&#x6211;&#x5728;&#x6B64;&#x7BC7;&#x535A;&#x5BA2;&#x4E2D;&#x9ED8;&#x8BA4;&#x8FD9;&#x4E2A;&#x9608;&#x503C;&#x662F;2&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6240;&#x6709;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x5305;&#x542B;&#x7684;&#x6570;&#x636E;&#x9879;&#x4E0D;&#x4F1A;&#x591A;&#x4E8E;2&#x6761;</font>&#xFF09;&#xFF0C;&#x4E0D;&#x80FD;&#x518D;&#x5212;&#x5206;&#x65F6;&#xFF0C;&#x5C06;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x636E;&#x4FDD;&#x5B58;&#x81F3;&#x6700;&#x540E;&#x7684;&#x8282;&#x70B9;&#x4E2D;&#xFF0C;&#x8FD9;&#x4E9B;&#x6700;&#x540E;&#x7684;&#x8282;&#x70B9;&#x4E5F;&#x5C31;&#x662F;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x3002;</p>
+</li>
+</ul>
+<p>&#x73B0;&#x5728;&#x53EF;&#x4EE5;&#x7ED9;&#x51FA;kd-tree&#x7684;&#x5B9E;&#x73B0;&#x4EE3;&#x7801;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x9996;&#x5148;&#x9700;&#x8981;&#x8BBE;&#x8BA1;&#x51E0;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x4F9B;&#x7B97;&#x6CD5;&#x8C03;&#x7528;&#xFF0C;&#x9650;&#x4E8E;&#x7BC7;&#x5E45;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x662F;&#x7ED9;&#x51FA;&#x529F;&#x80FD;&#x8BF4;&#x660E;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x7C7B;&#x6216;&#x51FD;&#x6570;</th>
+<th style="text-align:left">&#x4F5C;&#x7528;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">class-KdTreeNode</td>
+<td style="text-align:left">kd-tree&#x8282;&#x70B9;&#xFF0C;&#x5305;&#x542B;&#x4EE5;&#x4E0B;6&#x4E2A;Attributes</td>
+</tr>
+<tr>
+<td style="text-align:left">Attribute1-data</td>
+<td style="text-align:left">&#x6811;&#x8282;&#x70B9;&#x5C5E;&#x6027;&#xFF0C;&#x4EE3;&#x8868;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x6570;&#x636E;&#x9879;&#xFF0C;&#x5176;&#x5B9E;&#x662F;&#x4E00;&#x4E2A;&#x5217;&#x8868;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x662F;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#xFF0C;&#x5219;&#x4E3A;&#x7A7A;</td>
+</tr>
+<tr>
+<td style="text-align:left">Attribute2-split</td>
+<td style="text-align:left">&#x6811;&#x8282;&#x70B9;&#x5C5E;&#x6027;&#xFF0C;&#x4EE3;&#x8868;&#x6784;&#x5EFA;&#x6811;&#x65F6;&#xFF0C;&#x5BF9;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#x8FDB;&#x884C;&#x5206;&#x5272;&#x6240;&#x4F9D;&#x636E;&#x7684;&#x6570;&#x636E;&#x7EF4;&#x5EA6;</td>
+</tr>
+<tr>
+<td style="text-align:left">Attribute3-median</td>
+<td style="text-align:left">&#x6811;&#x8282;&#x70B9;&#x5C5E;&#x6027;&#xFF0C;&#x4EE3;&#x8868;&#x6784;&#x5EFA;&#x6811;&#x65F6;&#xFF0C;&#x6240;&#x6709;&#x4E0A;&#x9762;split&#x7EF4;&#x5EA6;&#x4E0A;&#x6570;&#x636E;&#x7684;&#x4E2D;&#x4F4D;&#x6570;</td>
+</tr>
+<tr>
+<td style="text-align:left">Attribute4-left</td>
+<td style="text-align:left">&#x6811;&#x8282;&#x70B9;&#x5C5E;&#x6027;&#xFF0C;&#x4EE3;&#x8868;&#x5DE6;&#x5B69;&#x5B50;</td>
+</tr>
+<tr>
+<td style="text-align:left">Attribute5-right</td>
+<td style="text-align:left">&#x6811;&#x8282;&#x70B9;&#x5C5E;&#x6027;&#xFF0C;&#x4EE3;&#x8868;&#x53F3;&#x5B69;&#x5B50;</td>
+</tr>
+<tr>
+<td style="text-align:left">Attribute6-parent</td>
+<td style="text-align:left">&#x6811;&#x8282;&#x70B9;&#x5C5E;&#x6027;&#xFF0C;&#x4EE3;&#x8868;&#x7236;&#x4EB2;&#x8282;&#x70B9;&#xFF0C;&#x4F5C;&#x7528;&#x662F;&#x5728;&#x540E;&#x9762;&#x7684;&#x641C;&#x7D22;&#x7B97;&#x6CD5;&#x4E2D;&#x7528;</td>
+</tr>
+<tr>
+<td style="text-align:left">Attribute7-visited</td>
+<td style="text-align:left">&#x6811;&#x8282;&#x70B9;&#x5C5E;&#x6027;&#xFF0C;&#x4EE3;&#x8868;&#x6B64;&#x8282;&#x70B9;&#x662F;&#x5426;&#x88AB;&#x7B97;&#x6CD5;&#x56DE;&#x6EAF;&#x904D;&#x5386;&#xFF0C;&#x4F5C;&#x7528;&#x662F;&#x5728;&#x540E;&#x9762;&#x7684;&#x641C;&#x7D22;&#x7B97;&#x6CD5;&#x4E2D;&#x7528;</td>
+</tr>
+<tr>
+<td style="text-align:left">func-getSplit</td>
+<td style="text-align:left">&#x51FD;&#x6570;&#xFF0C;&#x5F97;&#x5230;&#x6240;&#x6709;&#x7EF4;&#x5EA6;&#x4E2D;&#x65B9;&#x5DEE;&#x6700;&#x5927;&#x90A3;&#x4E2A;&#x7EF4;&#x5EA6;&#x7684;&#x5E8F;&#x53F7;</td>
+</tr>
+<tr>
+<td style="text-align:left">func-getMedian</td>
+<td style="text-align:left">&#x51FD;&#x6570;&#xFF0C;&#x5F97;&#x5230;&#x8981;&#x5206;&#x5272;&#x7684;&#x7EF4;&#x5EA6;&#x7684;&#x4E2D;&#x4F4D;&#x6570;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x6309;&#x7167;&#x4E0A;&#x9762;&#x8FD9;&#x6837;&#x8BBE;&#x8BA1;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;kd-tree&#x7684;&#x6784;&#x5EFA;&#x4E86;&#x3002;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;numpy&#x5E93;&#xFF0C;&#x5047;&#x8BBE;&#x73B0;&#x5728;&#x5DF2;&#x7ECF;&#x5C06;&#x6240;&#x6709;&#x7684;&#x6570;&#x636E;&#x9879;&#x8BFB;&#x5165;&#x4E3A;&#x4E00;&#x4E2A;ndarray&#x578B;&#x7684;&#x6570;&#x636E;&#x77E9;&#x9635;<code>datamatrix</code>&#xFF0C;<code>datamatrix</code>&#x7684;&#x6BCF;&#x4E00;&#x884C;&#x4EE3;&#x8868;&#x4E86;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x9879;&#x3002;&#x90A3;&#x4E48;&#x6784;&#x5EFA;&#x6811;&#x7B97;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+<span class="hljs-comment"># &#x6811;&#x8282;&#x70B9;&#x7C7B;&#x548C;&#x5176;&#x76F8;&#x5173;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">KdTreeNode</span><span class="hljs-params">(object)</span>:</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, dataMatrix)</span>:</span>
+
+        self.data = dataMatrix
+
+        self.left, self.right = <span class="hljs-keyword">None</span>, <span class="hljs-keyword">None</span>
+        self.parent = <span class="hljs-keyword">None</span>
+
+        self.split = self.getSplit()
+        self.median = self.getMedian()
+
+        self.visited = <span class="hljs-keyword">False</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getSplit</span><span class="hljs-params">(self)</span>:</span><span class="hljs-comment"># &#x53D6;&#x65B9;&#x5DEE;&#x6700;&#x5927;&#x7684;&#x7EF4;&#x5EA6;&#x4F5C;&#x4E3A;&#x5206;&#x5272;&#x7EF4;&#x5EA6;&#xFF0C;&#x4EE3;&#x7801;&#x7565;</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getMedian</span><span class="hljs-params">(self)</span>:</span><span class="hljs-comment"># &#x5F97;&#x5230;&#x8FD9;&#x4E2A;&#x5206;&#x5272;&#x7EF4;&#x5EA6;&#x4E0A;&#x6240;&#x6709;&#x6570;&#x503C;&#x7684;&#x4E2D;&#x4F4D;&#x6570;&#xFF0C;&#x4EE3;&#x7801;&#x7565;</span>
+
+<span class="hljs-comment"># &#x6784;&#x5EFA;kd-tree&#x7684;&#x51FD;&#x6570;&#xFF0C;helper&#x4E3A;&#x5176;&#x8F85;&#x52A9;&#x51FD;&#x6570;&#xFF0C;&#x8D77;&#x5230;&#x9012;&#x5F52;&#x7684;&#x4F5C;&#x7528;</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">buildKdTree</span><span class="hljs-params">(dataMatrix)</span>:</span>
+
+    root = KdTreeNode(dataMatrix)
+
+    <span class="hljs-comment"># there is only one data item in dataMatrix</span>
+    <span class="hljs-keyword">if</span> root.data.shape[<span class="hljs-number">0</span>] &lt;= <span class="hljs-number">1</span>:
+        <span class="hljs-keyword">return</span> root
+
+    helper(root)
+    <span class="hljs-keyword">return</span> root
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">helper</span><span class="hljs-params">(root)</span>:</span>
+
+    <span class="hljs-keyword">if</span> root <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">or</span> len(root.data) &lt;= <span class="hljs-number">2</span>:
+        <span class="hljs-keyword">return</span>
+
+    <span class="hljs-comment"># distribute data into left and right</span>
+    leftData, rightData = [], []
+
+    <span class="hljs-comment"># generate left and right child</span>
+    <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> list(root.data):
+        <span class="hljs-keyword">if</span> row[root.split] &lt;= root.median:
+            leftData.append(row)
+        <span class="hljs-keyword">else</span>:
+            rightData.append(row)
+
+    left = KdTreeNode(np.array(leftData))
+    left.parent = root
+
+    right = KdTreeNode(np.array(rightData))
+    right.parent = root
+
+    root.data = <span class="hljs-keyword">None</span>
+    root.left = left
+    root.right = right
+
+    helper(root.left)
+    helper(root.right)
+</code></pre>
+<p>&#x6D4B;&#x8BD5;&#x6837;&#x4F8B;&#xFF1A;&#x6570;&#x636E;&#x96C6;&#x5408;(2,3), (5,4), (9,6), (4,7), (8,1), (7,2):</p>
+<p><img src="images/2.png" alt=""></p>
+<h4 id="3-&#x641C;&#x7D22;&#x7B97;&#x6CD5;">3. &#x641C;&#x7D22;&#x7B97;&#x6CD5;</h4>
+<p>&#x6784;&#x5EFA;&#x597D;kd-tree&#x540E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x641C;&#x7D22;&#x7B97;&#x6CD5;&#x4E86;&#x3002;&#x5176;&#x5B9E;&#xFF0C;&#x8FD9;&#x4E5F;&#x662F;&#x4FE1;&#x606F;&#x68C0;&#x7D22;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x6A21;&#x5F0F;&#xFF0C;&#x5148;&#x6784;&#x5EFA;&#x7D22;&#x5F15;&#xFF0C;&#x7136;&#x540E;&#x4F9D;&#x7167;&#x7D22;&#x5F15;&#x6267;&#x884C;&#x641C;&#x7D22;&#x7B97;&#x6CD5;&#x3002;&#x5F53;&#x7136;&#x51E0;&#x4E4E;&#x6240;&#x6709;&#x7684;&#x641C;&#x7D22;&#x7B97;&#x6CD5;&#x90FD;&#x4E0E;&#x5176;&#x7D22;&#x5F15;&#x662F;&#x914D;&#x5957;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5373;&#x4FBF;&#x662F;&#x540C;&#x6837;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x7D22;&#x5F15;&#x4E0D;&#x540C;&#xFF0C;&#x5176;&#x641C;&#x7D22;&#x7B97;&#x6CD5;&#x5C31;&#x4E0D;&#x540C;&#xFF0C;&#x800C;&#x5404;&#x6709;&#x5404;&#x7684;&#x6280;&#x5DE7;&#x3002;&#x8FD9;&#x4E5F;&#x662F;&#x4FE1;&#x606F;&#x68C0;&#x7D22;&#x6280;&#x672F;&#x6700;&#x5927;&#x7684;&#x9B45;&#x529B;&#x4E4B;&#x4E00;&#x3002;</p>
+<p>&#x95F2;&#x8BDD;&#x5C11;&#x8BF4;&#xFF0C;&#x770B;&#x641C;&#x7D22;&#x7B97;&#x6CD5;&#x3002;&#x57FA;&#x672C;&#x601D;&#x8DEF;&#x53EF;&#x5206;&#x4E3A;&#x5982;&#x4E0B;3&#x6B65;&#xFF1A;</p>
+<ul>
+<li><p>&#x4F9D;&#x7167;&#x975E;&#x53F6;&#x8282;&#x70B9;&#x4E2D;&#x5B58;&#x50A8;&#x7684;&#x5206;&#x5272;&#x7EF4;&#x5EA6;&#x4EE5;&#x53CA;&#x4E2D;&#x4F4D;&#x6570;&#x4FE1;&#x606F;&#xFF0C;&#x81EA;&#x6839;&#x8282;&#x70B9;&#x59CB;&#xFF0C;&#x4ECE;&#x4E0A;&#x5411;&#x4E0B;&#x641C;&#x7D22;&#xFF0C;&#x76F4;&#x5230;&#x5230;&#x8FBE;&#x53F6;&#x5B50;&#x3002;&#x904D;&#x5386;&#x7684;&#x539F;&#x5219;&#x5F53;&#x7136;&#x662F;&#x6BD4;&#x8F83;&#x5206;&#x5272;&#x7EF4;&#x5EA6;&#x4E0A;&#xFF0C;&#x67E5;&#x8BE2;&#x503C;&#x4E0E;&#x4E2D;&#x4F4D;&#x6570;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x8BBE;&#x67E5;&#x8BE2;&#x4E3A;Q&#xFF0C;&#x5F53;&#x524D;&#x904D;&#x5386;&#x5230;&#x7684;&#x8282;&#x70B9;&#x4E3A;u&#xFF0C;&#x5219;&#x82E5;<code>Q[u.split] &gt; u.median</code>&#xFF0C;&#x7EE7;&#x7EED;&#x904D;&#x5386;u&#x7684;&#x53F3;&#x5B50;&#x6811;&#xFF0C;&#x53CD;&#x4E4B;&#xFF0C;&#x904D;&#x5386;&#x5DE6;&#x5B50;&#x6811;&#x3002;</p>
+</li>
+<li><p>&#x904D;&#x5386;&#x5230;&#x53F6;&#x5B50;&#x4E4B;&#x540E;&#xFF0C;&#x8BA1;&#x7B97;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x4E2D;&#x4E0E;&#x67E5;&#x8BE2;Q&#x8DDD;&#x79BB;&#x6700;&#x5C0F;&#x7684;&#x6570;&#x636E;&#x9879;&#x4E0E;&#x67E5;&#x8BE2;&#x7684;&#x8DDD;&#x79BB;&#xFF0C;&#x8BB0;&#x4E3A;<code>minDis</code>&#xFF1B;&#x5176;&#x540E;&#x6267;&#x884C;&#x201C;&#x56DE;&#x6EAF;&#x201D;&#x64CD;&#x4F5C;&#xFF0C;&#x56DE;&#x6EAF;&#x81F3;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x7684;&#x7236;&#x8282;&#x70B9;&#xFF0C;&#x5224;&#x65AD;&#x4EE5;Q&#x4E3A;&#x7403;&#x5FC3;&#xFF0C;&#x4EE5;<code>minDis</code>&#x4E3A;&#x534A;&#x5F84;&#x7684;&#x8D85;&#x7403;&#x9762;&#x662F;&#x5426;&#x4E0E;&#x8FD9;&#x4E2A;&#x7236;&#x8282;&#x70B9;&#x7684;&#x53E6;&#x4E00;&#x4E2A;&#x5206;&#x652F;&#x6240;&#x4EE3;&#x8868;&#x7684;&#x533A;&#x57DF;&#x6709;&#x4EA4;&#x96C6;&#xFF08;&#x5176;&#x5B9E;&#xFF0C;&#x8FD9;&#x91CC;&#x7684;&#x533A;&#x57DF;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x8D85;&#x77E9;&#x5F62;&#xFF0C;&#x5B83;&#x5305;&#x542B;&#x4E86;&#x6240;&#x6709;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#x4EE3;&#x8868;&#x7684;&#x6570;&#x636E;&#x9879;&#xFF09;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x7EE7;&#x7EED;&#x5411;&#x4E0A;&#x4E00;&#x5C42;&#x56DE;&#x6EAF;&#xFF1B;&#x5982;&#x679C;&#x6709;&#xFF0C;&#x5219;&#x6309;&#x7167;1&#x6B65;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF0C;&#x63A2;&#x5E95;&#x5230;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x6B64;&#x65F6;Q&#x4E0E;&#x8FD9;&#x4E2A;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x9879;&#x6709;&#x66F4;&#x5C0F;&#x7684;&#x8DDD;&#x79BB;&#xFF0C;&#x5219;&#x66F4;&#x65B0;<code>minDis</code>&#x3002;</p>
+</li>
+<li><p>&#x6301;&#x7EED;&#x8FDB;&#x884C;&#x4EE5;&#x4E0A;&#x4E24;&#x6B65;&#xFF0C;&#x76F4;&#x5230;&#x56DE;&#x6EAF;&#x81F3;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x4E14;&#x6839;&#x8282;&#x70B9;&#x7684;&#x4E24;&#x4E2A;&#x5206;&#x652F;&#x90FD;&#x88AB;&#x201C;&#x63A2;&#x6D4B;&#x201D;&#x8FC7;&#x4E3A;&#x6B62;&#x3002;</p>
+</li>
+</ul>
+<p>&#x4F46;&#x662F;&#x8FD9;&#x4E2A;&#x91CC;&#x9762;&#x6709;&#x4E00;&#x4E2A;&#x96BE;&#x70B9;&#xFF1A;&#x5982;&#x4F55;&#x5224;&#x65AD;&#x4EE5;&#x67E5;&#x8BE2;<code>Q</code>&#x4E3A;&#x7403;&#x5FC3;&#xFF0C;&#x4EE5;&#x5F53;&#x524D;&#x7684;<code>minDis</code>&#x4E3A;&#x534A;&#x5F84;&#x7684;&#x8D85;&#x7403;&#x9762;&#x4E0E;&#x6811;&#x4E2D;&#xFF0C;&#x4E00;&#x4E2A;&#x975E;&#x53F6;&#x8282;&#x70B9;&#x6240;&#x4EE3;&#x8868;&#x7684;&#x8D85;&#x77E9;&#x5F62;&#x662F;&#x5426;&#x76F8;&#x4EA4;&#xFF1F;</p>
+<p>&#x4E00;&#x79CD;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x5728;&#x6784;&#x5EFA;&#x6811;&#x7684;&#x65F6;&#x5019;&#x76F4;&#x63A5;&#x7ED9;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x8D4B;&#x503C;&#x4E00;&#x4E2A;&#x8D85;&#x77E9;&#x5F62;&#xFF0C;&#x8FD9;&#x4E2A;&#x8D85;&#x77E9;&#x5F62;&#x4EE5;&#x4E00;&#x4E2A;&#x6811;&#x8282;&#x70B9;&#x5C5E;&#x6027;&#x7684;&#x5F62;&#x5F0F;&#x5B58;&#x5728;&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x662F;&#x7ED9;&#x51FA;&#x8D85;&#x77E9;&#x5F62;&#x7684;&#x4E00;&#x4E2A;&#x6700;&#x5927;&#x70B9;&#x548C;&#x4E00;&#x4E2A;&#x6700;&#x5C0F;&#x70B9;&#x3002;&#x5224;&#x65AD;&#x7684;&#x65B9;&#x6CD5;&#x53EA;&#x9700;&#x8981;&#x770B;&#x5982;&#x4E0B;&#x7684;&#x4E24;&#x4E2A;&#x6761;&#x4EF6;&#x662F;&#x5426;&#x90FD;&#x6210;&#x7ACB;&#x5373;&#x53EF;&#xFF1A;</p>
+<ul>
+<li><p><code>Q[u.split] + minDis &gt;= minPoint[u.split]</code></p>
+</li>
+<li><p><code>Q[u.split] - minDis &gt;= maxPoint[u.split]</code></p>
+</li>
+</ul>
+<p>&#x5176;&#x4E2D;&#xFF0C;u&#x4E3A;&#x67E5;&#x8BE2;&#x5F53;&#x524D;&#x904D;&#x5386;&#x5230;&#x7684;&#x8282;&#x70B9;&#x7684;&#x7236;&#x8282;&#x70B9;&#xFF0C;minPoint&#x4E0E;maxPoint&#x4E3A;u&#x6240;&#x4EE3;&#x8868;&#x7684;&#x8D85;&#x77E9;&#x5F62;&#x7684;&#x6700;&#x5927;&#x70B9;&#x548C;&#x6700;&#x5C0F;&#x70B9;&#xFF08;&#x6240;&#x8C13;&#x6700;&#x5927;&#x6700;&#x5C0F;&#x70B9;&#xFF0C;&#x90A3;&#x4E8C;&#x7EF4;&#x7A7A;&#x95F4;&#x7684;&#x77E9;&#x5F62;&#x6765;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#x4ED6;&#x7684;&#x53F3;&#x4E0A;&#x89D2;&#x7684;&#x70B9;&#x548C;&#x5DE6;&#x4E0B;&#x89D2;&#x7684;&#x70B9;&#xFF0C;&#x5206;&#x522B;&#x62E5;&#x6709;&#x8FD9;&#x4E2A;&#x77E9;&#x5F62;&#x8303;&#x56F4;&#x5185;&#x5404;&#x4E2A;&#x7EF4;&#x5EA6;&#x4E0A;&#x7684;&#x6700;&#x5927;&#x503C;&#x548C;&#x6700;&#x5C0F;&#x503C;&#xFF09;</p>
+<p>&#x539F;&#x56E0;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x56E0;&#x4E3A;&#x4EE5;Q&#x4E3A;&#x7403;&#x5FC3;&#xFF0C;&#x4EE5;&#x5F53;&#x524D;&#x8FD9;&#x4E2A;&#x77E9;&#x5F62;&#x533A;&#x57DF;&#x7684;&#x4E00;&#x4E2A;&#x70B9;&#x4E3A;&#x7403;&#x9762;&#x4E0A;&#x4E00;&#x70B9;&#x7684;&#x4E00;&#x4E2A;&#x8D85;&#x7403;&#x9762;&#xFF0C;&#x4E00;&#x5B9A;&#x662F;&#x7ECF;&#x8FC7;&#x4E86;&#x5F53;&#x524D;&#x8FD9;&#x4E2A;&#x53F6;&#x5B50;&#x6240;&#x4EE3;&#x8868;&#x7684;&#x533A;&#x57DF;&#xFF0C;&#x4F46;&#x662F;&#x540C;&#x65F6;&#x5B83;&#x4E0D;&#x53EF;&#x80FD;&#x5B8C;&#x5168;&#x8986;&#x76D6;&#x4ED6;&#x7684;&#x5144;&#x5F1F;&#x8282;&#x70B9;&#x4EE3;&#x8868;&#x7684;&#x533A;&#x57DF;&#x3002;&#x8FD9;&#x4E2A;&#x9053;&#x7406;&#x542C;&#x4E0A;&#x53BB;&#x6709;&#x70B9;&#x4E71;&#xFF0C;&#x770B;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x56FE;&#x5C31;&#x80FD;&#x660E;&#x767D;&#xFF1A;</p>
+<p><img src="images/3.jpg" alt=""></p>
+<p>&#x56FE;&#x4E2D;&#xFF0C;Q1,Q2,Q3&#x662F;&#x4E09;&#x4E2A;&#x67E5;&#x8BE2;&#x70B9;&#xFF0C;&#x7EBF;&#x6BB5;AB&#x662F;&#x8FD9;&#x4E2A;&#x77E9;&#x5F62;&#x7A7A;&#x95F4;&#x7684;&#x5206;&#x5272;&#x60C5;&#x51B5;&#x3002;&#x53EF;&#x89C1;&#xFF0C;&#x4E0A;&#x9762;&#x7684;&#x7ED3;&#x8BBA;&#x4E66;&#x6210;&#x7ACB;&#x7684;&#xFF0C;&#x540C;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x89C2;&#x70B9;&#xFF1A;&#x53EA;&#x8981;<code>|Q[u.split] - u.median|&lt;= minDis</code>&#x90A3;&#x4E48;&#x5C31;&#x662F;&#x4E0E;&#x5176;&#x5144;&#x5F1F;&#x8282;&#x70B9;&#x6240;&#x4EE3;&#x8868;&#x7684;&#x533A;&#x57DF;&#x76F8;&#x4EA4;&#x3002;&#x5176;&#x5B9E;&#x8FD9;&#x4E2A;&#x9053;&#x7406;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6570;&#x5B66;&#x4E0A;&#x7684;&#x63A8;&#x5BFC;&#x5F97;&#x5230;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x80FD;&#x7406;&#x89E3;&#x7684;&#x8BDD;&#x4E00;&#x8BD5;&#x4FBF;&#x77E5;&#x3002;</p>
+<p>&#x8BF4;&#x9053;&#x8FD9;&#x91CC;&#xFF0C;&#x53EF;&#x4EE5;&#x7ED9;&#x51FA;&#x641C;&#x7D22;&#x7B97;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;&#x4EE3;&#x7801;&#x4E86;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> math
+
+<span class="hljs-comment"># &#x8BA1;&#x7B97;&#x4E24;&#x4E2A;&#x591A;&#x7EF4;&#x5411;&#x91CF;&#x7684;&#x6B27;&#x5F0F;&#x8DDD;&#x79BB;</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dis</span><span class="hljs-params">(item, query)</span>:</span>&#x4EE3;&#x7801;&#x7565;
+
+<span class="hljs-comment"># &#x56DE;&#x6EAF;&#xFF0C;&#x627E;&#x5BFB;&#x9700;&#x8981;&#x5904;&#x7406;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x4E0B;&#x4E00;&#x8282;&#x70B9;&#x5E94;&#x6EE1;&#x8DB3;&#x4E0D;&#x66FE;&#x88AB;&#x7B97;&#x6CD5;&#x56DE;&#x6EAF;&#x904D;&#x5386;</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">findNextNode</span><span class="hljs-params">(cur)</span>:</span>&#x4EE3;&#x7801;&#x7565;
+
+<span class="hljs-comment"># &#x5224;&#x65AD;&#x4EE5;&#x67E5;&#x8BE2;&#x4E3A;&#x7403;&#x5FC3;&#xFF0C;&#x4EE5;&#x6B64;&#x65F6;&#x7684;&#x6700;&#x5C0F;&#x8DDD;&#x79BB;minDis&#x4E3A;&#x534A;&#x5F84;&#x7684;&#x8D85;&#x7403;&#x9762;&#x662F;&#x5426;&#x4E0E;&#x8282;&#x70B9;&#x6240;&#x4EE3;&#x8868;&#x7684;&#x8D85;&#x77E9;&#x5F62;&#x76F8;&#x4EA4;</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">intersect</span><span class="hljs-params">(node, query, radius)</span>:</span>&#x4EE3;&#x7801;&#x7565;
+
+<span class="hljs-comment"># &#x627E;&#x5230;&#x8282;&#x70B9;&#x7684;&#x5144;&#x5F1F;&#x8282;&#x70B9;</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getBrother</span><span class="hljs-params">(node)</span>:</span>&#x4EE3;&#x7801;&#x7565;
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">search</span><span class="hljs-params">(root, query, result, minDis)</span>:</span>
+
+    cur = root
+
+    <span class="hljs-comment"># the root is None</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> cur:
+        <span class="hljs-keyword">return</span> result
+
+    <span class="hljs-comment"># find leaf</span>
+    <span class="hljs-keyword">elif</span> <span class="hljs-keyword">not</span> cur.visited:
+        <span class="hljs-keyword">while</span> cur.left <span class="hljs-keyword">and</span> cur.right:
+            <span class="hljs-keyword">if</span> query[cur.split] &gt;= cur.median:
+                cur = cur.right
+            <span class="hljs-keyword">else</span>:
+                cur = cur.left
+
+        <span class="hljs-comment"># update the min dis if it is necessary</span>
+        <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> list(cur.data):
+            tempDis = dis(item, query)
+            <span class="hljs-keyword">if</span> abs(tempDis - minDis) &lt; <span class="hljs-number">1e-9</span>:
+                result.append(list(item))
+            <span class="hljs-keyword">elif</span> tempDis &lt; minDis:
+                minDis = tempDis
+                result = [list(item)]
+
+
+        <span class="hljs-comment"># update the visited</span>
+        cur.visited = <span class="hljs-keyword">True</span>
+
+        <span class="hljs-comment"># process the next node</span>
+        cur = findNextNode(cur)
+        <span class="hljs-keyword">if</span> intersect(cur, query, minDis):
+            <span class="hljs-keyword">return</span> search(cur, query, result, minDis)
+        <span class="hljs-keyword">else</span>:
+            cur.visited = <span class="hljs-keyword">True</span>
+            nextNode = findNextNode(cur)
+            <span class="hljs-keyword">return</span> search(nextNode, query, result, minDis)
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">return</span> result
+</code></pre>
+<p>&#x4F9D;&#x7167;&#x7B97;&#x6CD5;&#x7684;&#x8BBE;&#x8BA1;&#xFF0C;&#x6211;&#x4EEC;&#x4EE5;&#x4E0A;&#x9762;&#x7684;kd-tree&#x7684;&#x56FE;&#x4E3A;&#x4F8B;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x770B;&#x641C;&#x7D22;&#x7B97;&#x6CD5;&#x904D;&#x5386;&#x7684;&#x987A;&#x5E8F;&#xFF1A;</p>
+<p>&#x67E5;&#x8BE2;&#x70B9;(8, 3)&#x81EA;&#x6839;&#x8282;&#x70B9;&#x8D77;&#xFF0C;&#x6309;&#x7167;&#x5206;&#x5272;&#x7EF4;&#x5EA6;&#x4EE5;&#x53CA;&#x4E2D;&#x4F4D;&#x6570;&#x5411;&#x4E0B;&#x904D;&#x5386;&#xFF0C;&#x627E;&#x5230;&#x53F6;&#x5B50;&#x8282;&#x70B9;(9, 6)&#xFF0C;&#x6B64;&#x65F6;&#x7B97;&#x5F97;&#x7684;&#x6700;&#x5C0F;&#x8DDD;&#x79BB;&#x4E3A; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mrow><mn>1</mn><mn>0</mn></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9072200000000001em;"></span><span class="strut bottom" style="height:1.04em;vertical-align:-0.13277999999999995em;"></span><span class="base textstyle uncramped"><span class="mord sqrt"><span class="sqrt-sign" style="top:-0.06722000000000006em;"><span class="style-wrap reset-textstyle textstyle uncramped">&#x221A;</span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord textstyle cramped"><span class="mord mathrm">1</span><span class="mord mathrm">0</span></span></span><span style="top:-0.8272200000000001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped sqrt-line"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span>&#xFF1B;</p>
+<p>&#x56DE;&#x6EAF;&#xFF0C;&#x627E;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;&#x9700;&#x8981;&#x5904;&#x7406;&#x7684;&#x8282;&#x70B9;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;(8,1), (7,2)&#x8FD9;&#x4E2A;&#x70B9;&#xFF08;&#x6B64;&#x65F6;&#x4EE5;(8,3)&#x4E3A;&#x5706;&#x5FC3;&#xFF0C;&#x4EE5;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mrow><mn>1</mn><mn>0</mn></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9072200000000001em;"></span><span class="strut bottom" style="height:1.04em;vertical-align:-0.13277999999999995em;"></span><span class="base textstyle uncramped"><span class="mord sqrt"><span class="sqrt-sign" style="top:-0.06722000000000006em;"><span class="style-wrap reset-textstyle textstyle uncramped">&#x221A;</span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord textstyle cramped"><span class="mord mathrm">1</span><span class="mord mathrm">0</span></span></span><span style="top:-0.8272200000000001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped sqrt-line"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span>&#x4E3A;&#x534A;&#x5F84;&#x7684;&#x5706;&#x4E0E;&#x8FD9;&#x4E2A;&#x70B9;&#x6240;&#x4EE3;&#x8868;&#x533A;&#x57DF;&#x76F8;&#x4EA4;&#xFF09;&#xFF0C;&#x6570;&#x636E;&#x9879; (7,2)&#x4E0E;&#x67E5;&#x8BE2;(8, 3)&#x7684;&#x8DDD;&#x79BB;&#x66F4;&#x8FD1;&#xFF0C;&#x4E3A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9072200000000001em;"></span><span class="strut bottom" style="height:1.04em;vertical-align:-0.13277999999999995em;"></span><span class="base textstyle uncramped"><span class="mord sqrt"><span class="sqrt-sign" style="top:-0.06722000000000006em;"><span class="style-wrap reset-textstyle textstyle uncramped">&#x221A;</span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span><span style="top:-0.8272200000000001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped sqrt-line"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span>
+&#xFF0C;&#x66F4;&#x65B0;&#x6700;&#x5C0F;&#x8DDD;&#x79BB;&#x4E3A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9072200000000001em;"></span><span class="strut bottom" style="height:1.04em;vertical-align:-0.13277999999999995em;"></span><span class="base textstyle uncramped"><span class="mord sqrt"><span class="sqrt-sign" style="top:-0.06722000000000006em;"><span class="style-wrap reset-textstyle textstyle uncramped">&#x221A;</span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span><span style="top:-0.8272200000000001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped sqrt-line"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span>&#xFF1B;</p>
+<p>&#x56DE;&#x6EAF;&#xFF0C;&#x6B64;&#x65F6;&#xFF0C;&#x975E;&#x53F6;&#x8282;&#x70B9;<2, 2="">&#x8FD9;&#x4E2A;&#x70B9;&#x6240;&#x5728;&#x7684;&#x5206;&#x652F;&#x5DF2;&#x7ECF;&#x88AB;&#x8BBF;&#x95EE;&#x8FC7;&#x4E86;&#xFF0C;&#x627E;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;&#x9700;&#x8981;&#x5904;&#x7406;&#x7684;&#x8282;&#x70B9;&#xFF0C;<2, 4="">&#x8FD9;&#x4E2A;&#x70B9;&#x3002;&#x4E0D;&#x8FC7;&#x8BA1;&#x7B97;&#x8DDD;&#x79BB;&#x53D1;&#x73B0;&#xFF0C;&#x8FD9;&#x4E2A;&#x70B9;&#x6240;&#x4EE3;&#x8868;&#x7684;&#x533A;&#x57DF;&#x5E76;&#x4E0D;&#x4E0E;&#x6B64;&#x65F6;&#x7684;&#x5706;&#x76F8;&#x4EA4;&#xFF0C;&#x653E;&#x5F03;&#x5BF9;&#x8FD9;&#x4E00;&#x5206;&#x652F;&#x7684;&#x641C;&#x7D22;&#xFF1B;
+&#x56DE;&#x6EAF;&#x81F3;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x5E76;&#x4E14;&#x6B64;&#x65F6;&#x6839;&#x8282;&#x70B9;&#x7684;&#x4E24;&#x4E2A;&#x5206;&#x652F;&#x90FD;&#x88AB;&#x8003;&#x8651;&#x4E86;&#xFF0C;&#x641C;&#x7D22;&#x7ED3;&#x675F;&#xFF0C;&#x8FD4;&#x56DE;&#x6700;&#x8FD1;&#x90BB;(7, 2)&#xFF0C;&#x6700;&#x77ED;&#x8DDD;&#x79BB;&#x662F;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9072200000000001em;"></span><span class="strut bottom" style="height:1.04em;vertical-align:-0.13277999999999995em;"></span><span class="base textstyle uncramped"><span class="mord sqrt"><span class="sqrt-sign" style="top:-0.06722000000000006em;"><span class="style-wrap reset-textstyle textstyle uncramped">&#x221A;</span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span><span style="top:-0.8272200000000001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped sqrt-line"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></2,></2,></p>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"></span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="page-footer-ex-footer-update">
+2018-08-29 12:23:00
+</span></footer>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../ai/index.html" class="navigation navigation-prev " aria-label="Previous page: 人工智能"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../enterprise/index.html" class="navigation navigation-next " aria-label="Next page: 企业笔试题"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-splitter/splitter.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"toggle-chapters":{},"splitter":{},"ouweiya-pagefooter":{"copyright":"","update_format":"YYYY-MM-DD HH:mm:ss","update_label":""},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book Python学科面试宝典 -->
+</html>

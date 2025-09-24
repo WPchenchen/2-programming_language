@@ -1,0 +1,2556 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book Python学科面试宝典 -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>PageRank原理 | Python学科面试宝典</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="Sasuke">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-splitter/splitter.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-ouweiya-pagefooter/style/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../algorithm/section2.html" />
+    
+    
+    <link rel="prev" href="../algorithm/index.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book"
+        data-level="7.1"
+        data-chapter-title="PageRank原理"
+        data-filepath="algorithm/section1.md"
+        data-basepath=".."
+        data-revision="Wed Aug 29 2018 16:09:51 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        面试宝典目录
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="pythongrammar/index.html">
+            
+                
+                    <a href="../pythongrammar/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Python语法
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="pythongrammar/section1.html">
+            
+                
+                    <a href="../pythongrammar/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Python单例模式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="pythongrammar/section2.html">
+            
+                
+                    <a href="../pythongrammar/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        斐波那契数列
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="pythongrammar/section3.html">
+            
+                
+                    <a href="../pythongrammar/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Python2和Python3的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="pythongrammar/section4.html">
+            
+                
+                    <a href="../pythongrammar/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        新式类和经典类以及继承顺序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="pythongrammar/section5.html">
+            
+                
+                    <a href="../pythongrammar/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        __new__和__init__的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="pythongrammar/section6.html">
+            
+                
+                    <a href="../pythongrammar/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        深拷贝和浅拷贝
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="pythongrammar/section7.html">
+            
+                
+                    <a href="../pythongrammar/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        Python的存储机理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="pythongrammar/section8.html">
+            
+                
+                    <a href="../pythongrammar/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        常用python自省函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="pythongrammar/section9.html">
+            
+                
+                    <a href="../pythongrammar/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.9.</b>
+                        
+                        函数中参数默认值是列表
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="pythongrammar/section10.html">
+            
+                
+                    <a href="../pythongrammar/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.10.</b>
+                        
+                        常用的设计模式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="pythongrammar/section11.html">
+            
+                
+                    <a href="../pythongrammar/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.11.</b>
+                        
+                        字典取值的时间复杂度
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="pythongrammar/section12.html">
+            
+                
+                    <a href="../pythongrammar/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.12.</b>
+                        
+                        if底层原理的实现
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="pythongrammar/section16.html">
+            
+                
+                    <a href="../pythongrammar/section16.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.13.</b>
+                        
+                        hasattr() getattr() setattr() 函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="pythongrammar/section13.html">
+            
+                
+                    <a href="../pythongrammar/section13.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.14.</b>
+                        
+                        Python语法面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="pythongrammar/section14.html">
+            
+                
+                    <a href="../pythongrammar/section14.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.15.</b>
+                        
+                        Python语法面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="pythongrammar/section15.html">
+            
+                
+                    <a href="../pythongrammar/section15.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.16.</b>
+                        
+                        Python语法面试题-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="pythongrammar/section17.html">
+            
+                
+                    <a href="../pythongrammar/section17.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.17.</b>
+                        
+                        Python语法面试题-04
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="pythongrammar/section18.html">
+            
+                
+                    <a href="../pythongrammar/section18.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.18.</b>
+                        
+                        Python语法面试题-05
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="async/index.html">
+            
+                
+                    <a href="../async/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        异步编程和网络编程
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="async/asyncq/index.html">
+            
+                
+                    <a href="../async/asyncq/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        异步编程
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="async/asyncq/section1.html">
+            
+                
+                    <a href="../async/asyncq/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        多线程和进程的关系
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="async/asyncq/section2.html">
+            
+                
+                    <a href="../async/asyncq/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        一个线程1让线程2去调用一个函数怎么实现
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="async/asyncq/section3.html">
+            
+                
+                    <a href="../async/asyncq/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        进程、线程、协程对比
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="async/asyncq/section4.html">
+            
+                
+                    <a href="../async/asyncq/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.</b>
+                        
+                        同步、异步、阻塞、非阻塞
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="async/asyncq/section5.html">
+            
+                
+                    <a href="../async/asyncq/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.</b>
+                        
+                        死锁
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="async/asyncq/section6.html">
+            
+                
+                    <a href="../async/asyncq/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.6.</b>
+                        
+                        进程间通信
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="async/asyncq/section7.html">
+            
+                
+                    <a href="../async/asyncq/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.7.</b>
+                        
+                        一个接口的访问量非常大，如何去优化？
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="async/socket/index.html">
+            
+                
+                    <a href="../async/socket/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        网络编程
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="async/socket/section1.html">
+            
+                
+                    <a href="../async/socket/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.1.</b>
+                        
+                        Http和Https的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="async/socket/section2.html">
+            
+                
+                    <a href="../async/socket/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.2.</b>
+                        
+                        三次握手和四次挥手
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="async/socket/section3.html">
+            
+                
+                    <a href="../async/socket/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.3.</b>
+                        
+                        四次挥手的2,3次为什么不能合并
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.4" data-path="async/socket/section4.html">
+            
+                
+                    <a href="../async/socket/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.4.</b>
+                        
+                        UWSGI协议
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.5" data-path="async/socket/section5.html">
+            
+                
+                    <a href="../async/socket/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.5.</b>
+                        
+                        TCP/IP协议的理解
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.6" data-path="async/socket/section6.html">
+            
+                
+                    <a href="../async/socket/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.6.</b>
+                        
+                        HTTP缓存机制
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="async/section1.html">
+            
+                
+                    <a href="../async/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        网络编程面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="async/section2.html">
+            
+                
+                    <a href="../async/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        网络编程面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="async/section3.html">
+            
+                
+                    <a href="../async/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        网络编程面试题-03
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="database/index.html">
+            
+                
+                    <a href="../database/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        数据库
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="database/section1.html">
+            
+                
+                    <a href="../database/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Mysql和MongoDB的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="database/section2.html">
+            
+                
+                    <a href="../database/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        数据库索引和事务的隔离
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="database/section3.html">
+            
+                
+                    <a href="../database/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Mysql数据库引擎
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="database/section4.html">
+            
+                
+                    <a href="../database/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        InnoDB事务原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="database/section5.html">
+            
+                
+                    <a href="../database/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        数据库优化方案
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="database/section6.html">
+            
+                
+                    <a href="../database/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        一对多表结构设计的缺点
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="database/section7.html">
+            
+                
+                    <a href="../database/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        SQL-一次性添加几十万条数据怎么写
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="database/section8.html">
+            
+                
+                    <a href="../database/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Mysql水平分表技术实现怎么实现多表联合查询
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="database/section9.html">
+            
+                
+                    <a href="../database/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                        Mysql数据库中的锁
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="database/section10.html">
+            
+                
+                    <a href="../database/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.10.</b>
+                        
+                        数据库三范式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="database/section11.html">
+            
+                
+                    <a href="../database/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.11.</b>
+                        
+                        乐观锁和悲观锁
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="database/section12.html">
+            
+                
+                    <a href="../database/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.</b>
+                        
+                        Mysql怎么支持emoji表情
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13" data-path="database/section13.html">
+            
+                
+                    <a href="../database/section13.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                        redis相比memcached
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.14" data-path="database/section14.html">
+            
+                
+                    <a href="../database/section14.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                        Redis和mongodb的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.15" data-path="database/section15.html">
+            
+                
+                    <a href="../database/section15.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.15.</b>
+                        
+                        mongodb的分片
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.16" data-path="database/section16.html">
+            
+                
+                    <a href="../database/section16.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.16.</b>
+                        
+                        数据库面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.17" data-path="database/section17.html">
+            
+                
+                    <a href="../database/section17.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.17.</b>
+                        
+                        数据库面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.18" data-path="database/section18.html">
+            
+                
+                    <a href="../database/section18.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.18.</b>
+                        
+                        数据库面试题-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.19" data-path="database/section19.html">
+            
+                
+                    <a href="../database/section19.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.19.</b>
+                        
+                        数据库面试题-04
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.20" data-path="database/section20.html">
+            
+                
+                    <a href="../database/section20.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.20.</b>
+                        
+                        数据库面试题-05
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="web/index.html">
+            
+                
+                    <a href="../web/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Web框架
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="web/section1.html">
+            
+                
+                    <a href="../web/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Django下的（内建）缓存机制
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="web/section2.html">
+            
+                
+                    <a href="../web/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Django中使用memcached作为缓存的具体方法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="web/section3.html">
+            
+                
+                    <a href="../web/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        如果是多台服务器你怎么迁移model文件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="web/section4.html">
+            
+                
+                    <a href="../web/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        动态加载又对及时性要求很高怎么处理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="web/section5.html">
+            
+                
+                    <a href="../web/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        CSRF攻击
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="web/section6.html">
+            
+                
+                    <a href="../web/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        LRU缓存算法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="web/section7.html">
+            
+                
+                    <a href="../web/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        flask的监听路由原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="web/section8.html">
+            
+                
+                    <a href="../web/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        Ngixn做负载均衡的原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="web/section17.html">
+            
+                
+                    <a href="../web/section17.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        MVC流程详解
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="web/section18.html">
+            
+                
+                    <a href="../web/section18.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.10.</b>
+                        
+                        MVT流程详解
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.11" data-path="web/section19.html">
+            
+                
+                    <a href="../web/section19.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.11.</b>
+                        
+                        项目怎么优化
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.12" data-path="web/section9.html">
+            
+                
+                    <a href="../web/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.12.</b>
+                        
+                        Django面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.13" data-path="web/section10.html">
+            
+                
+                    <a href="../web/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.13.</b>
+                        
+                        Django面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.14" data-path="web/section11.html">
+            
+                
+                    <a href="../web/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.14.</b>
+                        
+                        Django面试题-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.15" data-path="web/section12.html">
+            
+                
+                    <a href="../web/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.15.</b>
+                        
+                        Django面试题-04
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.16" data-path="web/section13.html">
+            
+                
+                    <a href="../web/section13.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.16.</b>
+                        
+                        Django面试题-05
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.17" data-path="web/section14.html">
+            
+                
+                    <a href="../web/section14.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.17.</b>
+                        
+                        Django面试题-06
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.18" data-path="web/section15.html">
+            
+                
+                    <a href="../web/section15.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.18.</b>
+                        
+                        Django面试题-07
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.19" data-path="web/section16.html">
+            
+                
+                    <a href="../web/section16.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.19.</b>
+                        
+                        Django面试题-08
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="spider/index.html">
+            
+                
+                    <a href="../spider/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        爬虫
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="spider/section1.html">
+            
+                
+                    <a href="../spider/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        一万url待爬取，如何设计爬虫结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="spider/section2.html">
+            
+                
+                    <a href="../spider/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        手机APP抓包
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="spider/section3.html">
+            
+                
+                    <a href="../spider/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        如何提升IP代理池的可用度
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="spider/section4.html">
+            
+                
+                    <a href="../spider/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        爬取时碰到有加密控件的网站怎么解决
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="spider/section5.html">
+            
+                
+                    <a href="../spider/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        海量数据存储设计
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="spider/section6.html">
+            
+                
+                    <a href="../spider/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        爬虫面试题-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="spider/section7.html">
+            
+                
+                    <a href="../spider/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        爬虫面试题-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="spider/section8.html">
+            
+                
+                    <a href="../spider/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        爬虫面试题-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="spider/section9.html">
+            
+                
+                    <a href="../spider/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        爬虫面试题-04
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="analysis/index.html">
+            
+                
+                    <a href="../analysis/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        数据分析
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="analysis/section1.html">
+            
+                
+                    <a href="../analysis/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        ETL技术
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="analysis/section2.html">
+            
+                
+                    <a href="../analysis/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        变量IV
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="analysis/section3.html">
+            
+                
+                    <a href="../analysis/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        模型ROC
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="analysis/section4.html">
+            
+                
+                    <a href="../analysis/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        模型KS
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="algorithm/index.html">
+            
+                
+                    <a href="../algorithm/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        数据结构与算法
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="7.1" data-path="algorithm/section1.html">
+            
+                
+                    <a href="../algorithm/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        PageRank原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="algorithm/section2.html">
+            
+                
+                    <a href="../algorithm/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Hash的原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="algorithm/section3.html">
+            
+                
+                    <a href="../algorithm/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        使用栈一种结构实现队列
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="algorithm/section4.html">
+            
+                
+                    <a href="../algorithm/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        实现一个栈的数据结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="algorithm/section9.html">
+            
+                
+                    <a href="../algorithm/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        十大经典排序算法
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.5.1" data-path="algorithm/section10.html">
+            
+                
+                    <a href="../algorithm/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.1.</b>
+                        
+                        冒泡排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.2" data-path="algorithm/section11.html">
+            
+                
+                    <a href="../algorithm/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.2.</b>
+                        
+                        选择排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.3" data-path="algorithm/section12.html">
+            
+                
+                    <a href="../algorithm/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.3.</b>
+                        
+                        插入排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.4" data-path="algorithm/section13.html">
+            
+                
+                    <a href="../algorithm/section13.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.4.</b>
+                        
+                        希尔排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.5" data-path="algorithm/section14.html">
+            
+                
+                    <a href="../algorithm/section14.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.5.</b>
+                        
+                        归并排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.6" data-path="algorithm/section15.html">
+            
+                
+                    <a href="../algorithm/section15.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.6.</b>
+                        
+                        快速排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.7" data-path="algorithm/section16.html">
+            
+                
+                    <a href="../algorithm/section16.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.7.</b>
+                        
+                        堆排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.8" data-path="algorithm/section17.html">
+            
+                
+                    <a href="../algorithm/section17.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.8.</b>
+                        
+                        计数排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.9" data-path="algorithm/section18.html">
+            
+                
+                    <a href="../algorithm/section18.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.9.</b>
+                        
+                        桶排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.10" data-path="algorithm/section19.html">
+            
+                
+                    <a href="../algorithm/section19.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.10.</b>
+                        
+                        基数排序
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="algorithm/section5.html">
+            
+                
+                    <a href="../algorithm/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        数据结构与算法-01
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7" data-path="algorithm/section6.html">
+            
+                
+                    <a href="../algorithm/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.7.</b>
+                        
+                        数据结构与算法-02
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8" data-path="algorithm/section7.html">
+            
+                
+                    <a href="../algorithm/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.8.</b>
+                        
+                        数据结构与算法-03
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.9" data-path="algorithm/section8.html">
+            
+                
+                    <a href="../algorithm/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.9.</b>
+                        
+                        数据结构与算法-04
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="ai/index.html">
+            
+                
+                    <a href="../ai/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        人工智能
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="ai/section1.html">
+            
+                
+                    <a href="../ai/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        kd-tree
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="enterprise/index.html">
+            
+                
+                    <a href="../enterprise/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        企业笔试题
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="enterprise/section1.html">
+            
+                
+                    <a href="../enterprise/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        360面试题
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="enterprise/section2.html">
+            
+                
+                    <a href="../enterprise/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        妙计旅行面试题
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="enterprise/section3.html">
+            
+                
+                    <a href="../enterprise/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        文因互联
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="enterprise/section4.html">
+            
+                
+                    <a href="../enterprise/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        北京红枣科技
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="enterprise/section5.html">
+            
+                
+                    <a href="../enterprise/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        金桔小店
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6" data-path="enterprise/section6.html">
+            
+                
+                    <a href="../enterprise/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.</b>
+                        
+                        芸品绿
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7" data-path="enterprise/section7.html">
+            
+                
+                    <a href="../enterprise/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.</b>
+                        
+                        博派通达
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8" data-path="enterprise/section8.html">
+            
+                
+                    <a href="../enterprise/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.</b>
+                        
+                        上海金台灯
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.9" data-path="enterprise/section9.html">
+            
+                
+                    <a href="../enterprise/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.9.</b>
+                        
+                        智慧星光
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.10" data-path="enterprise/section10.html">
+            
+                
+                    <a href="../enterprise/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.10.</b>
+                        
+                        普奥云
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.11" data-path="enterprise/section11.html">
+            
+                
+                    <a href="../enterprise/section11.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.11.</b>
+                        
+                        北京诺信创联
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.12" data-path="enterprise/section12.html">
+            
+                
+                    <a href="../enterprise/section12.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.12.</b>
+                        
+                        北京号外科技
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Python学科面试宝典</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="pagerank&#x539F;&#x7406;">PageRank&#x539F;&#x7406;</h2>
+<h3 id="1-&#x7B97;&#x6CD5;&#x6765;&#x6E90;">1. &#x7B97;&#x6CD5;&#x6765;&#x6E90;</h3>
+<p>&#x8FD9;&#x4E2A;&#x8981;&#x4ECE;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x7684;&#x53D1;&#x5C55;&#x8BB2;&#x8D77;&#x3002;&#x6700;&#x65E9;&#x7684;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x91C7;&#x7528;&#x7684;&#x662F; &#x5206;&#x7C7B;&#x76EE;&#x5F55;<sup><a href="#fn_ref_1" id="reffn_ref_1">ref_1</a></sup> &#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5373;&#x901A;&#x8FC7;&#x4EBA;&#x5DE5;&#x8FDB;&#x884C;&#x7F51;&#x9875;&#x5206;&#x7C7B;&#x5E76;&#x6574;&#x7406;&#x51FA;&#x9AD8;&#x8D28;&#x91CF;&#x7684;&#x7F51;&#x7AD9;&#x3002;&#x90A3;&#x65F6; Yahoo &#x548C;&#x56FD;&#x5185;&#x7684; hao123 &#x5C31;&#x662F;&#x4F7F;&#x7528;&#x7684;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x540E;&#x6765;&#x7F51;&#x9875;&#x8D8A;&#x6765;&#x8D8A;&#x591A;&#xFF0C;&#x4EBA;&#x5DE5;&#x5206;&#x7C7B;&#x5DF2;&#x7ECF;&#x4E0D;&#x73B0;&#x5B9E;&#x4E86;&#x3002;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x8FDB;&#x5165;&#x4E86; &#x6587;&#x672C;&#x68C0;&#x7D22; &#x7684;&#x65F6;&#x4EE3;&#xFF0C;&#x5373;&#x8BA1;&#x7B97;&#x7528;&#x6237;&#x67E5;&#x8BE2;&#x5173;&#x952E;&#x8BCD;&#x4E0E;&#x7F51;&#x9875;&#x5185;&#x5BB9;&#x7684;&#x76F8;&#x5173;&#x7A0B;&#x5EA6;&#x6765;&#x8FD4;&#x56DE;&#x641C;&#x7D22;&#x7ED3;&#x679C;&#x3002;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x7A81;&#x7834;&#x4E86;&#x6570;&#x91CF;&#x7684;&#x9650;&#x5236;&#xFF0C;&#x4F46;&#x662F;&#x641C;&#x7D22;&#x7ED3;&#x679C;&#x4E0D;&#x662F;&#x5F88;&#x597D;&#x3002;&#x56E0;&#x4E3A;&#x603B;&#x6709;&#x67D0;&#x4E9B;&#x7F51;&#x9875;&#x6765;&#x56DE;&#x5730;&#x5012;&#x817E;&#x67D0;&#x4E9B;&#x5173;&#x952E;&#x8BCD;&#x4F7F;&#x81EA;&#x5DF1;&#x7684;&#x641C;&#x7D22;&#x6392;&#x540D;&#x9760;&#x524D;&#x3002;</p>
+<p>&#x4E8E;&#x662F;&#x6211;&#x4EEC;&#x7684;&#x4E3B;&#x89D2;&#x8981;&#x767B;&#x573A;&#x4E86;&#x3002;&#x6CA1;&#x9519;&#xFF0C;&#x8C37;&#x6B4C;&#x7684;&#x4E24;&#x4F4D;&#x521B;&#x59CB;&#x4EBA;&#xFF0C;&#x5F53;&#x65F6;&#x8FD8;&#x662F;&#x7F8E;&#x56FD;&#x65AF;&#x5766;&#x798F;&#x5927;&#x5B66; (Stanford University) &#x7814;&#x7A76;&#x751F;&#x7684;&#x4F69;&#x5947; (Larry Page) &#x548C;&#x5E03;&#x6797; (Sergey Brin) &#x5F00;&#x59CB;&#x4E86;&#x5BF9;&#x7F51;&#x9875;&#x6392;&#x5E8F;&#x95EE;&#x9898;&#x7684;&#x7814;&#x7A76;&#x3002;&#x4ED6;&#x4EEC;&#x7684;&#x501F;&#x9274;&#x4E86;&#x5B66;&#x672F;&#x754C;&#x8BC4;&#x5224;&#x5B66;&#x672F;&#x8BBA;&#x6587;&#x91CD;&#x8981;&#x6027;&#x7684;&#x901A;&#x7528;&#x65B9;&#x6CD5;&#xFF0C; &#x90A3;&#x5C31;&#x662F;&#x770B;&#x8BBA;&#x6587;&#x7684;&#x5F15;&#x7528;&#x6B21;&#x6570;&#x3002;&#x7531;&#x6B64;&#x60F3;&#x5230;&#x7F51;&#x9875;&#x7684;&#x91CD;&#x8981;&#x6027;&#x4E5F;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x6765;&#x8BC4;&#x4EF7;&#x3002;&#x4E8E;&#x662F;PageRank&#x7684;&#x6838;&#x5FC3;&#x601D;&#x60F3;&#x5C31;&#x8BDE;&#x751F;&#x4E86;<sup><a href="#fn_ref_2" id="reffn_ref_2">ref_2</a></sup>&#xFF0C;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF1A;</p>
+<ul>
+<li><p>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#x88AB;&#x5F88;&#x591A;&#x5176;&#x4ED6;&#x7F51;&#x9875;&#x94FE;&#x63A5;&#x5230;&#x7684;&#x8BDD;&#x8BF4;&#x660E;&#x8FD9;&#x4E2A;&#x7F51;&#x9875;&#x6BD4;&#x8F83;&#x91CD;&#x8981;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;PageRank&#x503C;&#x4F1A;&#x76F8;&#x5BF9;&#x8F83;&#x9AD8;</p>
+</li>
+<li><p>&#x5982;&#x679C;&#x4E00;&#x4E2A;PageRank&#x503C;&#x5F88;&#x9AD8;&#x7684;&#x7F51;&#x9875;&#x94FE;&#x63A5;&#x5230;&#x4E00;&#x4E2A;&#x5176;&#x4ED6;&#x7684;&#x7F51;&#x9875;&#xFF0C;&#x90A3;&#x4E48;&#x88AB;&#x94FE;&#x63A5;&#x5230;&#x7684;&#x7F51;&#x9875;&#x7684;PageRank&#x503C;&#x4F1A;&#x76F8;&#x5E94;&#x5730;&#x56E0;&#x6B64;&#x800C;&#x63D0;&#x9AD8;</p>
+</li>
+</ul>
+<p>&#x5C31;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF08;&#x4E00;&#x4E2A;&#x6982;&#x5FF5;&#x56FE;&#xFF09;:</p>
+<p><img src="images/1.png" alt=""></p>
+<h3 id="2-&#x7B97;&#x6CD5;&#x539F;&#x7406;">2. &#x7B97;&#x6CD5;&#x539F;&#x7406;</h3>
+<p>PageRank&#x7B97;&#x6CD5;<sup><a href="#fn_ref_3" id="reffn_ref_3">ref_3</a></sup>&#x603B;&#x7684;&#x6765;&#x8BF4;&#x5C31;&#x662F;&#x9884;&#x5148;&#x7ED9;&#x6BCF;&#x4E2A;&#x7F51;&#x9875;&#x4E00;&#x4E2A;PR&#x503C;&#xFF08;&#x4E0B;&#x9762;&#x7528;PR&#x503C;&#x6307;&#x4EE3;PageRank&#x503C;&#xFF09;&#xFF0C;&#x7531;&#x4E8E;PR&#x503C;&#x7269;&#x7406;&#x610F;&#x4E49;&#x4E0A;&#x4E3A;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#x88AB;&#x8BBF;&#x95EE;&#x6982;&#x7387;&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x822C;&#x662F;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.845108em;"></span><span class="strut bottom" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="base textstyle uncramped"><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.10903em;">N</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.394em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathrm mtight">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span></p>
+<p>&#xFF0C;&#x5176;&#x4E2D;N&#x4E3A;&#x7F51;&#x9875;&#x603B;&#x6570;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6240;&#x6709;&#x7F51;&#x9875;&#x7684;PR&#x503C;&#x7684;&#x603B;&#x548C;&#x4E3A;1&#x3002;&#x5982;&#x679C;&#x4E0D;&#x4E3A;1&#x7684;&#x8BDD;&#x4E5F;&#x4E0D;&#x662F;&#x4E0D;&#x884C;&#xFF0C;&#x6700;&#x540E;&#x7B97;&#x51FA;&#x6765;&#x7684;&#x4E0D;&#x540C;&#x7F51;&#x9875;&#x4E4B;&#x95F4;PR&#x503C;&#x7684;&#x5927;&#x5C0F;&#x5173;&#x7CFB;&#x4ECD;&#x7136;&#x662F;&#x6B63;&#x786E;&#x7684;&#xFF0C;&#x53EA;&#x662F;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x5730;&#x53CD;&#x6620;&#x6982;&#x7387;&#x4E86;&#x3002;</p>
+<p>&#x9884;&#x5148;&#x7ED9;&#x5B9A;PR&#x503C;&#x540E;&#xFF0C;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x7684;&#x7B97;&#x6CD5;&#x4E0D;&#x65AD;&#x8FED;&#x4EE3;&#xFF0C;&#x76F4;&#x81F3;&#x8FBE;&#x5230;&#x5E73;&#x7A33;&#x5206;&#x5E03;&#x4E3A;&#x6B62;&#x3002;</p>
+<p>&#x4E92;&#x8054;&#x7F51;&#x4E2D;&#x7684;&#x4F17;&#x591A;&#x7F51;&#x9875;&#x53EF;&#x4EE5;&#x770B;&#x4F5C;&#x4E00;&#x4E2A;&#x6709;&#x5411;&#x56FE;&#x3002;&#x4E0B;&#x56FE;&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x4F8B;&#x5B50;<sup><a href="#fn_ref_4" id="reffn_ref_4">ref_4</a></sup>&#xFF1A;</p>
+<p><img src="images/2.jpg" alt=""></p>
+<p>&#x8FD9;&#x65F6;A&#x7684;PR&#x503C;&#x5C31;&#x53EF;&#x4EE5;&#x8868;&#x793A;&#x4E3A;&#xFF1A;</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mi>R</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>=</mo><mi>P</mi><mi>R</mi><mo>(</mo><mi>B</mi><mo>)</mo><mo>+</mo><mi>P</mi><mi>R</mi><mo>(</mo><mi>C</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">PR(A) = PR(B) + PR(C)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathit">A</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="mclose">)</span></span></span></span></p>
+<p>&#x7136;&#x800C;&#x56FE;&#x4E2D;&#x9664;&#x4E86;C&#x4E4B;&#x5916;&#xFF0C;B&#x548C;D&#x90FD;&#x4E0D;&#x6B62;&#x6709;&#x4E00;&#x6761;&#x51FA;&#x94FE;&#xFF0C;&#x6240;&#x4EE5;&#x4E0A;&#x9762;&#x7684;&#x8BA1;&#x7B97;&#x5F0F;&#x5E76;&#x4E0D;&#x51C6;&#x786E;&#x3002;&#x60F3;&#x8C61;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x73B0;&#x5728;&#x5728;&#x6D4F;&#x89C8;B&#x7F51;&#x9875;&#xFF0C;&#x90A3;&#x4E48;&#x4E0B;&#x4E00;&#x6B65;&#x4ED6;&#x6253;&#x5F00;A&#x7F51;&#x9875;&#x8FD8;&#x662F;D&#x7F51;&#x9875;&#x5728;&#x7EDF;&#x8BA1;&#x4E0A;&#x5E94;&#x8BE5;&#x662F;&#x76F8;&#x540C;&#x6982;&#x7387;&#x7684;&#x3002;&#x6240;&#x4EE5;A&#x7684;PR&#x503C;&#x5E94;&#x8BE5;&#x8868;&#x8FF0;&#x4E3A;&#xFF1A;</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mi>R</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>P</mi><mi>R</mi><mo>(</mo><mi>B</mi><mo>)</mo></mrow><mrow><mn>2</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mi>P</mi><mi>R</mi><mo>(</mo><mi>C</mi><mo>)</mo></mrow><mrow><mn>1</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">PR(A) = \frac{PR(B)}{2} + \frac{PR(C)}{1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.01em;"></span><span class="strut bottom" style="height:1.355em;vertical-align:-0.345em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathit">A</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.485em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">P</span><span class="mord mathit mtight" style="margin-right:0.00773em;">R</span><span class="mopen mtight">(</span><span class="mord mathit mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">+</span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">1</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.485em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">P</span><span class="mord mathit mtight" style="margin-right:0.00773em;">R</span><span class="mopen mtight">(</span><span class="mord mathit mtight" style="margin-right:0.07153em;">C</span><span class="mclose mtight">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span></p>
+<p>&#x4E92;&#x8054;&#x7F51;&#x4E2D;&#x4E0D;&#x4E4F;&#x4E00;&#x4E9B;&#x6CA1;&#x6709;&#x51FA;&#x94FE;&#x7684;&#x7F51;&#x9875;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;</p>
+<p><img src="images/3.jpg" alt=""></p>
+<p>&#x56FE;&#x4E2D;&#x7684;C&#x7F51;&#x9875;&#x6CA1;&#x6709;&#x51FA;&#x94FE;&#xFF0C;&#x5BF9;&#x5176;&#x4ED6;&#x7F51;&#x9875;&#x6CA1;&#x6709;PR&#x503C;&#x7684;&#x8D21;&#x732E;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x559C;&#x6B22;&#x8FD9;&#x79CD;&#x81EA;&#x79C1;&#x7684;&#x7F51;&#x9875;&#xFF08;&#x5176;&#x5B9E;&#x662F;&#x4E3A;&#x4E86;&#x6EE1;&#x8DB3; Markov &#x94FE;&#x7684;&#x6536;&#x655B;&#x6027;&#xFF09;&#xFF0C;&#x4E8E;&#x662F;&#x8BBE;&#x5B9A;&#x5176;&#x5BF9;&#x6240;&#x6709;&#x7684;&#x7F51;&#x9875;&#xFF08;&#x5305;&#x62EC;&#x5B83;&#x81EA;&#x5DF1;&#xFF09;&#x90FD;&#x6709;&#x51FA;&#x94FE;&#xFF0C;&#x5219;&#x6B64;&#x56FE;&#x4E2D;A&#x7684;PR&#x503C;&#x53EF;&#x8868;&#x793A;&#x4E3A;&#xFF1A;</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mi>R</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>P</mi><mi>R</mi><mo>(</mo><mi>B</mi><mo>)</mo></mrow><mrow><mn>2</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mi>P</mi><mi>R</mi><mo>(</mo><mi>C</mi><mo>)</mo></mrow><mrow><mn>4</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">PR(A) = \frac{PR(B)}{2} + \frac{PR(C)}{4}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.01em;"></span><span class="strut bottom" style="height:1.355em;vertical-align:-0.345em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathit">A</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.485em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">P</span><span class="mord mathit mtight" style="margin-right:0.00773em;">R</span><span class="mopen mtight">(</span><span class="mord mathit mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">+</span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">4</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.485em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">P</span><span class="mord mathit mtight" style="margin-right:0.00773em;">R</span><span class="mopen mtight">(</span><span class="mord mathit mtight" style="margin-right:0.07153em;">C</span><span class="mclose mtight">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span></p>
+<p>&#x7136;&#x800C;&#x6211;&#x4EEC;&#x518D;&#x8003;&#x8651;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;&#x4E92;&#x8054;&#x7F51;&#x4E2D;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#x53EA;&#x6709;&#x5BF9;&#x81EA;&#x5DF1;&#x7684;&#x51FA;&#x94FE;&#xFF0C;&#x6216;&#x8005;&#x51E0;&#x4E2A;&#x7F51;&#x9875;&#x7684;&#x51FA;&#x94FE;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5FAA;&#x73AF;&#x5708;&#x3002;&#x90A3;&#x4E48;&#x5728;&#x4E0D;&#x65AD;&#x5730;&#x8FED;&#x4EE3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x8FD9;&#x4E00;&#x4E2A;&#x6216;&#x51E0;&#x4E2A;&#x7F51;&#x9875;&#x7684;PR&#x503C;&#x5C06;&#x53EA;&#x589E;&#x4E0D;&#x51CF;&#xFF0C;&#x663E;&#x7136;&#x4E0D;&#x5408;&#x7406;&#x3002;&#x5982;&#x4E0B;&#x56FE;&#x4E2D;&#x7684;C&#x7F51;&#x9875;&#x5C31;&#x662F;&#x521A;&#x521A;&#x8BF4;&#x7684;&#x53EA;&#x6709;&#x5BF9;&#x81EA;&#x5DF1;&#x7684;&#x51FA;&#x94FE;&#x7684;&#x7F51;&#x9875;&#xFF1A;</p>
+<p><img src="images/4.jpg" alt=""></p>
+<p>&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;&#x6211;&#x4EEC;&#x60F3;&#x8C61;&#x4E00;&#x4E2A;&#x968F;&#x673A;&#x6D4F;&#x89C8;&#x7F51;&#x9875;&#x7684;&#x4EBA;&#xFF0C;&#x5F53;&#x4ED6;&#x5230;&#x8FBE;C&#x7F51;&#x9875;&#x540E;&#xFF0C;&#x663E;&#x7136;&#x4E0D;&#x4F1A;&#x50BB;&#x50BB;&#x5730;&#x4E00;&#x76F4;&#x88AB;C&#x7F51;&#x9875;&#x7684;&#x5C0F;&#x628A;&#x620F;&#x56F0;&#x4F4F;&#x3002;&#x6211;&#x4EEC;&#x5047;&#x5B9A;&#x4ED6;&#x6709;&#x4E00;&#x4E2A;&#x786E;&#x5B9A;&#x7684;&#x6982;&#x7387;&#x4F1A;&#x8F93;&#x5165;&#x7F51;&#x5740;&#x76F4;&#x63A5;&#x8DF3;&#x8F6C;&#x5230;&#x4E00;&#x4E2A;&#x968F;&#x673A;&#x7684;&#x7F51;&#x9875;&#xFF0C;&#x5E76;&#x4E14;&#x8DF3;&#x8F6C;&#x5230;&#x6BCF;&#x4E2A;&#x7F51;&#x9875;&#x7684;&#x6982;&#x7387;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;&#x4E8E;&#x662F;&#x5219;&#x6B64;&#x56FE;&#x4E2D;A&#x7684;PR&#x503C;&#x53EF;&#x8868;&#x793A;&#x4E3A;&#xFF1A;</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mi>R</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>=</mo><mi>&#x3B1;</mi><mo>(</mo><mfrac><mrow><mi>P</mi><mi>R</mi><mo>(</mo><mi>B</mi><mo>)</mo></mrow><mrow><mn>2</mn></mrow></mfrac><mo>)</mo><mo>+</mo><mfrac><mrow><mo>(</mo><mn>1</mn><mo>&#x2212;</mo><mi>&#x3B1;</mi><mo>)</mo></mrow><mrow><mn>4</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">PR(A) = \alpha(\frac{PR(B)}{2}) + \frac{(1 - \alpha)}{4}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.01em;"></span><span class="strut bottom" style="height:1.355em;vertical-align:-0.345em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathit">A</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.0037em;">&#x3B1;</span><span class="mopen">(</span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.485em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">P</span><span class="mord mathit mtight" style="margin-right:0.00773em;">R</span><span class="mopen mtight">(</span><span class="mord mathit mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mclose">)</span><span class="mbin">+</span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">4</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.485em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mopen mtight">(</span><span class="mord mathrm mtight">1</span><span class="mbin mtight">&#x2212;</span><span class="mord mathit mtight" style="margin-right:0.0037em;">&#x3B1;</span><span class="mclose mtight">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span></p>
+<p>&#x5728;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#x7684;PR&#x503C;&#x8BA1;&#x7B97;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mi>R</mi><mo>(</mo><msub><mi>p</mi><mrow><mi>i</mi></mrow></msub><mo>)</mo><mo>=</mo><mi>&#x3B1;</mi><msub><mo>&#x2211;</mo><mrow><msub><mi>p</mi><mrow><mi>j</mi></mrow></msub><mo>&#x2208;</mo><msub><mi>M</mi><mrow><msub><mi>p</mi><mrow><mi>i</mi></mrow></msub></mrow></msub></mrow></msub><mfrac><mrow><mi>P</mi><mi>R</mi><mo>(</mo><msub><mi>p</mi><mrow><mi>j</mi></mrow></msub><mo>)</mo></mrow><mrow><mi>L</mi><mo>(</mo><msub><mi>p</mi><mrow><mi>j</mi></mrow></msub><mo>)</mo></mrow></mfrac><mo>+</mo><mfrac><mrow><mo>(</mo><mn>1</mn><mo>&#x2212;</mo><mi>&#x3B1;</mi><mo>)</mo></mrow><mrow><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">PR(p_{i}) = \alpha \sum_{p_{j} \in M_{p_{i}}} \frac{PR(p_{j})}{L(p_{j})} + \frac{(1 - \alpha)}{N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.03232em;"></span><span class="strut bottom" style="height:1.5897899999999998em;vertical-align:-0.55747em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">i</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.0037em;">&#x3B1;</span><span class="mop"><span class="mop op-symbol small-op" style="top:-0.0000050000000000050004em;">&#x2211;</span><span class="msupsub"><span class="vlist"><span style="top:0.30001em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mtight"><span class="mord mathit mtight">p</span><span class="msupsub"><span class="vlist"><span style="top:0.14300000000000002em;margin-right:0.07142857142857144em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped mtight"><span class="mord scriptscriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel mtight">&#x2208;</span><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist"><span style="top:0.14300000000000002em;margin-right:0.07142857142857144em;margin-left:-0.10903em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped mtight"><span class="mord scriptscriptstyle cramped mtight"><span class="mord mtight"><span class="mord mathit mtight">p</span><span class="msupsub"><span class="vlist"><span style="top:0.31472em;margin-right:0.1em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptscriptstyle scriptscriptstyle cramped mtight"><span class="mord scriptscriptstyle cramped mtight"><span class="mord mathit mtight">i</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.3449999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">L</span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathit mtight">p</span><span class="msupsub"><span class="vlist"><span style="top:0.14300000000000002em;margin-right:0.07142857142857144em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped mtight"><span class="mord scriptscriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose mtight">)</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.50732em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">P</span><span class="mord mathit mtight" style="margin-right:0.00773em;">R</span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathit mtight">p</span><span class="msupsub"><span class="vlist"><span style="top:0.14300000000000002em;margin-right:0.07142857142857144em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped mtight"><span class="mord scriptscriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose mtight">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">+</span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.10903em;">N</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.485em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mopen mtight">(</span><span class="mord mathrm mtight">1</span><span class="mbin mtight">&#x2212;</span><span class="mord mathit mtight" style="margin-right:0.0037em;">&#x3B1;</span><span class="mclose mtight">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span></p>
+<p>&#x5176;&#x4E2D;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>M</mi><mrow><msub><mi>p</mi><mrow><mi>i</mi></mrow></msub></mrow></msub></mrow><annotation encoding="application/x-tex">M_{p_{i}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10903em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mtight"><span class="mord mathit mtight">p</span><span class="msupsub"><span class="vlist"><span style="top:0.143em;margin-right:0.07142857142857144em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped mtight"><span class="mord scriptscriptstyle cramped mtight"><span class="mord mathit mtight">i</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#x662F;&#x6240;&#x6709;&#x5BF9;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>p</mi><mrow><mi>i</mi></mrow></msub></mrow><annotation encoding="application/x-tex">p_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">i</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#x7F51;&#x9875;&#x6709;&#x51FA;&#x94FE;&#x7684;&#x7F51;&#x9875;&#x96C6;&#x5408;&#xFF0C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mo>(</mo><msub><mi>p</mi><mrow><mi>j</mi></mrow></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">L(p_{j})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="base textstyle uncramped"><span class="mord mathit">L</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span></span></span></span>&#x662F;&#x7F51;&#x9875;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>p</mi><mrow><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">p_{j}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">p</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#x7684;&#x51FA;&#x94FE;&#x6570;&#x76EE;&#xFF0C;N&#x662F;&#x7F51;&#x9875;&#x603B;&#x6570;&#xFF0C;&#x3B1;&#x4E00;&#x822C;&#x53D6;0.85&#x3002;</p>
+<p>&#x6839;&#x636E;&#x4E0A;&#x9762;&#x7684;&#x516C;&#x5F0F;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8BA1;&#x7B97;&#x6BCF;&#x4E2A;&#x7F51;&#x9875;&#x7684;PR&#x503C;&#xFF0C;&#x5728;&#x4E0D;&#x65AD;&#x8FED;&#x4EE3;&#x8D8B;&#x4E8E;&#x5E73;&#x7A33;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5373;&#x4E3A;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#x3002;&#x5177;&#x4F53;&#x600E;&#x6837;&#x7B97;&#x662F;&#x8D8B;&#x4E8E;&#x5E73;&#x7A33;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x4E0B;&#x9762;&#x7684;PR&#x503C;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;&#x90E8;&#x5206;&#x518D;&#x505A;&#x89E3;&#x91CA;&#x3002;</p>
+<h3 id="3-&#x7B97;&#x6CD5;&#x8BC1;&#x660E;">3. &#x7B97;&#x6CD5;&#x8BC1;&#x660E;</h3>
+<ul>
+<li><p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>lim</mi><mrow><mi>n</mi><mo>&#x2192;</mo><mi mathvariant="normal">&#x221E;</mi></mrow></msub><msub><mi>P</mi><mrow><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\lim_{n \rightarrow \infty}P_{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mop"><span class="mop">lim</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">n</span><span class="mrel mtight">&#x2192;</span><span class="mord mathrm mtight">&#x221E;</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF1F;</p>
+</li>
+<li><p>&#x5982;&#x679C;&#x6781;&#x9650;&#x5B58;&#x5728;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x662F;&#x5426;&#x4E0E;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>P</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">P_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#x7684;&#x9009;&#x53D6;&#x65E0;&#x5173;&#xFF1F;</p>
+</li>
+</ul>
+<p>PageRank&#x7B97;&#x6CD5;&#x7684;&#x6B63;&#x786E;&#x6027;&#x8BC1;&#x660E;&#x5305;&#x62EC;&#x4E0A;&#x9762;&#x4E24;&#x70B9;<sup><a href="#fn_ref_5" id="reffn_ref_5">ref_5</a></sup>&#x3002;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x8BC1;&#x660E;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x5C06;PR&#x503C;&#x7684;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;&#x8F6C;&#x6362;&#x4E00;&#x4E0B;&#x3002;</p>
+<p>&#x4ECD;&#x7136;&#x62FF;&#x521A;&#x521A;&#x7684;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;</p>
+<p><img src="images/5.jpg" alt=""></p>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528;&#x4E00;&#x4E2A;&#x77E9;&#x9635;&#x6765;&#x8868;&#x793A;&#x8FD9;&#x5F20;&#x56FE;&#x7684;&#x51FA;&#x94FE;&#x5165;&#x94FE;&#x5173;&#x7CFB;&#xFF0C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>S</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">S_{ij} = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05764em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">i</span><span class="mord mathit mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord mathrm">0</span></span></span></span>&#x8868;&#x793A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.65952em;"></span><span class="strut bottom" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05724em;">j</span></span></span></span>&#x7F51;&#x9875;&#x6CA1;&#x6709;&#x5BF9;i&#x7F51;&#x9875;&#x7684;&#x51FA;&#x94FE;</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>=</mo><mrow><mo fence="true">(</mo><mtable><mtr><mtd><mrow><mn>0</mn></mrow></mtd><mtd><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></mtd><mtd><mrow><mn>0</mn></mrow></mtd><mtd><mrow><mn>0</mn></mrow></mtd></mtr><mtr><mtd><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow></mtd><mtd><mrow><mn>0</mn></mrow></mtd><mtd><mrow><mn>0</mn></mrow></mtd><mtd><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></mtd></mtr><mtr><mtd><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow></mtd><mtd><mrow><mn>0</mn></mrow></mtd><mtd><mrow><mn>1</mn></mrow></mtd><mtd><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></mtd></mtr><mtr><mtd><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow></mtd><mtd><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></mtd><mtd><mrow><mn>0</mn></mrow></mtd><mtd><mrow><mn>0</mn></mrow></mtd></mtr><mtr><mtd><mrow></mrow></mtd></mtr></mtable><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+S =
+    \left(
+    \begin{array}{cccc}
+    0   &amp; 1/2 &amp; 0  &amp; 0   \\  
+    1/3 &amp; 0   &amp; 0  &amp; 1/2 \\  
+    1/3 &amp; 0   &amp; 1  &amp; 1/2 \\  
+    1/3 &amp; 1/2 &amp; 0  &amp; 0   \\  
+    \end{array}
+    \right)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:3.2500400000000003em;"></span><span class="strut bottom" style="height:6.0000800000000005em;vertical-align:-2.75004em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mrel">=</span><span class="minner textstyle uncramped"><span class="mopen style-wrap reset-textstyle textstyle uncramped"><span class="delimsizing mult"><span class="vlist"><span style="top:2.1050199999999997em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="delimsizinginner delim-size4"><span>&#x239D;</span></span></span><span style="top:0.9500099999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="delimsizinginner delim-size4"><span>&#x239C;</span></span></span><span style="top:0.3499999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="delimsizinginner delim-size4"><span>&#x239C;</span></span></span><span style="top:-0.25001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="delimsizinginner delim-size4"><span>&#x239C;</span></span></span><span style="top:-0.8500199999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="delimsizinginner delim-size4"><span>&#x239C;</span></span></span><span style="top:-2.09504em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="delimsizinginner delim-size4"><span>&#x239B;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist"><span style="top:-2.41em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">0</span></span></span><span style="top:-1.2100000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">/</span><span class="mord mathrm">3</span></span></span><span style="top:-0.009999999999999953em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">/</span><span class="mord mathrm">3</span></span></span><span style="top:1.1900000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">/</span><span class="mord mathrm">3</span></span></span><span style="top:2.3900000000000006em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist"><span style="top:-2.41em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">/</span><span class="mord mathrm">2</span></span></span><span style="top:-1.2100000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">0</span></span></span><span style="top:-0.009999999999999953em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">0</span></span></span><span style="top:1.1900000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">/</span><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist"><span style="top:-2.41em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">0</span></span></span><span style="top:-1.2100000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">0</span></span></span><span style="top:-0.009999999999999953em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">1</span></span></span><span style="top:1.1900000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist"><span style="top:-2.41em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">0</span></span></span><span style="top:-1.2100000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">/</span><span class="mord mathrm">2</span></span></span><span style="top:-0.009999999999999953em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">/</span><span class="mord mathrm">2</span></span></span><span style="top:1.1900000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose style-wrap reset-textstyle textstyle uncramped"><span class="delimsizing mult"><span class="vlist"><span style="top:2.1050199999999997em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="delimsizinginner delim-size4"><span>&#x23A0;</span></span></span><span style="top:0.9500099999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="delimsizinginner delim-size4"><span>&#x239F;</span></span></span><span style="top:0.3499999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="delimsizinginner delim-size4"><span>&#x239F;</span></span></span><span style="top:-0.25001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="delimsizinginner delim-size4"><span>&#x239F;</span></span></span><span style="top:-0.8500199999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="delimsizinginner delim-size4"><span>&#x239F;</span></span></span><span style="top:-2.09504em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="delimsizinginner delim-size4"><span>&#x239E;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span></span></p>
+<p>&#x53D6;e&#x4E3A;&#x6240;&#x6709;&#x5206;&#x91CF;&#x90FD;&#x4E3A; 1 &#x7684;&#x5217;&#x5411;&#x91CF;,&#x63A5;&#x7740;&#x5B9A;&#x4E49;&#x77E9;&#x9635;</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>&#x3B1;</mi><mi>S</mi><mo>+</mo><mfrac><mrow><mo>(</mo><mn>1</mn><mo>&#x2212;</mo><mi>&#x3B1;</mi><mo>)</mo></mrow><mrow><mi>N</mi></mrow></mfrac><mi>e</mi><msup><mi>e</mi><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">
+A = \alpha S + \frac{(1 - \alpha)}{N}ee^T
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.01em;"></span><span class="strut bottom" style="height:1.355em;vertical-align:-0.345em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.0037em;">&#x3B1;</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mbin">+</span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.10903em;">N</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.485em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mopen mtight">(</span><span class="mord mathrm mtight">1</span><span class="mbin mtight">&#x2212;</span><span class="mord mathit mtight" style="margin-right:0.0037em;">&#x3B1;</span><span class="mclose mtight">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mord mathit">e</span><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span></p>
+<p>&#x5219;PR&#x503C;&#x7684;&#x8BA1;&#x7B97;&#x5982;&#x4E0B;&#xFF0C;&#x5176;&#x4E2D;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>P</mi><mrow><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">P_{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#x4E3A;&#x7B2C;n&#x6B21;&#x8FED;&#x4EE3;&#x65F6;&#x5404;&#x7F51;&#x9875;PR&#x503C;&#x7EC4;&#x6210;&#x7684;&#x5217;&#x5411;&#x91CF;: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>P</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>A</mi><msub><mi>P</mi><mrow><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">P_{n+1} = A P_{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">n</span><span class="mbin mtight">+</span><span class="mord mathrm mtight">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord mathit">A</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span></p>
+<p>&#x4E8E;&#x662F;&#x8BA1;&#x7B97;PR&#x503C;&#x7684;&#x8FC7;&#x7A0B;&#x5C31;&#x53D8;&#x6210;&#x4E86;&#x4E00;&#x4E2A; Markov &#x8FC7;&#x7A0B;&#xFF0C;&#x90A3;&#x4E48;PageRank&#x7B97;&#x6CD5;&#x7684;&#x8BC1;&#x660E;&#x4E5F;&#x5C31;&#x8F6C;&#x4E3A;&#x8BC1;&#x660E; Markov &#x8FC7;&#x7A0B;&#x7684;&#x6536;&#x655B;&#x6027;&#x8BC1;&#x660E;&#xFF1A;&#x5982;&#x679C;&#x8FD9;&#x4E2A; Markov &#x8FC7;&#x7A0B;&#x6536;&#x655B;&#xFF0C;&#x90A3;&#x4E48;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>lim</mi><mrow><mi>n</mi><mo>&#x2192;</mo><mi mathvariant="normal">&#x221E;</mi></mrow></msub><msub><mi>P</mi><mrow><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex"> \lim_{n \rightarrow \infty}P_{n} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mop"><span class="mop">lim</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">n</span><span class="mrel mtight">&#x2192;</span><span class="mord mathrm mtight">&#x221E;</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#x5B58;&#x5728;&#xFF0C;&#x4E14;&#x4E0E;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>P</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">P_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#x7684;&#x9009;&#x53D6;&#x65E0;&#x5173;&#x3002;</p>
+<p>&#x82E5;&#x4E00;&#x4E2A; Markov &#x8FC7;&#x7A0B;&#x6536;&#x655B;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x7684;&#x72B6;&#x6001;&#x8F6C;&#x79FB;&#x77E9;&#x9635;A&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#xFF1A;</p>
+<ul>
+<li><p>A&#x4E3A;&#x968F;&#x673A;&#x77E9;&#x9635;&#x3002;</p>
+</li>
+<li><p>A&#x662F;&#x4E0D;&#x53EF;&#x7EA6;&#x7684;&#x3002;</p>
+</li>
+<li><p>A&#x662F;&#x975E;&#x5468;&#x671F;&#x7684;&#x3002;</p>
+</li>
+</ul>
+<p>&#x5148;&#x770B;&#x7B2C;&#x4E00;&#x70B9;&#xFF0C;&#x968F;&#x673A;&#x77E9;&#x9635;&#x53C8;&#x53EB;&#x6982;&#x7387;&#x77E9;&#x9635;&#x6216; Markov &#x77E9;&#x9635;&#xFF0C;&#x6EE1;&#x8DB3;&#x4EE5;&#x4E0B;&#x6761;&#x4EF6;  &#xFF1A;</p>
+<p><img src="images/2.png" alt=""></p>
+<p>&#x663E;&#x7136;&#x6211;&#x4EEC;&#x7684;A&#x77E9;&#x9635;&#x6240;&#x6709;&#x5143;&#x7D20;&#x90FD;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;0&#xFF0C;&#x5E76;&#x4E14;&#x6BCF;&#x4E00;&#x5217;&#x7684;&#x5143;&#x7D20;&#x548C;&#x90FD;&#x4E3A;1&#x3002;</p>
+<p>&#x7B2C;&#x4E8C;&#x70B9;&#xFF0C;&#x4E0D;&#x53EF;&#x7EA6;&#x77E9;&#x9635;&#xFF1A;&#x65B9;&#x9488;A&#x662F;&#x4E0D;&#x53EF;&#x7EA6;&#x7684;&#x5F53;&#x4E14;&#x4EC5;&#x5F53;&#x4E0E;A&#x5BF9;&#x5E94;&#x7684;&#x6709;&#x5411;&#x56FE;&#x662F;&#x5F3A;&#x8054;&#x901A;&#x7684;&#x3002;&#x6709;&#x5411;&#x56FE;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mo>=</mo><mo>(</mo><mi>V</mi><mo separator="true">,</mo><mi>E</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">G=(V,E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit">G</span><span class="mrel">=</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.22222em;">V</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span>
+&#x662F;&#x5F3A;&#x8054;&#x901A;&#x7684;&#x5F53;&#x4E14;&#x4EC5;&#x5F53;&#x5BF9;&#x6BCF;&#x4E00;&#x5BF9;&#x8282;&#x70B9;&#x5BF9;u,v&#x2208;V&#xFF0C;&#x5B58;&#x5728;&#x4ECE;u&#x5230;v</p>
+<p>&#x7684;&#x8DEF;&#x5F84;&#x3002;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x5728;&#x4E4B;&#x524D;&#x8BBE;&#x5B9A;&#x7528;&#x6237;&#x5728;&#x6D4F;&#x89C8;&#x9875;&#x9762;&#x7684;&#x65F6;&#x5019;&#x6709;&#x786E;&#x5B9A;&#x6982;&#x7387;&#x901A;&#x8FC7;&#x8F93;&#x5165;&#x7F51;&#x5740;&#x7684;&#x65B9;&#x5F0F;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x968F;&#x673A;&#x7F51;&#x9875;&#xFF0C;&#x6240;&#x4EE5;A&#x77E9;&#x9635;&#x540C;&#x6837;&#x6EE1;&#x8DB3;&#x4E0D;&#x53EF;&#x7EA6;&#x7684;&#x8981;&#x6C42;&#x3002;</p>
+<p>&#x7B2C;&#x4E09;&#x70B9;&#xFF0C;&#x8981;&#x6C42;A&#x662F;&#x975E;&#x5468;&#x671F;&#x7684;&#x3002;&#x6240;&#x8C13;&#x5468;&#x671F;&#x6027;&#xFF0C;&#x4F53;&#x73B0;&#x5728;Markov&#x94FE;&#x7684;&#x5468;&#x671F;&#x6027;&#x4E0A;&#x3002;&#x5373;&#x82E5;A&#x662F;&#x5468;&#x671F;&#x6027;&#x7684;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;Markov&#x94FE;&#x7684;&#x72B6;&#x6001;&#x5C31;&#x662F;&#x5468;&#x671F;&#x6027;&#x53D8;&#x5316;&#x7684;&#x3002;&#x56E0;&#x4E3A;A&#x662F;&#x7D20;&#x77E9;&#x9635;&#xFF08;&#x7D20;&#x77E9;&#x9635;&#x6307;&#x81EA;&#x8EAB;&#x7684;&#x67D0;&#x4E2A;&#x6B21;&#x5E42;&#x4E3A;&#x6B63;&#x77E9;&#x9635;&#x7684;&#x77E9;&#x9635;&#xFF09;&#xFF0C;&#x6240;&#x4EE5;A&#x662F;&#x975E;&#x5468;&#x671F;&#x7684;&#x3002;</p>
+<p>&#x81F3;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x8BC1;&#x660E;&#x4E86;PageRank&#x7B97;&#x6CD5;&#x7684;&#x6B63;&#x786E;&#x6027;&#x3002;</p>
+<h3 id="4-pr&#x503C;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;">4. PR&#x503C;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;</h3>
+<h5 id="41-&#x5E42;&#x8FED;&#x4EE3;&#x6CD5;">4.1 &#x5E42;&#x8FED;&#x4EE3;&#x6CD5;</h5>
+<p>&#x9996;&#x5148;&#x7ED9;&#x6BCF;&#x4E2A;&#x9875;&#x9762;&#x8D4B;&#x4E88;&#x968F;&#x673A;&#x7684;PR&#x503C;&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>P</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>A</mi><msub><mi>P</mi><mrow><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">P_{n+1} = A P_{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">n</span><span class="mbin mtight">+</span><span class="mord mathrm mtight">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord mathit">A</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#x4E0D;&#x65AD;&#x5730;&#x8FED;&#x4EE3;PR&#x503C;&#x3002;&#x5F53;&#x6EE1;&#x8DB3;&#x4E0B;&#x9762;&#x7684;&#x4E0D;&#x7B49;&#x5F0F;&#x540E;&#x8FED;&#x4EE3;&#x7ED3;&#x675F;&#xFF0C;&#x83B7;&#x5F97;&#x6240;&#x6709;&#x9875;&#x9762;&#x7684;PR&#x503C;&#xFF1A;</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">&#x2223;</mi><msub><mi>P</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>&#x2212;</mo><msub><mi>P</mi><mrow><mi>n</mi></mrow></msub><mi mathvariant="normal">&#x2223;</mi><mo>&lt;</mo><mi>&#x3F5;</mi></mrow><annotation encoding="application/x-tex">
+|P_{n+1} - P_{n}| &lt; \epsilon
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">&#x2223;</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">n</span><span class="mbin mtight">+</span><span class="mord mathrm mtight">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mbin">&#x2212;</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord mathrm">&#x2223;</span><span class="mrel">&lt;</span><span class="mord mathit">&#x3F5;</span></span></span></span></p>
+<h5 id="42-&#x7279;&#x5F81;&#x503C;&#x6CD5;">4.2 &#x7279;&#x5F81;&#x503C;&#x6CD5;</h5>
+<p>&#x5F53;&#x4E0A;&#x9762;&#x63D0;&#x5230;&#x7684;Markov&#x94FE;&#x6536;&#x655B;&#x65F6;&#xFF0C;&#x5FC5;&#x6709;&#xFF1A;</p>
+<p><img src="images/3.png" alt=""></p>
+<h5 id="43-&#x4EE3;&#x6570;&#x6CD5;">4.3 &#x4EE3;&#x6570;&#x6CD5;</h5>
+<p>&#x76F8;&#x4F3C;&#x7684;&#xFF0C;&#x5F53;&#x4E0A;&#x9762;&#x63D0;&#x5230;&#x7684;Markov&#x94FE;&#x6536;&#x655B;&#x65F6;&#xFF0C;&#x5FC5;&#x6709;&#xFF1A;</p>
+<p><img src="images/4.png" alt=""></p>
+<h3 id="5-&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;">5. &#x7B97;&#x6CD5;&#x5B9E;&#x73B0;</h3>
+<h5 id="51-&#x57FA;&#x4E8E;&#x8FED;&#x4EE3;&#x6CD5;&#x7684;&#x7B80;&#x5355;&#x5B9E;&#x73B0;">5.1 &#x57FA;&#x4E8E;&#x8FED;&#x4EE3;&#x6CD5;&#x7684;&#x7B80;&#x5355;&#x5B9E;&#x73B0;</h5>
+<p>&#x7528;python&#x5B9E;&#x73B0;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x5B89;&#x88C5;<code>python-graph-core&#x3002;</code></p>
+<pre><code class="lang-python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+
+<span class="hljs-keyword">from</span> pygraph.classes.digraph <span class="hljs-keyword">import</span> digraph
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PRIterator</span>:</span>
+    __doc__ = <span class="hljs-string">&apos;&apos;&apos;&#x8BA1;&#x7B97;&#x4E00;&#x5F20;&#x56FE;&#x4E2D;&#x7684;PR&#x503C;&apos;&apos;&apos;</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, dg)</span>:</span>
+        self.damping_factor = <span class="hljs-number">0.85</span>  <span class="hljs-comment"># &#x963B;&#x5C3C;&#x7CFB;&#x6570;,&#x5373;&#x3B1;</span>
+        self.max_iterations = <span class="hljs-number">100</span>  <span class="hljs-comment"># &#x6700;&#x5927;&#x8FED;&#x4EE3;&#x6B21;&#x6570;</span>
+        self.min_delta = <span class="hljs-number">0.00001</span>  <span class="hljs-comment"># &#x786E;&#x5B9A;&#x8FED;&#x4EE3;&#x662F;&#x5426;&#x7ED3;&#x675F;&#x7684;&#x53C2;&#x6570;,&#x5373;&#x3F5;</span>
+        self.graph = dg
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">page_rank</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-comment">#  &#x5148;&#x5C06;&#x56FE;&#x4E2D;&#x6CA1;&#x6709;&#x51FA;&#x94FE;&#x7684;&#x8282;&#x70B9;&#x6539;&#x4E3A;&#x5BF9;&#x6240;&#x6709;&#x8282;&#x70B9;&#x90FD;&#x6709;&#x51FA;&#x94FE;</span>
+        <span class="hljs-keyword">for</span> node <span class="hljs-keyword">in</span> self.graph.nodes():
+            <span class="hljs-keyword">if</span> len(self.graph.neighbors(node)) == <span class="hljs-number">0</span>:
+                <span class="hljs-keyword">for</span> node2 <span class="hljs-keyword">in</span> self.graph.nodes():
+                    digraph.add_edge(self.graph, (node, node2))
+
+        nodes = self.graph.nodes()
+        graph_size = len(nodes)
+
+        <span class="hljs-keyword">if</span> graph_size == <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">return</span> {}
+        page_rank = dict.fromkeys(nodes, <span class="hljs-number">1.0</span> / graph_size)  <span class="hljs-comment"># &#x7ED9;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x8D4B;&#x4E88;&#x521D;&#x59CB;&#x7684;PR&#x503C;</span>
+        damping_value = (<span class="hljs-number">1.0</span> - self.damping_factor) / graph_size  <span class="hljs-comment"># &#x516C;&#x5F0F;&#x4E2D;&#x7684;(1&#x2212;&#x3B1;)/N&#x90E8;&#x5206;</span>
+
+        flag = <span class="hljs-keyword">False</span>
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(self.max_iterations):
+            change = <span class="hljs-number">0</span>
+            <span class="hljs-keyword">for</span> node <span class="hljs-keyword">in</span> nodes:
+                rank = <span class="hljs-number">0</span>
+                <span class="hljs-keyword">for</span> incident_page <span class="hljs-keyword">in</span> self.graph.incidents(node):  <span class="hljs-comment"># &#x904D;&#x5386;&#x6240;&#x6709;&#x201C;&#x5165;&#x5C04;&#x201D;&#x7684;&#x9875;&#x9762;</span>
+                    rank += self.damping_factor * (page_rank[incident_page] / len(self.graph.neighbors(incident_page)))
+                rank += damping_value
+                change += abs(page_rank[node] - rank)  <span class="hljs-comment"># &#x7EDD;&#x5BF9;&#x503C;</span>
+                page_rank[node] = rank
+
+            print(<span class="hljs-string">&quot;This is NO.%s iteration&quot;</span> % (i + <span class="hljs-number">1</span>))
+            print(page_rank)
+
+            <span class="hljs-keyword">if</span> change &lt; self.min_delta:
+                flag = <span class="hljs-keyword">True</span>
+                <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">if</span> flag:
+            print(<span class="hljs-string">&quot;finished in %s iterations!&quot;</span> % node)
+        <span class="hljs-keyword">else</span>:
+            print(<span class="hljs-string">&quot;finished out of 100 iterations!&quot;</span>)
+        <span class="hljs-keyword">return</span> page_rank
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    dg = digraph()
+
+    dg.add_nodes([<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>])
+
+    dg.add_edge((<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;D&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;E&quot;</span>, <span class="hljs-string">&quot;A&quot;</span>))
+
+    pr = PRIterator(dg)
+    page_ranks = pr.page_rank()
+
+    print(<span class="hljs-string">&quot;The final page rank is\n&quot;</span>, page_ranks)
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code class="lang-python">finished <span class="hljs-keyword">in</span> <span class="hljs-number">36</span> iterations!
+The final page rank <span class="hljs-keyword">is</span>
+{<span class="hljs-string">&apos;A&apos;</span>: <span class="hljs-number">0.2963453309000821</span>, <span class="hljs-string">&apos;C&apos;</span>: <span class="hljs-number">0.11396451042168992</span>, <span class="hljs-string">&apos;B&apos;</span>: <span class="hljs-number">0.11396451042168992</span>, <span class="hljs-string">&apos;E&apos;</span>: <span class="hljs-number">0.31334518664434013</span>, <span class="hljs-string">&apos;D&apos;</span>: <span class="hljs-number">0.16239975107315852</span>}
+</code></pre>
+<p>&#x7A0B;&#x5E8F;&#x4E2D;&#x7ED9;&#x51FA;&#x7684;&#x7F51;&#x9875;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#x4E00;&#x5F00;&#x59CB;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="images/begin.PNG" alt=""></p>
+<p>&#x8FED;&#x4EE3;&#x7ED3;&#x675F;&#x540E;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="images/end.PNG" alt=""></p>
+<h5 id="52--mapreduce&#x5B9E;&#x73B0;">5.2  MapReduce&#x5B9E;&#x73B0;</h5>
+<p>&#x4F5C;&#x4E3A;Hadoop&#xFF08;&#x5206;&#x5E03;&#x5F0F;&#x7CFB;&#x7EDF;&#x5E73;&#x53F0;&#xFF09;&#x7684;&#x6838;&#x5FC3;&#x6A21;&#x5757;&#x4E4B;&#x4E00;&#xFF0C;MapReduce&#x662F;&#x4E00;&#x4E2A;&#x9AD8;&#x6548;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x8BA1;&#x7B97;&#x6846;&#x67B6;&#x3002;&#x4E0B;&#x9762;&#x9996;&#x5148;&#x7B80;&#x8981;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;MapReduce&#x539F;&#x7406;&#x3002;</p>
+<p>&#x6240;&#x8C13;MapReduce&#xFF0C;&#x5C31;&#x662F;&#x4E24;&#x79CD;&#x64CD;&#x4F5C;&#xFF1A;Mapping&#x548C;Reducing</p>
+<ul>
+<li><p>&#x6620;&#x5C04;&#xFF08;Mapping&#xFF09;&#xFF1A;&#x5BF9;&#x96C6;&#x5408;&#x91CC;&#x7684;&#x6BCF;&#x4E2A;&#x76EE;&#x6807;&#x5E94;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x3002;</p>
+</li>
+<li><p>&#x5316;&#x7B80;&#xFF08;Reducing &#xFF09;&#xFF1A;&#x904D;&#x5386;Mapping&#x8FD4;&#x56DE;&#x7684;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x6765;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x7EFC;&#x5408;&#x7684;&#x7ED3;&#x679C;</p>
+</li>
+</ul>
+<p>&#x5C31;&#x62FF;&#x4E00;&#x4E2A;&#x6700;&#x7ECF;&#x5178;&#x7684;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#xFF1A;&#x73B0;&#x5728;&#x6709;3&#x4E2A;&#x6587;&#x672C;&#x6587;&#x4EF6;&#xFF0C;&#x9700;&#x8981;&#x7EDF;&#x8BA1;&#x51FA;&#x6240;&#x6709;&#x51FA;&#x73B0;&#x8FC7;&#x7684;&#x8BCD;&#x7684;&#x8BCD;&#x9891;&#x3002;&#x4F20;&#x7EDF;&#x7684;&#x60F3;&#x6CD5;&#x662F;&#x8BA9;&#x4E00;&#x4E2A;&#x4EBA;&#x987A;&#x5E8F;&#x9605;&#x8BFB;&#x8FD9;3&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x6BCF;&#x9047;&#x5230;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#xFF0C;&#x5C31;&#x770B;&#x4E4B;&#x524D;&#x6709;&#x6CA1;&#x6709;&#x9047;&#x5230;&#x8FC7;&#x3002;&#x9047;&#x5230;&#x8FC7;&#x7684;&#x8BDD;&#x8BCD;&#x9891;&#x52A0;&#x4E00;&#xFF1A;&#xFF08;&#x5355;&#x8BCD;&#xFF0C;N + 1&#xFF09;&#xFF0C;&#x5426;&#x5219;&#x5C31;&#x8BB0;&#x5F55;&#x65B0;&#x8BCD;&#xFF0C;&#x8BCD;&#x9891;&#x4E3A;&#x4E00;&#xFF1A;&#xFF08;&#x5355;&#x8BCD;&#xFF0C;1&#xFF09;&#x3002;</p>
+<p>MapReduce&#x65B9;&#x5F0F;&#x4E3A;&#xFF1A;&#x628A;&#x8FD9;3&#x4E2A;&#x6587;&#x4EF6;&#x5206;&#x7ED9;3&#x4E2A;&#x4EBA;&#xFF0C;&#x6BCF;&#x4E2A;&#x4EBA;&#x9605;&#x8BFB;&#x4E00;&#x4EFD;&#x6587;&#x4EF6;&#x3002;&#x6BCF;&#x5F53;&#x9047;&#x5230;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#xFF0C;&#x5C31;&#x8BB0;&#x5F55;&#x8FD9;&#x4E2A;&#x5355;&#x8BCD;&#xFF1A;&#xFF08;&#x5355;&#x8BCD;&#xFF0C;1&#xFF09;&#xFF08;&#x4E0D;&#x7BA1;&#x4E4B;&#x524D;&#x6709;&#x6CA1;&#x6709;&#x9047;&#x5230;&#x8FC7;&#x8FD9;&#x4E2A;&#x5355;&#x8BCD;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x591A;&#x4E2A;&#x76F8;&#x540C;&#x5355;&#x8BCD;&#x7684;&#x8BB0;&#x5F55;&#xFF09;&#x3002;&#x4E4B;&#x540E;&#x5C06;&#x518D;&#x6D3E;&#x4E00;&#x4E2A;&#x4EBA;&#x628A;&#x76F8;&#x540C;&#x5355;&#x8BCD;&#x7684;&#x8BB0;&#x5F55;&#x76F8;&#x52A0;&#xFF0C;&#x5373;&#x53EF;&#x5F97;&#x5230;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#x3002;</p>
+<p>&#x8BCD;&#x9891;&#x7EDF;&#x8BA1;&#x7684;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x53EF;&#x89C1;&#x70B9;&#x6211;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x662F;&#x4F7F;&#x7528;MapReduce&#x5B9E;&#x73B0;PageRank&#x7684;&#x5177;&#x4F53;&#x4EE3;&#x7801;<sup><a href="#fn_ref_9" id="reffn_ref_9">ref_9</a></sup>&#x3002;&#x9996;&#x5148;&#x662F;&#x901A;&#x7528;&#x7684;map&#x4E0E;reduce&#x6A21;&#x5757;&#x3002;&#x82E5;&#x662F;&#x611F;&#x89C9;&#x7406;&#x89E3;&#x6709;&#x56F0;&#x96BE;&#xFF0C;&#x53EF;&#x4EE5;&#x5148;&#x770B;&#x770B;&#x8BCD;&#x9891;&#x7EDF;&#x8BA1;&#x7684;&#x5B9E;&#x73B0;&#x4EE3;&#x7801;&#xFF0C;&#x5176;&#x4E2D;&#x540C;&#x6837;&#x4F7F;&#x7528;&#x4E86;&#x4E0B;&#x9762;&#x7684;&#x6A21;&#x5757;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MapReduce</span>:</span>
+    __doc__ = <span class="hljs-string">&apos;&apos;&apos;&#x63D0;&#x4F9B;map_reduce&#x529F;&#x80FD;&apos;&apos;&apos;</span>
+
+<span class="hljs-decorator">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">map_reduce</span><span class="hljs-params">(i, mapper, reducer)</span>:</span>
+        <span class="hljs-string">&quot;&quot;&quot;
+        map_reduce&#x65B9;&#x6CD5;
+        :param i: &#x9700;&#x8981;MapReduce&#x7684;&#x96C6;&#x5408;
+        :param mapper: &#x81EA;&#x5B9A;&#x4E49;mapper&#x65B9;&#x6CD5;
+        :param reducer: &#x81EA;&#x5B9A;&#x4E49;reducer&#x65B9;&#x6CD5;
+        :return: &#x4EE5;&#x81EA;&#x5B9A;&#x4E49;reducer&#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x4E3A;&#x5143;&#x7D20;&#x7684;&#x4E00;&#x4E2A;&#x5217;&#x8868;
+        &quot;&quot;&quot;</span>
+        intermediate = []  <span class="hljs-comment"># &#x5B58;&#x653E;&#x6240;&#x6709;&#x7684;(intermediate_key, intermediate_value)</span>
+        <span class="hljs-keyword">for</span> (key, value) <span class="hljs-keyword">in</span> i.items():
+            intermediate.extend(mapper(key, value))
+
+        <span class="hljs-comment"># sorted&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6392;&#x5E8F;&#x597D;&#x7684;list&#xFF0C;&#x56E0;&#x4E3A;list&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x662F;&#x4E00;&#x4E2A;&#x4E2A;&#x7684;tuple&#xFF0C;key&#x8BBE;&#x5B9A;&#x6309;&#x7167;tuple&#x4E2D;&#x7B2C;&#x51E0;&#x4E2A;&#x5143;&#x7D20;&#x6392;&#x5E8F;</span>
+        <span class="hljs-comment"># groupby&#x628A;&#x8FED;&#x4EE3;&#x5668;&#x4E2D;&#x76F8;&#x90BB;&#x7684;&#x91CD;&#x590D;&#x5143;&#x7D20;&#x6311;&#x51FA;&#x6765;&#x653E;&#x5728;&#x4E00;&#x8D77;,key&#x8BBE;&#x5B9A;&#x6309;&#x7167;tuple&#x4E2D;&#x7B2C;&#x51E0;&#x4E2A;&#x5143;&#x7D20;&#x4E3A;&#x5173;&#x952E;&#x5B57;&#x6765;&#x6311;&#x9009;&#x91CD;&#x590D;&#x5143;&#x7D20;</span>
+        <span class="hljs-comment"># &#x4E0B;&#x9762;&#x7684;&#x5FAA;&#x73AF;&#x4E2D;groupby&#x8FD4;&#x56DE;&#x7684;key&#x662F;intermediate_key&#xFF0C;&#x800C;group&#x662F;&#x4E2A;list&#xFF0C;&#x662F;1&#x4E2A;&#x6216;&#x591A;&#x4E2A;</span>
+        <span class="hljs-comment"># &#x6709;&#x7740;&#x76F8;&#x540C;intermediate_key&#x7684;(intermediate_key, intermediate_value)</span>
+        groups = {}
+        <span class="hljs-keyword">for</span> key, group <span class="hljs-keyword">in</span> itertools.groupby(sorted(intermediate, key=<span class="hljs-keyword">lambda</span> im: im[<span class="hljs-number">0</span>]), key=<span class="hljs-keyword">lambda</span> x: x[<span class="hljs-number">0</span>]):
+            groups[key] = [y <span class="hljs-keyword">for</span> x, y <span class="hljs-keyword">in</span> group]
+        <span class="hljs-comment"># groups&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#xFF0C;&#x5176;key&#x4E3A;&#x4E0A;&#x9762;&#x8BF4;&#x5230;&#x7684;intermediate_key&#xFF0C;value&#x4E3A;&#x6240;&#x6709;&#x5BF9;&#x5E94;intermediate_key&#x7684;intermediate_value</span>
+        <span class="hljs-comment"># &#x7EC4;&#x6210;&#x7684;&#x4E00;&#x4E2A;&#x5217;&#x8868;</span>
+        <span class="hljs-keyword">return</span> [reducer(intermediate_key, groups[intermediate_key]) <span class="hljs-keyword">for</span> intermediate_key <span class="hljs-keyword">in</span> groups]
+</code></pre>
+<p>&#x63A5;&#x7740;&#x662F;&#x8BA1;&#x7B97;PR&#x503C;&#x7684;&#x7C7B;&#xFF0C;&#x5176;&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;&#x7528;&#x4E8E;&#x8BA1;&#x7B97;PR&#x503C;&#x7684;mapper&#x548C;reducer&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PRMapReduce</span>:</span>
+    __doc__ = <span class="hljs-string">&apos;&apos;&apos;&#x8BA1;&#x7B97;PR&#x503C;&apos;&apos;&apos;</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, dg)</span>:</span>
+        self.damping_factor = <span class="hljs-number">0.85</span>  <span class="hljs-comment"># &#x963B;&#x5C3C;&#x7CFB;&#x6570;,&#x5373;&#x3B1;</span>
+        self.max_iterations = <span class="hljs-number">100</span>  <span class="hljs-comment"># &#x6700;&#x5927;&#x8FED;&#x4EE3;&#x6B21;&#x6570;</span>
+        self.min_delta = <span class="hljs-number">0.00001</span>  <span class="hljs-comment"># &#x786E;&#x5B9A;&#x8FED;&#x4EE3;&#x662F;&#x5426;&#x7ED3;&#x675F;&#x7684;&#x53C2;&#x6570;,&#x5373;&#x3F5;</span>
+        self.num_of_pages = len(dg.nodes())  <span class="hljs-comment"># &#x603B;&#x7F51;&#x9875;&#x6570;</span>
+
+        <span class="hljs-comment"># graph&#x8868;&#x793A;&#x6574;&#x4E2A;&#x7F51;&#x7EDC;&#x56FE;&#x3002;&#x662F;&#x5B57;&#x5178;&#x7C7B;&#x578B;&#x3002;</span>
+        <span class="hljs-comment"># graph[i][0] &#x5B58;&#x653E;&#x7B2C;i&#x7F51;&#x9875;&#x7684;PR&#x503C;</span>
+        <span class="hljs-comment"># graph[i][1] &#x5B58;&#x653E;&#x7B2C;i&#x7F51;&#x9875;&#x7684;&#x51FA;&#x94FE;&#x6570;&#x91CF;</span>
+        <span class="hljs-comment"># graph[i][2] &#x5B58;&#x653E;&#x7B2C;i&#x7F51;&#x9875;&#x7684;&#x51FA;&#x94FE;&#x7F51;&#x9875;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x5217;&#x8868;</span>
+        self.graph = {}
+        <span class="hljs-keyword">for</span> node <span class="hljs-keyword">in</span> dg.nodes():
+            self.graph[node] = [<span class="hljs-number">1.0</span> / self.num_of_pages, len(dg.neighbors(node)), dg.neighbors(node)]
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ip_mapper</span><span class="hljs-params">(self, input_key, input_value)</span>:</span>
+        <span class="hljs-string">&quot;&quot;&quot;
+        &#x770B;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#x662F;&#x5426;&#x6709;&#x51FA;&#x94FE;&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x4E2D;&#x7684; 1 &#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x7269;&#x7406;&#x542B;&#x4E49;&#xFF0C;&#x53EA;&#x662F;&#x4E3A;&#x4E86;&#x5728;
+        map_reduce&#x4E2D;&#x7684;groups&#x5B57;&#x5178;&#x7684;key&#x53EA;&#x6709;1&#xFF0C;&#x5BF9;&#x5E94;&#x7684;value&#x4E3A;&#x6240;&#x6709;&#x7684;&#x60AC;&#x6302;&#x7F51;&#x9875;
+        &#x7684;PR&#x503C;
+        :param input_key: &#x7F51;&#x9875;&#x540D;&#xFF0C;&#x5982; A
+        :param input_value: self.graph[input_key]
+        :return: &#x5982;&#x679C;&#x6CA1;&#x6709;&#x51FA;&#x94FE;&#xFF0C;&#x5373;&#x60AC;&#x6302;&#x7F51;&#x9875;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x8FD4;&#x56DE;[(1,&#x8FD9;&#x4E2A;&#x7F51;&#x9875;&#x7684;PR&#x503C;)]&#xFF1B;&#x5426;&#x5219;&#x5C31;&#x8FD4;&#x56DE;[]
+        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">if</span> input_value[<span class="hljs-number">1</span>] == <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">return</span> [(<span class="hljs-number">1</span>, input_value[<span class="hljs-number">0</span>])]
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">return</span> []
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ip_reducer</span><span class="hljs-params">(self, input_key, input_value_list)</span>:</span>
+        <span class="hljs-string">&quot;&quot;&quot;
+        &#x8BA1;&#x7B97;&#x6240;&#x6709;&#x60AC;&#x6302;&#x7F51;&#x9875;&#x7684;PR&#x503C;&#x4E4B;&#x548C;
+        :param input_key: &#x6839;&#x636E;ip_mapper&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x6765;&#x770B;&#xFF0C;&#x8FD9;&#x4E2A;input_key&#x5C31;&#x662F;:1
+        :param input_value_list: &#x6240;&#x6709;&#x60AC;&#x6302;&#x7F51;&#x9875;&#x7684;PR&#x503C;
+        :return: &#x6240;&#x6709;&#x60AC;&#x6302;&#x7F51;&#x9875;&#x7684;PR&#x503C;&#x4E4B;&#x548C;
+        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">return</span> sum(input_value_list)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pr_mapper</span><span class="hljs-params">(self, input_key, input_value)</span>:</span>
+        <span class="hljs-string">&quot;&quot;&quot;
+        mapper&#x65B9;&#x6CD5;
+        :param input_key: &#x7F51;&#x9875;&#x540D;&#xFF0C;&#x5982; A
+        :param input_value: self.graph[input_key]&#xFF0C;&#x5373;&#x8FD9;&#x4E2A;&#x7F51;&#x9875;&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;
+        :return: [(&#x7F51;&#x9875;&#x540D;, 0.0), (&#x51FA;&#x94FE;&#x7F51;&#x9875;1, &#x51FA;&#x94FE;&#x7F51;&#x9875;1&#x5206;&#x5F97;&#x7684;PR&#x503C;), (&#x51FA;&#x94FE;&#x7F51;&#x9875;2, &#x51FA;&#x94FE;&#x7F51;&#x9875;2&#x5206;&#x5F97;&#x7684;PR&#x503C;)...]
+        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">return</span> [(input_key, <span class="hljs-number">0.0</span>)] + [(out_link, input_value[<span class="hljs-number">0</span>] / input_value[<span class="hljs-number">1</span>]) <span class="hljs-keyword">for</span> out_link <span class="hljs-keyword">in</span> input_value[<span class="hljs-number">2</span>]]
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pr_reducer_inter</span><span class="hljs-params">(self, intermediate_key, intermediate_value_list, dp)</span>:</span>
+        <span class="hljs-string">&quot;&quot;&quot;
+        reducer&#x65B9;&#x6CD5;
+        :param intermediate_key: &#x7F51;&#x9875;&#x540D;&#xFF0C;&#x5982; A
+        :param intermediate_value_list: A&#x6240;&#x6709;&#x5206;&#x5F97;&#x7684;PR&#x503C;&#x7684;&#x5217;&#x8868;:[0.0,&#x5206;&#x5F97;&#x7684;PR&#x503C;,&#x5206;&#x5F97;&#x7684;PR&#x503C;...]
+        :param dp: &#x6240;&#x6709;&#x60AC;&#x6302;&#x7F51;&#x9875;&#x7684;PR&#x503C;&#x4E4B;&#x548C;
+        :return: (&#x7F51;&#x9875;&#x540D;&#xFF0C;&#x8BA1;&#x7B97;&#x6240;&#x5F97;&#x7684;PR&#x503C;)
+        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">return</span> (intermediate_key,
+                self.damping_factor * sum(intermediate_value_list) +
+                self.damping_factor * dp / self.num_of_pages +
+                (<span class="hljs-number">1.0</span> - self.damping_factor) / self.num_of_pages)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">page_rank</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-string">&quot;&quot;&quot;
+        &#x8BA1;&#x7B97;PR&#x503C;&#xFF0C;&#x6BCF;&#x6B21;&#x8FED;&#x4EE3;&#x90FD;&#x9700;&#x8981;&#x4E24;&#x6B21;&#x8C03;&#x7528;MapReduce&#x3002;&#x4E00;&#x6B21;&#x662F;&#x8BA1;&#x7B97;&#x60AC;&#x6302;&#x7F51;&#x9875;PR&#x503C;&#x4E4B;&#x548C;&#xFF0C;&#x4E00;&#x6B21;
+        &#x662F;&#x8BA1;&#x7B97;&#x6240;&#x6709;&#x7F51;&#x9875;&#x7684;PR&#x503C;
+        :return: self.graph&#xFF0C;&#x5176;&#x4E2D;&#x7684;PR&#x503C;&#x5DF2;&#x7ECF;&#x8BA1;&#x7B97;&#x597D;
+        &quot;&quot;&quot;</span>
+        iteration = <span class="hljs-number">1</span>  <span class="hljs-comment"># &#x8FED;&#x4EE3;&#x6B21;&#x6570;</span>
+        change = <span class="hljs-number">1</span>  <span class="hljs-comment"># &#x8BB0;&#x5F55;&#x6BCF;&#x8F6E;&#x8FED;&#x4EE3;&#x540E;&#x7684;PR&#x503C;&#x53D8;&#x5316;&#x60C5;&#x51B5;&#xFF0C;&#x521D;&#x59CB;&#x503C;&#x4E3A;1&#x4FDD;&#x8BC1;&#x81F3;&#x5C11;&#x6709;&#x4E00;&#x6B21;&#x8FED;&#x4EE3;</span>
+        <span class="hljs-keyword">while</span> change &gt; self.min_delta:
+            print(<span class="hljs-string">&quot;Iteration: &quot;</span> + str(iteration))
+
+            <span class="hljs-comment"># &#x56E0;&#x4E3A;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x60AC;&#x6302;&#x7F51;&#x9875;&#xFF0C;&#x6240;&#x4EE5;&#x624D;&#x6709;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;dangling_list</span>
+            <span class="hljs-comment"># dangling_list&#x5B58;&#x653E;&#x7684;&#x662F;[&#x6240;&#x6709;&#x60AC;&#x6302;&#x7F51;&#x9875;&#x7684;PR&#x503C;&#x4E4B;&#x548C;]</span>
+            <span class="hljs-comment"># dp&#x8868;&#x793A;&#x6240;&#x6709;&#x60AC;&#x6302;&#x7F51;&#x9875;&#x7684;PR&#x503C;&#x4E4B;&#x548C;</span>
+            dangling_list = MapReduce.map_reduce(self.graph, self.ip_mapper, self.ip_reducer)
+            <span class="hljs-keyword">if</span> dangling_list:
+                dp = dangling_list[<span class="hljs-number">0</span>]
+            <span class="hljs-keyword">else</span>:
+                dp = <span class="hljs-number">0</span>
+
+            <span class="hljs-comment"># &#x56E0;&#x4E3A;MapReduce.map_reduce&#x4E2D;&#x8981;&#x6C42;&#x7684;reducer&#x53EA;&#x80FD;&#x6709;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x800C;&#x6211;&#x4EEC;</span>
+            <span class="hljs-comment"># &#x9700;&#x8981;&#x4F20;3&#x4E2A;&#x53C2;&#x6570;&#xFF08;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x6240;&#x6709;&#x60AC;&#x6302;&#x7F51;&#x9875;&#x7684;PR&#x503C;&#x4E4B;&#x548C;,&#x5373;dp&#xFF09;&#xFF0C;&#x6240;&#x4EE5;&#x91C7;&#x7528;</span>
+            <span class="hljs-comment"># &#x4E0B;&#x9762;&#x7684;lambda&#x8868;&#x8FBE;&#x5F0F;&#x6765;&#x8FBE;&#x5230;&#x76EE;&#x7684;</span>
+            <span class="hljs-comment"># new_pr&#x4E3A;&#x4E00;&#x4E2A;&#x5217;&#x8868;&#xFF0C;&#x5143;&#x7D20;&#x4E3A;:(&#x7F51;&#x9875;&#x540D;&#xFF0C;&#x8BA1;&#x7B97;&#x6240;&#x5F97;&#x7684;PR&#x503C;)</span>
+            new_pr = MapReduce.map_reduce(self.graph, self.pr_mapper, <span class="hljs-keyword">lambda</span> x, y: self.pr_reducer_inter(x, y, dp))
+
+            <span class="hljs-comment"># &#x8BA1;&#x7B97;&#x6B64;&#x8F6E;PR&#x503C;&#x7684;&#x53D8;&#x5316;&#x60C5;&#x51B5;</span>
+            change = sum([abs(new_pr[i][<span class="hljs-number">1</span>] - self.graph[new_pr[i][<span class="hljs-number">0</span>]][<span class="hljs-number">0</span>]) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(self.num_of_pages)])
+            print(<span class="hljs-string">&quot;Change: &quot;</span> + str(change))
+
+            <span class="hljs-comment"># &#x66F4;&#x65B0;PR&#x503C;</span>
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(self.num_of_pages):
+                self.graph[new_pr[i][<span class="hljs-number">0</span>]][<span class="hljs-number">0</span>] = new_pr[i][<span class="hljs-number">1</span>]
+            iteration += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">return</span> self.graph
+</code></pre>
+<p>&#x6700;&#x540E;&#x662F;&#x6D4B;&#x8BD5;&#x90E8;&#x5206;&#xFF0C;&#x6211;&#x4F7F;&#x7528;&#x4E86;python&#x7684;digraph&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x6709;&#x5411;&#x56FE;&#xFF0C;&#x5E76;&#x8C03;&#x7528;&#x4E0A;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x8BA1;&#x7B97;PR&#x503C;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    dg = digraph()
+
+    dg.add_nodes([<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>])
+
+    dg.add_edge((<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;D&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>))
+    dg.add_edge((<span class="hljs-string">&quot;E&quot;</span>, <span class="hljs-string">&quot;A&quot;</span>))
+
+    pr = PRMapReduce(dg)
+    page_ranks = pr.page_rank()
+
+    print(<span class="hljs-string">&quot;The final page rank is&quot;</span>)
+    <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> page_ranks.items():
+        print(key + <span class="hljs-string">&quot; : &quot;</span>, value[<span class="hljs-number">0</span>])
+</code></pre>
+<p>&#x9644;&#x4E0A;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>Iteration: 44
+Change: 1.275194338951069e-05
+Iteration: 45
+Change: 1.0046004543212694e-05
+Iteration: 46
+Change: 7.15337406470562e-06
+The final page rank is
+E :  0.3133376132128915
+C :  0.11396289866948645
+B :  0.11396289866948645
+A :  0.2963400114149353
+D :  0.1623965780332006
+</code></pre><p>&#x4EE5;&#x4E0A;&#x4FBF;&#x662F;PageRank&#x7684;MapReduce&#x5B9E;&#x73B0;&#x3002;&#x4EE3;&#x7801;&#x4E2D;&#x7684;&#x6CE8;&#x91CA;&#x8F83;&#x4E3A;&#x8BE6;&#x7EC6;&#xFF0C;&#x7406;&#x89E3;&#x5E94;&#x8BE5;&#x4E0D;&#x96BE;&#x3002;</p>
+<h3 id="6-pagerank&#x7B97;&#x6CD5;&#x7684;&#x7F3A;&#x70B9;">6. PageRank&#x7B97;&#x6CD5;&#x7684;&#x7F3A;&#x70B9;</h3>
+<p>&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5929;&#x624D;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x539F;&#x7406;&#x7B80;&#x5355;&#x4F46;&#x6548;&#x679C;&#x60CA;&#x4EBA;&#x3002;&#x7136;&#x800C;&#xFF0C;PageRank&#x7B97;&#x6CD5;&#x8FD8;&#x662F;&#x6709;&#x4E00;&#x4E9B;&#x5F0A;&#x7AEF;&#x3002;</p>
+<p>&#x7B2C;&#x4E00;&#xFF0C;<code>&#x6CA1;&#x6709;&#x533A;&#x5206;&#x7AD9;&#x5185;&#x5BFC;&#x822A;&#x94FE;&#x63A5;</code>&#x3002;&#x5F88;&#x591A;&#x7F51;&#x7AD9;&#x7684;&#x9996;&#x9875;&#x90FD;&#x6709;&#x5F88;&#x591A;&#x5BF9;&#x7AD9;&#x5185;&#x5176;&#x4ED6;&#x9875;&#x9762;&#x7684;&#x94FE;&#x63A5;&#xFF0C;&#x79F0;&#x4E3A;&#x7AD9;&#x5185;&#x5BFC;&#x822A;&#x94FE;&#x63A5;&#x3002;&#x8FD9;&#x4E9B;&#x94FE;&#x63A5;&#x4E0E;&#x4E0D;&#x540C;&#x7F51;&#x7AD9;&#x4E4B;&#x95F4;&#x7684;&#x94FE;&#x63A5;&#x76F8;&#x6BD4;&#xFF0C;&#x80AF;&#x5B9A;&#x662F;&#x540E;&#x8005;&#x66F4;&#x80FD;&#x4F53;&#x73B0;PageRank&#x503C;&#x7684;&#x4F20;&#x9012;&#x5173;&#x7CFB;&#x3002;</p>
+<p>&#x7B2C;&#x4E8C;&#xFF0C;<code>&#x6CA1;&#x6709;&#x8FC7;&#x6EE4;&#x5E7F;&#x544A;&#x94FE;&#x63A5;&#x548C;&#x529F;&#x80FD;&#x94FE;&#x63A5;</code>&#xFF08;&#x4F8B;&#x5982;&#x5E38;&#x89C1;&#x7684;&#x201C;&#x5206;&#x4EAB;&#x5230;&#x5FAE;&#x535A;&#x201D;&#xFF09;&#x3002;&#x8FD9;&#x4E9B;&#x94FE;&#x63A5;&#x901A;&#x5E38;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x5B9E;&#x9645;&#x4EF7;&#x503C;&#xFF0C;&#x524D;&#x8005;&#x94FE;&#x63A5;&#x5230;&#x5E7F;&#x544A;&#x9875;&#x9762;&#xFF0C;&#x540E;&#x8005;&#x5E38;&#x5E38;&#x94FE;&#x63A5;&#x5230;&#x67D0;&#x4E2A;&#x793E;&#x4EA4;&#x7F51;&#x7AD9;&#x9996;&#x9875;&#x3002;</p>
+<p>&#x7B2C;&#x4E09;&#xFF0C;<code>&#x5BF9;&#x65B0;&#x7F51;&#x9875;&#x4E0D;&#x53CB;&#x597D;</code>&#x3002;&#x4E00;&#x4E2A;&#x65B0;&#x7F51;&#x9875;&#x7684;&#x4E00;&#x822C;&#x5165;&#x94FE;&#x76F8;&#x5BF9;&#x8F83;&#x5C11;&#xFF0C;&#x5373;&#x4F7F;&#x5B83;&#x7684;&#x5185;&#x5BB9;&#x7684;&#x8D28;&#x91CF;&#x5F88;&#x9AD8;&#xFF0C;&#x8981;&#x6210;&#x4E3A;&#x4E00;&#x4E2A;&#x9AD8;PR&#x503C;&#x7684;&#x9875;&#x9762;&#x4ECD;&#x9700;&#x8981;&#x5F88;&#x957F;&#x65F6;&#x95F4;&#x7684;&#x63A8;&#x5E7F;&#x3002;</p>
+<p>&#x9488;&#x5BF9;PageRank&#x7B97;&#x6CD5;&#x7684;&#x7F3A;&#x70B9;&#xFF0C;&#x6709;&#x4EBA;&#x63D0;&#x51FA;&#x4E86;TrustRank&#x7B97;&#x6CD5;&#x3002;&#x5176;&#x6700;&#x521D;&#x6765;&#x81EA;&#x4E8E;2004&#x5E74;&#x65AF;&#x5766;&#x798F;&#x5927;&#x5B66;&#x548C;&#x96C5;&#x864E;&#x7684;&#x4E00;&#x9879;&#x8054;&#x5408;&#x7814;&#x7A76;&#xFF0C;&#x7528;&#x6765;&#x68C0;&#x6D4B;&#x5783;&#x573E;&#x7F51;&#x7AD9;&#x3002;TrustRank&#x7B97;&#x6CD5;&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#xFF1A;&#x5148;&#x4EBA;&#x5DE5;&#x53BB;&#x8BC6;&#x522B;&#x9AD8;&#x8D28;&#x91CF;&#x7684;&#x9875;&#x9762;(&#x5373;&#x201C;&#x79CD;&#x5B50;&#x201D;&#x9875;&#x9762;)&#xFF0C;&#x90A3;&#x4E48;&#x7531;&#x201C;&#x79CD;&#x5B50;&#x201D;&#x9875;&#x9762;&#x6307;&#x5411;&#x7684;&#x9875;&#x9762;&#x4E5F;&#x53EF;&#x80FD;&#x662F;&#x9AD8;&#x8D28;&#x91CF;&#x9875;&#x9762;&#xFF0C;&#x5373;&#x5176;TR&#x503C;&#x4E5F;&#x9AD8;&#xFF0C;&#x4E0E;&#x201C;&#x79CD;&#x5B50;&#x201D;&#x9875;&#x9762;&#x7684;&#x94FE;&#x63A5;&#x8D8A;&#x8FDC;&#xFF0C;&#x9875;&#x9762;&#x7684;TR&#x503C;&#x8D8A;&#x4F4E;&#x3002;&#x201C;&#x79CD;&#x5B50;&#x201D;&#x9875;&#x9762;&#x53EF;&#x9009;&#x51FA;&#x94FE;&#x6570;&#x8F83;&#x591A;&#x7684;&#x7F51;&#x9875;&#xFF0C;&#x4E5F;&#x53EF;&#x9009;PR&#x503C;&#x8F83;&#x9AD8;&#x7684;&#x7F51;&#x7AD9;&#x3002;</p>
+<p>TrustRank&#x7B97;&#x6CD5;&#x7ED9;&#x51FA;&#x6BCF;&#x4E2A;&#x7F51;&#x9875;&#x7684;TR&#x503C;&#x3002;&#x5C06;PR&#x503C;&#x4E0E;TR&#x503C;&#x7ED3;&#x5408;&#x8D77;&#x6765;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x51C6;&#x786E;&#x5730;&#x5224;&#x65AD;&#x7F51;&#x9875;&#x7684;&#x91CD;&#x8981;&#x6027;&#x3002;</p>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"></span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span class="page-footer-ex-footer-update">
+2018-08-29 15:40:05
+</span></footer>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../algorithm/index.html" class="navigation navigation-prev " aria-label="Previous page: 数据结构与算法"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../algorithm/section2.html" class="navigation navigation-next " aria-label="Next page: Hash的原理"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-splitter/splitter.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"toggle-chapters":{},"splitter":{},"ouweiya-pagefooter":{"copyright":"","update_format":"YYYY-MM-DD HH:mm:ss","update_label":""},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book Python学科面试宝典 -->
+</html>
